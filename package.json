@@ -1,0 +1,48 @@
+{
+  "name": "dapp-boilerplate",
+  "version": "1.0.0",
+  "description": "A dapp boilerplate for standardising development",
+  "main": "index.js",
+  "repository": "https://github.com/ChainSafe/dapp-boilerplate.git",
+  "author": "Ryan Noble <ryanjnoble@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn wsrun --stages -c build",
+    "build:webapp": "yarn wsrun -p webapp -c build",
+    "start:dev": "yarn wsrun start:dev --parallel --exclude-missing",
+    "clean": "rm -rf ./node_modules && rm -rf ./*/node_modules",
+    "test:webapp": "cd Webapp && yarn test:watch"
+  },
+  "workspaces": {
+    "packages": [
+      "Contracts",
+      "WebApp"
+    ],
+    "nohoist": [
+      "**/*"
+    ]
+  },
+  "devDependencies": {
+    "chalk": "^2.0.1",
+    "jest": "^24.5.0",
+    "jest-haste-map": "^24.5.0",
+    "jest-resolve": "^24.5.0",
+    "precommit": "^1.2.2",
+    "wsrun": "3.6.5"
+  },
+  "resolutions": {
+    "**/hoist-non-react-statics": "^3.0.1"
+  },
+  "keywords": [
+    "NodeJS",
+    "React",
+    "Redux",
+    "Monorepo",
+    "Ethers"
+  ],
+  "engines": {
+    "node": ">=8.0",
+    "yarn": ">=1.9.4"
+  }
+}

@@ -1,0 +1,110 @@
+/**
+ *
+ * {{properCase name }}
+ *
+ */
+
+import React, {Fragment} from 'react';
+import { connect } from 'react-redux';
+{{#if wantHeaders}}
+import { Helmet } from 'react-helmet';
+{{/if}}
+{{#if wantMessages}}
+import { FormattedMessage } from 'react-intl';
+{{/if}}
+{{#if wantSelectors}}
+import { createStructuredSelector } from 'reselect';
+{{/if}}
+import { compose, Dispatch } from 'redux';
+
+{{#if wantSaga}}
+import injectSaga from 'utils/injectSaga';
+{{/if}}
+{{#if wantActionsAndReducer}}
+import injectReducer from 'utils/injectReducer';
+import makeSelect{{properCase name}} from './selectors';
+import reducer from './reducer';
+{{/if}}
+{{#if wantSaga}}
+import saga from './saga';
+{{/if}}
+{{#if wantMessages}}
+import messages from './messages';
+{{/if}}
+
+interface OwnProps {
+
+}
+
+
+interface DispatchProps {
+
+}
+
+{{#if wantSelectors}}
+interface StateProps {
+
+}
+
+type Props = StateProps & DispatchProps & OwnProps;
+{{else}}
+type Props = DispatchProps & OwnProps;
+{{/if}}
+
+const {{ properCase name }}: React.SFC<Props> = (props: Props) => {
+  return (
+    <Fragment>
+    {{#if wantHeaders}}
+      <Helmet>
+        <title>{{properCase name}}</title>
+        <meta name="description" content="Description of {{properCase name}}" />
+      </Helmet>
+    {{/if}}
+    {{#if wantMessages}}
+      <FormattedMessage {...messages.header} />
+    {{/if}}
+      {{ properCase name }}
+    </Fragment>
+  );
+};
+
+{{#if wantSelectors}}
+const mapStateToProps = createStructuredSelector({
+  {{properCase name}}: makeSelect{{properCase name}}
+});
+{{/if}}
+
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: OwnProps): DispatchProps => {
+  return {
+    dispatch: dispatch,
+  };
+}
+
+{{#if wantSelectors}}
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+{{else}}
+const withConnect = connect(mapDispatchToProps);
+{{/if}}
+
+{{#if wantActionsAndReducer}}
+
+// Remember to add the key to ./app/types/index.d.ts ApplicationRootState
+// <OwnProps> restricts access to the HOC's other props. This component must not do anything with reducer hoc
+const withReducer = injectReducer<OwnProps>({ key: '{{ camelCase name }}', reducer: reducer });
+{{/if}}
+{{#if wantSaga}}
+// <OwnProps> restricts access to the HOC's other props. This component must not do anything with saga hoc
+const withSaga = injectSaga<OwnProps>({ key: '{{ camelCase name }}', saga: saga });
+{{/if}}
+
+export default compose(
+{{#if wantActionsAndReducer}}
+  withReducer,
+{{/if}}
+{{#if wantSaga}}
+  withSaga,
+{{/if}}
+{{#if wantSelectors}}
+  withConnect,
+{{/if}}
+)({{ properCase name }});

@@ -1,0 +1,42 @@
+/**
+ *
+ * {{ properCase name }}
+ *
+ */
+
+import React, { Fragment } from 'react';
+{{#if wantMUIStyles}}
+import { Theme, createStyles, withStyles, WithStyles } from '@material-ui/core';
+
+const styles = (theme: Theme) => createStyles({
+  // JSS in CSS goes here
+  root: {
+
+  }
+});
+
+interface OwnProps extends WithStyles<typeof styles> { }
+{{else}}
+
+interface OwnProps { }
+{{/if}}
+
+const {{ properCase name }}: React.SFC<OwnProps> = (props: OwnProps) => {
+  const {
+    classes,
+  } = props;
+  return (
+    <Fragment>
+      {{#if wantMessages}}
+      <FormattedMessage {...messages.header} />
+      {{/if}}
+      {{ properCase name }}
+    </Fragment>
+  );
+};
+
+{{#if wantMUIStyles}}
+export default withStyles(styles, { withTheme: true })({{ properCase name }});
+{{else}}
+export default {{ properCase name }};
+{{/if}}

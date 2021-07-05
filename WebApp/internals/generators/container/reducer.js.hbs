@@ -1,0 +1,26 @@
+/*
+ *
+ * {{ properCase name }} reducer
+ *
+ */
+
+import { defaultAction } from './actions';
+
+import { ContainerState, ContainerActions } from './types';
+import { getType } from 'typesafe-actions';
+
+export const initialState: ContainerState = {
+  default: null,
+};
+
+ function {{ camelCase name }}Reducer(state: ContainerState = initialState, action: ContainerActions ) {
+   switch (action.type) {
+     case getType(defaultAction):
+       return state;
+     default:
+       return state;
+   }
+ }
+
+export default {{ camelCase name }}Reducer;
+

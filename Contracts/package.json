@@ -1,0 +1,36 @@
+{
+  "name": "etherlime-project",
+  "version": "1.0.0",
+  "description": "This is the default package.json generated for your project",
+  "main": "index.js",
+  "scripts": {
+    "start": "etherlime ganache -q --networkId=1337",
+    "start:dev": "yarn build",
+    "build": "etherlime compile --runs=999 --exportAbi --buildDirectory=../WebApp/contractAbi",
+    "deploy:local": "etherlime deploy --network=local --timeout 100000 --compile=false --runs=999",
+    "deploy:local:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=local --runs=999",
+    "deploy:ethermint": "etherlime deploy --network=ethermint --timeout 100000 --compile=false --runs=999",
+    "deploy:ethermint:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=ethermint --runs=999",
+    "deploy:goerli": "etherlime deploy --network=goerli --timeout=90000000 --runs=999",
+    "deploy:goerli:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=goerli --runs=999",
+    "deploy:rinkeby": "etherlime deploy --network=rinkeby --timeout=90000000 --runs=999",
+    "deploy:rinkeby:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=rinkeby --runs=999",
+    "deploy:kovan": "etherlime deploy --network=kovan --timeout=90000000 --runs=999",
+    "deploy:kovan:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=kovan --runs=999",
+    "deploy:xdai": "etherlime deploy --network=xdai --timeout=90000000 --runs=999",
+    "deploy:xdai:debug": "node --inspect-brk ./node_modules/etherlime/cli.js --timeout 30000 deploy --network=xdai --runs=999",
+    "deploy:mainnet": "etherlime deploy --network=mainnet --timeout=90000000 --runs=999 --compile=false ",
+    "test": "etherlime test --output=none --timeout 100000 --gas-report=true --runs=999",
+    "cover": "etherlime coverage --timeout 100000 --runs=999"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.5.0",
+    "dotenv": "^8.2.0",
+    "etherlime-lib": "^1.1.5",
+    "ethers": "^4.0.44",
+    "solc": "0.5.12",
+    "solidity-docgen": "^0.3.14"
+  }
+}

@@ -1,48 +1,45 @@
 {
-  "name": "dapp-boilerplate",
-  "version": "1.0.0",
-  "description": "A dapp boilerplate for standardising development",
-  "main": "index.js",
-  "repository": "https://github.com/ChainSafe/dapp-boilerplate.git",
-  "author": "Ryan Noble <ryanjnoble@gmail.com>",
-  "license": "MIT",
+  "name": "eth2-crawler-ui",
+  "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "build": "yarn wsrun --stages -c build",
-    "build:webapp": "yarn wsrun -p webapp -c build",
-    "start:dev": "yarn wsrun start:dev --parallel --exclude-missing",
-    "clean": "rm -rf ./node_modules && rm -rf ./*/node_modules",
-    "test:webapp": "cd Webapp && yarn test:watch"
+  "dependencies": {
+    "@chainsafe/common-components": "^1.0.29",
+    "@chainsafe/common-theme": "^1.0.10",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.1.2",
+    "web-vitals": "^1.0.1"
   },
-  "workspaces": {
-    "packages": [
-      "Contracts",
-      "WebApp"
-    ],
-    "nohoist": [
-      "**/*"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
     ]
   },
-  "devDependencies": {
-    "chalk": "^2.0.1",
-    "jest": "^24.5.0",
-    "jest-haste-map": "^24.5.0",
-    "jest-resolve": "^24.5.0",
-    "precommit": "^1.2.2",
-    "wsrun": "3.6.5"
-  },
-  "resolutions": {
-    "**/hoist-non-react-statics": "^3.0.1"
-  },
-  "keywords": [
-    "NodeJS",
-    "React",
-    "Redux",
-    "Monorepo",
-    "Ethers"
-  ],
-  "engines": {
-    "node": ">=8.0",
-    "yarn": ">=1.9.4"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

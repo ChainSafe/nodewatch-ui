@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.3.21",
     "@chainsafe/common-components": "^1.0.29",
     "@chainsafe/common-theme": "^1.0.10",
     "@testing-library/jest-dom": "^5.11.4",
@@ -12,7 +13,10 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "apollo-boost": "^0.4.9",
     "clsx": "^1.1.1",
+    "graphql": "^15.5.1",
+    "graphql-request": "^3.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -23,7 +27,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "get-graph-schema": "yarn apollo schema:download --endpoint=http://localhost:6969/graphql graphql-schema.json",
+    "generate-graph-types": "yarn apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
+    "download-and-generate-graph-types": "yarn get-graph-schema && yarn generate-graph-types"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +49,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/graphql": "^14.5.0",
+    "apollo": "^2.33.4"
   }
 }

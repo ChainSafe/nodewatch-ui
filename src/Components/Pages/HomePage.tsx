@@ -4,7 +4,7 @@ import BodyLayout from "../Layouts/BodyLayout"
 function HomePage() {
   return (
     <BodyLayout>
-      <div>Eth crawler</div>
+      <div>eth2</div>
     </BodyLayout>
   )
 }

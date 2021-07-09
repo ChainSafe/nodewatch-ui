@@ -1,7 +1,12 @@
 import React from "react"
+import BodyLayout from "../Layouts/BodyLayout"
 
-function App() {
-  return <div className="App">Eth 2 Crawler</div>
+function HomePage() {
+  return (
+    <BodyLayout>
+      <div>Eth crawler</div>
+    </BodyLayout>
+  )
 }
 
-export default App
+export default HomePage

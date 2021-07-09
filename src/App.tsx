@@ -2,7 +2,7 @@ import React from "react"
 import HomePage from "./Components/Pages/HomePage"
 import { ThemeProvider } from "@chainsafe/common-theme"
 import { theme } from "./assets/themes/theme"
-import { Eth2CrawlerProvider } from "./Contexts/Eth2CrawlerData"
+import { Eth2CrawlerProvider } from "./Contexts/Eth2CrawlerContext"
 
 function App() {
   return (

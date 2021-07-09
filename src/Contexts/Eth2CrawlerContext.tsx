@@ -13,7 +13,7 @@ interface IEth2CrawlerContext {
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
 
-const subgraphUrl = process.env.REACT_APP_API_URL || ""
+const subgraphUrl = process.env.REACT_APP_GRAPHQL_URL || ""
 const graphClient = new GraphQLClient(subgraphUrl)
 
 const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {

@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Neue Montreal";
+  src: local("Neue Montreal"), url(./assets/fonts/Neue-montreal/NeueMontreal-Medium.otf) format("opentype");
+}
+
+body {
+  margin: 0;
+  font-family: Neue Montreal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}

@@ -27,10 +27,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "get-graph-schema": "yarn apollo schema:download --endpoint=http://localhost:6969/graphql graphql-schema.json",
     "generate-graph-types": "yarn apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
     "download-and-generate-graph-types": "yarn get-graph-schema && yarn generate-graph-types"

@@ -1,7 +1,8 @@
 import React from "react"
 import { MapContainer, TileLayer } from "react-leaflet"
 import { LatLngBoundsExpression, LatLngTuple } from "leaflet"
-
+import NodeIcon from "./NodeIcon"
+import { nodeLocations } from "./data"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 
 const useStyles = makeStyles(() => {
@@ -46,8 +47,12 @@ const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
         minZoom={minZoom}
         maxZoom={maxZoom}
         className={classes.mapContainerDefined}
+        attributionControl={false}
       >
         <TileLayer url={tileUrl} />
+        {nodeLocations.map((nodeLocation, i) => (
+          <NodeIcon key={i} {...nodeLocation} />
+        ))}
       </MapContainer>
     </div>
   )

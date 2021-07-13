@@ -6,6 +6,7 @@
     "@apollo/client": "^3.3.21",
     "@chainsafe/common-components": "^1.0.29",
     "@chainsafe/common-theme": "^1.0.10",
+    "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -17,8 +18,10 @@
     "clsx": "^1.1.1",
     "graphql": "^15.5.1",
     "graphql-request": "^3.4.0",
+    "leaflet": "^1.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^3.2.0",
     "react-scripts": "4.0.3",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
@@ -52,6 +55,7 @@
   },
   "devDependencies": {
     "@types/graphql": "^14.5.0",
+    "@types/leaflet": "^1.7.4",
     "apollo": "^2.33.4"
   }
 }

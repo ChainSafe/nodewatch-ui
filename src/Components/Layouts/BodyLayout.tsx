@@ -1,14 +1,15 @@
 import React from "react"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
+const useStyles = makeStyles(({ breakpoints }: ITheme) => {
   return createStyles({
     layout: {
       fontFamily: "Neue Montreal",
-      margin: constants.generalUnit * 4,
-      [breakpoints.down("md")]: {
-        margin: constants.generalUnit * 2,
-      },
+      margin: "0 auto",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      maxWidth: breakpoints.values["lg"],
     },
   })
 })

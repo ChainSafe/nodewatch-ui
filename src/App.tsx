@@ -1,16 +1,19 @@
 import React from "react"
 import HomePage from "./Components/Pages/HomePage"
-import { ThemeProvider } from "@chainsafe/common-theme"
+import { ThemeSwitcher } from "@chainsafe/common-theme"
 import { theme } from "./assets/themes/theme"
 import { Eth2CrawlerProvider } from "./Contexts/Eth2CrawlerContext"
+import BodyLayout from "./Components/Layouts/BodyLayout"
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeSwitcher storageKey="eth2.themeKey" themes={{ light: theme }}>
       <Eth2CrawlerProvider>
-        <HomePage />
+        <BodyLayout>
+          <HomePage />
+        </BodyLayout>
       </Eth2CrawlerProvider>
-    </ThemeProvider>
+    </ThemeSwitcher>
   )
 }
 

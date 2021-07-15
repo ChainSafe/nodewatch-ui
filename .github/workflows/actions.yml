@@ -1,4 +1,4 @@
-name: React.TS
+name: React.TS install, lint, build
 
 on: [pull_request]
 
@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: yarn install, build, lint and test
+      - name: yarn install, lint, build
         run: |
           yarn install --frozen-lockfile
           yarn run lint

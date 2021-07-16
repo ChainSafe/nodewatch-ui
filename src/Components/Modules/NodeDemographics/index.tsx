@@ -1,9 +1,9 @@
 import React from "react"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
-import ClientTypes from "./charts/ClientTypes"
-import NodeReadyForFork from "./charts/NodeReadyForFork"
-import NodeCount12 from "./charts/NodeCount12"
-import StatusSync from "./charts/StatusSync"
+import ClientTypes from "./Charts/ClientTypes"
+import NodeReadyForFork from "./Charts/NodeReadyForFork"
+import NodeCount12 from "./Charts/NodeCount12"
+import StatusSync from "./Charts/StatusSync"
 import NodeMap from "./Maps/NodeMap"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {

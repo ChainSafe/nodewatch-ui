@@ -1,9 +1,9 @@
 import React from "react"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
-import OperatingSystems from "./charts/OperatingSystems"
-import NetworkTypes from "./charts/NetworkTypes"
-import PercentageOfNodes from "./charts/PercentageOfNodes"
-import VersionVariance from "./charts/VersionVariance"
+import OperatingSystems from "./Charts/OperatingSystems"
+import NetworkTypes from "./Charts/NetworkTypes"
+import PercentageOfNodes from "./Charts/PercentageOfNodes"
+import VersionVariance from "./Charts/VersionVariance"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
   return createStyles({

@@ -5,27 +5,25 @@ export const theme = createTheme({
     palette: {
       primary: {
         main: "#5165DC",
+        background: "#5165DC",
+        hover: "#5165DC",
       },
-    },
-    constants: {
-      headerHeight: 70,
     },
     typography: {
       h1: {
-        fontSize: "72px",
-        lineHeight: "80px",
+        fontSize: "28px",
+        lineHeight: "32px",
+        marginBottom: "16px",
       },
       h2: {
-        fontSize: "48px",
-        lineHeight: "56px",
-      },
-      h3: {
-        fontSize: "30px",
-        lineHeight: "38px",
-      },
-      h4: {
         fontSize: "24px",
         lineHeight: "28px",
+        marginBottom: "16px",
+        fontWeight: "normal",
+      },
+      body1: {
+        fontSize: "16px",
+        lineHeight: "20px",
       },
     },
   },

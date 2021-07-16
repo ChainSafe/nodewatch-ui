@@ -5,10 +5,14 @@ import NodeReadyForFork from "./Charts/NodeReadyForFork"
 import NodeCount12 from "./Charts/NodeCount12"
 import StatusSync from "./Charts/StatusSync"
 import NodeMap from "./Maps/NodeMap"
+import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
   return createStyles({
     root: {
+      marginBottom: constants.generalUnit * 2,
+    },
+    demographicsRoot: {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
@@ -16,6 +20,9 @@ const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
       [breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
       },
+    },
+    title: {
+      marginBottom: constants.generalUnit * 4,
     },
     nodeDemographics: {
       display: "grid",
@@ -38,15 +45,20 @@ const NodeDemographicCharts = () => {
   const classes = useStyles()
 
   return (
-    <div className={classes.nodeDemographics}>
-      <div className={classes.root}>
-        <ClientTypes />
-        <NodeReadyForFork />
-        <NodeCount12 />
-        <StatusSync />
-      </div>
-      <div>
-        <NodeMap rootClassName={classes.nodeMapRoot} />
+    <div className={classes.root}>
+      <Typography component="h2" variant="h2" className={classes.title}>
+        Eth2 Node Demographics summary
+      </Typography>
+      <div className={classes.nodeDemographics}>
+        <div className={classes.demographicsRoot}>
+          <ClientTypes />
+          <NodeReadyForFork />
+          <NodeCount12 />
+          <StatusSync />
+        </div>
+        <div>
+          <NodeMap rootClassName={classes.nodeMapRoot} />
+        </div>
       </div>
     </div>
   )

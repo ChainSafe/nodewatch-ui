@@ -4,6 +4,7 @@ import OperatingSystems from "./Charts/OperatingSystems"
 import NetworkTypes from "./Charts/NetworkTypes"
 import PercentageOfNodes from "./Charts/PercentageOfNodes"
 import VersionVariance from "./Charts/VersionVariance"
+import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
   return createStyles({
@@ -19,17 +20,25 @@ const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
         gridTemplateColumns: "1fr",
       },
     },
+    title: {
+      marginBottom: constants.generalUnit * 4,
+    },
   })
 })
 
 const NodeSoftwareStatistics = () => {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
-      <OperatingSystems />
-      <NetworkTypes />
-      <PercentageOfNodes />
-      <VersionVariance />
+    <div>
+      <Typography component="h2" variant="h2" className={classes.title}>
+        Node Software Statistics
+      </Typography>
+      <div className={classes.root}>
+        <OperatingSystems />
+        <NetworkTypes />
+        <PercentageOfNodes />
+        <VersionVariance />
+      </div>
     </div>
   )
 }

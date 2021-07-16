@@ -1,10 +1,13 @@
 import React from "react"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { Typography } from "@chainsafe/common-components"
 
-const useStyles = makeStyles(({ palette }: ITheme) => {
+const useStyles = makeStyles(({ palette, constants }: ITheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][5]}`,
+      border: `1px solid ${palette.additional["gray"][4]}`,
+      borderRadius: "3px",
+      padding: constants.generalUnit,
     },
   })
 })
@@ -12,7 +15,13 @@ const useStyles = makeStyles(({ palette }: ITheme) => {
 const ClientTypes = () => {
   const classes = useStyles()
 
-  return <div className={classes.root}>client types</div>
+  return (
+    <div className={classes.root}>
+      <Typography component="p" variant="body1">
+        Client type distribution
+      </Typography>
+    </div>
+  )
 }
 
 export default ClientTypes

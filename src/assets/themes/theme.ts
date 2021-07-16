@@ -5,8 +5,11 @@ export const theme = createTheme({
     palette: {
       primary: {
         main: "#5165DC",
-        background: "#5165DC",
-        hover: "#5165DC",
+        background: "rgb(98, 117, 214, 0.1)",
+        hover: "#6e7fdd",
+      },
+      secondary: {
+        main: "#000",
       },
     },
     typography: {

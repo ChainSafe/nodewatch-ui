@@ -16,7 +16,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "5fr 6fr",
+      gridTemplateColumns: "6fr 4fr",
       [breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
       },
@@ -35,7 +35,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
       },
     },
     nodeMapRoot: {
-      height: "50vh",
+      height: "52vh",
       width: "100%",
     },
   })

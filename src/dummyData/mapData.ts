@@ -1,39 +1,34 @@
-export type NetworkType = "geth" | "parity" | "ethereumjs" | "getc" | "nethermind" | "multigeth"
+import { NodeInfo } from "../types/main"
 
-export const nodeLocations: {
-  name: string
-  weight: number
-  network: NetworkType
-  coordinates: [number, number]
-}[] = [
+export const nodeLocations: NodeInfo[] = [
   {
     name: "california",
     weight: 100,
-    network: "geth",
+    client: "geth",
     coordinates: [37.1930977, -123.7969029],
   },
   {
     name: "tokyo",
     weight: 30,
-    network: "getc",
+    client: "getc",
     coordinates: [35.5090627, 139.2093774],
   },
   {
     name: "johannesburg",
     weight: 50,
-    network: "ethereumjs",
+    client: "ethereumjs",
     coordinates: [-26.1713505, 27.9699847],
   },
   {
     name: "madrid",
     weight: 40,
-    network: "multigeth",
+    client: "multigeth",
     coordinates: [40.4381311, -3.8196201],
   },
   {
     name: "dhaka",
     weight: 70,
-    network: "parity",
+    client: "parity",
     coordinates: [23.7807777, 90.3492856],
   },
 ]

@@ -2,8 +2,8 @@ import React from "react"
 import { Marker, Tooltip } from "react-leaflet"
 import L from "leaflet"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
-import { NetworkType } from "../../../../dummyData/mapData"
 import clsx from "clsx"
+import { NodeInfo } from "../../../../types/main"
 
 interface StyleProps {
   weight: number
@@ -41,17 +41,12 @@ const useStyles = makeStyles(() => {
   })
 })
 
-interface IProps {
-  name: string
-  weight: number
-  network: NetworkType
-  coordinates: [number, number]
-}
+interface IProps extends NodeInfo {}
 
-const NodeIcon = ({ name, weight, network, coordinates }: IProps) => {
+const NodeIcon = ({ name, weight, client, coordinates }: IProps) => {
   const classes = useStyles({ weight })
 
-  const iconStyle = L.divIcon({ className: clsx(classes[network], classes.mapIcon) })
+  const iconStyle = L.divIcon({ className: clsx(classes[client], classes.mapIcon) })
 
   return (
     <Marker position={coordinates} icon={iconStyle}>

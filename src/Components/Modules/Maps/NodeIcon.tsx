@@ -2,7 +2,7 @@ import React from "react"
 import { Marker, Tooltip } from "react-leaflet"
 import L from "leaflet"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
-import { NetworkType } from "./data"
+import { NetworkType } from "../../../dummyData/mapData"
 import clsx from "clsx"
 
 interface StyleProps {

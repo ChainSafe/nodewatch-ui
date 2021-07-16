@@ -9,10 +9,10 @@ const useStyles = makeStyles(({ palette }: ITheme) => {
   })
 })
 
-const NodeDemographicCharts = () => {
+const ClientTypes = () => {
   const classes = useStyles()
 
-  return <div className={classes.root}>node demographic charts</div>
+  return <div className={classes.root}>client types</div>
 }
 
-export default NodeDemographicCharts
+export default ClientTypes

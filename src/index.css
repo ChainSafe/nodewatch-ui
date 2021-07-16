@@ -1,6 +1,9 @@
+@import "~react-vis/dist/style";
+
 @font-face {
   font-family: "Neue Montreal";
-  src: local("Neue Montreal"), url(./assets/fonts/Neue-montreal/NeueMontreal-Medium.otf) format("opentype");
+  src: local("Neue Montreal"),
+    url(./assets/fonts/Neue-montreal/NeueMontreal-Medium.otf) format("opentype");
 }
 
 body {

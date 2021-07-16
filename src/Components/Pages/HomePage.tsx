@@ -1,23 +1,27 @@
 import React from "react"
 import NodeMap from "../Modules/Maps/NodeMap"
-import NodeDemographicCharts from "../Modules/Charts/NodeDemographicCharts"
+import NodeDemographicCharts from "../Modules/Charts/NodeDemographics"
 import NodeSoftwareStatistics from "../Modules/Charts/NodeSoftwareStatistics"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
   return createStyles({
     root: {
-      margin: constants.generalUnit * 2,
+      margin: `${constants.generalUnit * 4}px 0`,
       display: "grid",
       gridRowGap: constants.generalUnit * 2,
+      [breakpoints.down("lg")]: {
+        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 2}px`,
+      },
     },
     nodeDemographics: {
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
       gridColumnGap: constants.generalUnit * 2,
-      [breakpoints.down("sm")]: {
+      [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr",
         gridColumnGap: constants.generalUnit * 2,
+        gridRowGap: constants.generalUnit * 2,
       },
     },
     nodeMapRoot: {

@@ -2,7 +2,7 @@ import React from "react"
 import { MapContainer, TileLayer } from "react-leaflet"
 import { LatLngBoundsExpression, LatLngTuple } from "leaflet"
 import NodeIcon from "./NodeIcon"
-import { nodeLocations } from "../../../dummyData/mapData"
+import { nodeLocations } from "../../../../dummyData/mapData"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 
 const useStyles = makeStyles(() => {

@@ -2642,13 +2642,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-vis@^1.11.7":
-  version "1.11.7"
-  resolved "https://registry.yarnpkg.com/@types/react-vis/-/react-vis-1.11.7.tgz#da23b8fb833a962e8a0db39668438a43e9a7e05d"
-  integrity sha512-X0+xpR+koVXxmh68TlGSkIuXNL7DwqL+IvjtQvdJi7Vg9OokqBMU/EyuaFOUpN5awMXB7DDT/2WxC2epG+nW7Q==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react@*", "@types/react@^17.0.0":
   version "17.0.14"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.14.tgz#f0629761ca02945c4e8fea99b8177f4c5c61fb0f"

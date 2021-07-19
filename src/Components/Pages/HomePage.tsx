@@ -1,28 +1,18 @@
 import React from "react"
-import NodeMap from "../Modules/Maps/NodeMap"
-import NodeDemographicCharts from "../Modules/Charts/NodeDemographicCharts"
-import NodeSoftwareStatistics from "../Modules/Charts/NodeSoftwareStatistics"
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import NodeDemographics from "../Modules/NodeDemographics"
+import NodeSoftwareStatistics from "../Modules/NodeSoftwareStatistics"
+import { createStyles, makeStyles } from "@chainsafe/common-theme"
+import { ECTheme } from "../../assets/themes/types"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
+const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
-      margin: constants.generalUnit * 2,
+      margin: `${constants.generalUnit * 4}px 0`,
       display: "grid",
       gridRowGap: constants.generalUnit * 2,
-    },
-    nodeDemographics: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gridColumnGap: constants.generalUnit * 2,
-      [breakpoints.down("sm")]: {
-        gridTemplateColumns: "1fr",
-        gridColumnGap: constants.generalUnit * 2,
+      [breakpoints.down("lg")]: {
+        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 2}px`,
       },
-    },
-    nodeMapRoot: {
-      height: "50vh",
-      width: "100%",
     },
   })
 })
@@ -32,13 +22,8 @@ function HomePage() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.nodeDemographics}>
-        <NodeDemographicCharts />
-        <NodeMap rootClassName={classes.nodeMapRoot} />
-      </div>
-      <div>
-        <NodeSoftwareStatistics />
-      </div>
+      <NodeDemographics />
+      <NodeSoftwareStatistics />
     </div>
   )
 }

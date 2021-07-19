@@ -1,5 +1,6 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { createStyles, makeStyles } from "@chainsafe/common-theme"
+import { ECTheme } from "../../../assets/themes/types"
 import ClientTypes from "./Charts/ClientTypes"
 import NodeReadyForFork from "./Charts/NodeReadyForFork"
 import NodeCount12 from "./Charts/NodeCount12"
@@ -7,7 +8,7 @@ import StatusSync from "./Charts/StatusSync"
 import NodeMap from "./Maps/NodeMap"
 import { Typography } from "@chainsafe/common-components"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
+const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
       marginBottom: constants.generalUnit * 2,

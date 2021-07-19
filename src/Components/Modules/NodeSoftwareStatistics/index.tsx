@@ -1,12 +1,13 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { createStyles, makeStyles } from "@chainsafe/common-theme"
+import { ECTheme } from "../../../assets/themes/types"
 import OperatingSystems from "./Charts/OperatingSystems"
 import NetworkTypes from "./Charts/NetworkTypes"
 import PercentageOfNodes from "./Charts/PercentageOfNodes"
 import VersionVariance from "./Charts/VersionVariance"
 import { Typography } from "@chainsafe/common-components"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ITheme) => {
+const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
       display: "grid",

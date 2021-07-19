@@ -1,8 +1,9 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
+import { ECTheme } from "../../assets/themes/types"
 
-const useStyles = makeStyles(({ palette, constants }: ITheme) => {
+const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     title: {
       fontSize: "32px",

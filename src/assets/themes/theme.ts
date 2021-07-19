@@ -1,33 +1,31 @@
 import { createTheme } from "@chainsafe/common-theme"
+import { EcColors, UI_CONSTANTS } from "./Constants"
 
-export const theme = createTheme({
+export const theme = createTheme<EcColors>({
   themeConfig: {
     palette: {
       primary: {
-        main: "#5165DC",
-        background: "rgb(98, 117, 214, 0.1)",
-        hover: "#6e7fdd",
-      },
-      secondary: {
-        main: "#000",
+        main: "#3552BF",
+        hover: "2E00B0",
+        background: "rgb(53, 82, 191, 0.1)",
       },
     },
-    typography: {
-      h1: {
-        fontSize: "28px",
-        lineHeight: "32px",
-        marginBottom: "16px",
-      },
-      h2: {
-        fontSize: "24px",
-        lineHeight: "28px",
-        marginBottom: "16px",
-        fontWeight: "normal",
-      },
-      body1: {
-        fontSize: "16px",
-        lineHeight: "20px",
-      },
+    constants: {
+      ...UI_CONSTANTS,
+      ...({
+        chartPrimaryColors: {
+          main: "#3552BF",
+          light: "2E00B0",
+          dark: "#000000",
+        },
+        chartColors: {
+          color1: "#0C1D7C",
+          color2: "#3349C5",
+          color3: "#566BDF",
+          color4: "#B7C1FC",
+          color5: "#EBEEFF",
+        },
+      } as EcColors),
     },
   },
 })

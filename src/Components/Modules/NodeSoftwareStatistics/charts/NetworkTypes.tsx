@@ -1,10 +1,11 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles, useTheme } from "@chainsafe/common-theme"
+import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { clients } from "../../../../dummyData/demographicsData"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
+import { ECTheme } from "../../../../assets/themes/types"
 
-const useStyles = makeStyles(({ palette, constants }: ITheme) => {
+const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
       border: `1px solid ${palette.additional["gray"][4]}`,
@@ -20,7 +21,7 @@ const useStyles = makeStyles(({ palette, constants }: ITheme) => {
 const NetworkTypes = () => {
   const classes = useStyles()
 
-  const theme: ITheme = useTheme()
+  const theme: ECTheme = useTheme()
 
   const barLabels = clients.map((client) => client.client)
   const barData = clients.map((client) => client.total)

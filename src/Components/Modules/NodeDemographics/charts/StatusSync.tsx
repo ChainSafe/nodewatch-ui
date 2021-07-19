@@ -1,9 +1,10 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles, useTheme } from "@chainsafe/common-theme"
+import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { Scatter } from "react-chartjs-2"
+import { ECTheme } from "../../../../assets/themes/types"
 
-const useStyles = makeStyles(({ palette, constants }: ITheme) => {
+const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
       border: `1px solid ${palette.additional["gray"][4]}`,
@@ -29,7 +30,7 @@ const getRandomArr = (length: number) => {
 
 const StatusSync = () => {
   const classes = useStyles()
-  const theme: ITheme = useTheme()
+  const theme: ECTheme = useTheme()
 
   const data = {
     datasets: [

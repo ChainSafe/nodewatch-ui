@@ -1,7 +1,8 @@
 import React from "react"
-import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { createStyles, makeStyles } from "@chainsafe/common-theme"
+import { ECTheme } from "../../assets/themes/types"
 
-const useStyles = makeStyles(({ breakpoints }: ITheme) => {
+const useStyles = makeStyles(({ breakpoints }: ECTheme) => {
   return createStyles({
     layout: {
       fontFamily: "Neue Montreal",

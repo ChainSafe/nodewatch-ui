@@ -1,10 +1,10 @@
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../../../assets/themes/types"
-import OperatingSystems from "./Charts/OperatingSystems"
-import NetworkTypes from "./Charts/NetworkTypes"
-import PercentageOfNodes from "./Charts/PercentageOfNodes"
-import VersionVariance from "./Charts/VersionVariance"
+import OperatingSystems from "./Stats/OperatingSystems"
+import NetworkTypes from "./Stats/NetworkTypes"
+import PercentageOfNodes from "./Stats/PercentageOfNodes"
+import VersionVariance from "./Stats/VersionVariance"
 import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {

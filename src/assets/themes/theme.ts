@@ -1,5 +1,5 @@
 import { createTheme } from "@chainsafe/common-theme"
-import { EcColors, UI_CONSTANTS } from "./Constants"
+import { EcColors } from "./colors"
 
 export const theme = createTheme<EcColors>({
   themeConfig: {
@@ -11,7 +11,6 @@ export const theme = createTheme<EcColors>({
       },
     },
     constants: {
-      ...UI_CONSTANTS,
       ...({
         chartPrimaryColors: {
           main: "#3552BF",

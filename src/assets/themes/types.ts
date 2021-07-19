@@ -1,4 +1,4 @@
 import { ITheme } from "@chainsafe/common-theme"
-import { EcColors } from "./Constants"
+import { EcColors } from "./colors"
 
 export type ECTheme = ITheme<EcColors>

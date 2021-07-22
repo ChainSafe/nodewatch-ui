@@ -36,4 +36,4 @@ jobs:
           version: v1.36
           args: --timeout=5m
       - name: License Check
-        run: make license-check
+        run: make license

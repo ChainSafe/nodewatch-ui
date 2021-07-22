@@ -37,7 +37,7 @@
     "test": "craco test",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx}'",
-    "get-graph-schema": "yarn apollo schema:download --endpoint=http://localhost:6969/graphql graphql-schema.json",
+    "get-graph-schema": "yarn apollo schema:download --endpoint=https://crawler.imploy.site/query graphql-schema.json",
     "generate-graph-types": "yarn apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
     "download-and-generate-graph-types": "yarn get-graph-schema && yarn generate-graph-types"
   },

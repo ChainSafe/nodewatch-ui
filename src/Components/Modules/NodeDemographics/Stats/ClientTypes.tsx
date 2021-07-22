@@ -2,8 +2,8 @@ import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
-import { clients } from "../../../../dummyData/demographicsData"
 import { ECTheme } from "../../../../assets/themes/types"
+import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -22,8 +22,10 @@ const ClientTypes = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  const barLabels = clients.map((client) => client.client)
-  const barData = clients.map((client) => client.total)
+  const { clients } = useEth2CrawlerApi()
+
+  const barLabels = clients.map((client) => client.name)
+  const barData = clients.map((client) => client.count)
   const barColors = clients.map(() => theme.palette.primary.main)
   const barHoverColors = clients.map(() => theme.palette.primary.hover)
 

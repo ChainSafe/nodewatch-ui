@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  lint:
+  license:
     name: License Check
     runs-on: ubuntu-latest
     steps:

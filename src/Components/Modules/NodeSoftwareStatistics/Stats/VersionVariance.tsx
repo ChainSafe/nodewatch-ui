@@ -4,7 +4,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
-import { ECTheme } from "../../../../assets/themes/types"
+import { ECTheme } from "../../../Themes/types"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
 

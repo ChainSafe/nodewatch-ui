@@ -24,8 +24,14 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [users, setUsers] = useState([])
 
   const getUsers = async () => {
-    const result = await graphClient.request<GetAllUsers>(LOAD_USERS)
-    console.log(result.getAllUsers)
+    graphClient
+      .request<GetAllUsers>(LOAD_USERS)
+      .then((result) => {
+        console.log(result.getAllUsers)
+      })
+      .catch(() => {
+        //
+      })
   }
 
   useEffect(() => {

@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
-import { ECTheme } from "../../assets/themes/types"
+import { ECTheme } from "../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({

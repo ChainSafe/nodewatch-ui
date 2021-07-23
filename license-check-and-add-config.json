@@ -4,6 +4,7 @@
     "*.json",
     "*.txt",
     ".github",
+    "*.lock",
     ".env",
     ".env.template",
     "build",

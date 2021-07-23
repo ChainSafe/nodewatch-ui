@@ -72,7 +72,7 @@ const NodeCount12 = () => {
         node count eth1 and eth2
       </Typography>
       <div>
-        <Line data={data} type={"line"} options={options} />
+        <Line data={data} options={options} />
       </div>
     </div>
   )

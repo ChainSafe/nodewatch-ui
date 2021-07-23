@@ -69,7 +69,7 @@ const ClientTypes = () => {
         Client type distribution
       </Typography>
       <div>
-        <Bar data={data} type={"bar"} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )

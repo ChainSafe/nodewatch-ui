@@ -63,7 +63,7 @@ const NodeReadyForFork = () => {
         node ready to fork
       </Typography>
       <div>
-        <Line data={data} type={"line"} options={options} />
+        <Line data={data} options={options} />
       </div>
     </div>
   )

@@ -71,7 +71,7 @@ const StatusSync = () => {
         Status sync over time
       </Typography>
       <div>
-        <Scatter data={data} type={"scatter"} options={options} />
+        <Scatter data={data} options={options} />
       </div>
     </div>
   )

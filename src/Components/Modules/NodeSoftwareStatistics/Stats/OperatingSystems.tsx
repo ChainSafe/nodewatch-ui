@@ -70,7 +70,7 @@ const OperatingSystems = () => {
         Operating systems used
       </Typography>
       <div>
-        <Bar data={data} type={"bar"} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )

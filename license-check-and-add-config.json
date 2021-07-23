@@ -1,8 +1,9 @@
 {
   "ignore": [
     "LICENSE",
-    "*.json",
-    "*.txt",
+    "**/*.json",
+    "**/*.txt",
+    "**/*.md",
     ".github",
     "*.lock",
     ".env",

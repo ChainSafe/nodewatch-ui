@@ -1,5 +1,14 @@
 {
-  "ignore": ["LICENSE", "*.json", "*.txt", ".env", ".env.template", "build", "src/assets"],
+  "ignore": [
+    "LICENSE",
+    "*.json",
+    "*.txt",
+    ".github",
+    ".env",
+    ".env.template",
+    "build",
+    "src/assets"
+  ],
   "ignoreFile": ".gitignore",
   "license": "copyright.txt",
   "licenseFormats": {

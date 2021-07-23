@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import NodeDemographics from "../Modules/NodeDemographics"
 import NodeSoftwareStatistics from "../Modules/NodeSoftwareStatistics"

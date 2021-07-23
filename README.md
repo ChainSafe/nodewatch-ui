@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 # NodeWatch Frontend (UI)
 
 A web-based user interface will be developed to display the data collected by a devp2p crawler targeted at Eth2 nodes. It will contain the following:

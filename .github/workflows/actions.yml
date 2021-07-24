@@ -1,4 +1,4 @@
-name: React.TS install, lint, build
+name: React.TS install, lint, build, License
 
 on: [pull_request]
 
@@ -20,6 +20,7 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           yarn run lint
+          yarn run license-check
           yarn run build --if-present
           # yarn test
         env:

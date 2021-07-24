@@ -1,8 +1,12 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Line } from "react-chartjs-2"
 import { Typography } from "@chainsafe/common-components"
-import { ECTheme } from "../../../../assets/themes/types"
+import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -59,7 +63,7 @@ const NodeReadyForFork = () => {
         node ready to fork
       </Typography>
       <div>
-        <Line data={data} type={"line"} options={options} />
+        <Line data={data} options={options} />
       </div>
     </div>
   )

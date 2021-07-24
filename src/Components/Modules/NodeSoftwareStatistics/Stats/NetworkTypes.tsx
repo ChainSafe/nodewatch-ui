@@ -1,9 +1,13 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { clients } from "../../../../dummyData/demographicsData"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
-import { ECTheme } from "../../../../assets/themes/types"
+import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -66,7 +70,7 @@ const NetworkTypes = () => {
         Network types used for node operations
       </Typography>
       <div>
-        <Bar data={data} type={"bar"} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )

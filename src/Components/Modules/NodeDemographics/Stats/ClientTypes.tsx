@@ -1,9 +1,13 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
 import { clients } from "../../../../dummyData/demographicsData"
-import { ECTheme } from "../../../../assets/themes/types"
+import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -65,7 +69,7 @@ const ClientTypes = () => {
         Client type distribution
       </Typography>
       <div>
-        <Bar data={data} type={"bar"} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )

@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import { Marker, Tooltip } from "react-leaflet"
 import L from "leaflet"

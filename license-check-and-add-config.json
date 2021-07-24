@@ -1,0 +1,32 @@
+{
+  "ignore": [
+    "LICENSE",
+    "**/*.json",
+    "**/*.txt",
+    "**/*.md",
+    ".github",
+    "*.lock",
+    ".env",
+    ".env.template",
+    "build",
+    "src/assets"
+  ],
+  "ignoreFile": ".gitignore",
+  "license": "copyright.txt",
+  "licenseFormats": {
+    "gitignore|npmignore|eslintignore|dockerignore|sh|py": {
+      "eachLine": {
+        "prepend": "# "
+      }
+    },
+    "html|xml|svg": {
+      "prepend": "<!--",
+      "append": "-->"
+    },
+    "js|ts|css|scss": {
+      "prepend": "/*",
+      "append": "*/"
+    }
+  },
+  "trailingWhitespace": "TRIM"
+}

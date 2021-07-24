@@ -1,8 +1,12 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { Scatter } from "react-chartjs-2"
-import { ECTheme } from "../../../../assets/themes/types"
+import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -67,7 +71,7 @@ const StatusSync = () => {
         Status sync over time
       </Typography>
       <div>
-        <Scatter data={data} type={"scatter"} options={options} />
+        <Scatter data={data} options={options} />
       </div>
     </div>
   )

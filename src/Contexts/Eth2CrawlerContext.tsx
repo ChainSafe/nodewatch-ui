@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React, { useState, useEffect } from "react"
 import { GraphQLClient } from "graphql-request"
 import { GetAllUsers } from "../GraphQL/types/getAllUsers"
@@ -20,8 +24,14 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [users, setUsers] = useState([])
 
   const getUsers = async () => {
-    const result = await graphClient.request<GetAllUsers>(LOAD_USERS)
-    console.log(result.getAllUsers)
+    graphClient
+      .request<GetAllUsers>(LOAD_USERS)
+      .then((result) => {
+        console.log(result.getAllUsers)
+      })
+      .catch(() => {
+        //
+      })
   }
 
   useEffect(() => {

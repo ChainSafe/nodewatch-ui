@@ -1,8 +1,12 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React from "react"
 import NodeDemographics from "../Modules/NodeDemographics"
 import NodeSoftwareStatistics from "../Modules/NodeSoftwareStatistics"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
-import { ECTheme } from "../../assets/themes/types"
+import { ECTheme } from "../Themes/types"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({

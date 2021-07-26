@@ -24,7 +24,10 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
 
 const OperatingSystems = () => {
   const classes = useStyles()
-  const { operatingSystems } = useEth2CrawlerApi()
+  let { operatingSystems } = useEth2CrawlerApi()
+
+  operatingSystems = operatingSystems.sort((first, second) => (first.count < second.count ? 1 : -1))
+  operatingSystems = operatingSystems.filter((operatingSystem) => operatingSystem.count > 10)
 
   const theme: ECTheme = useTheme()
 
@@ -50,6 +53,7 @@ const OperatingSystems = () => {
     scales: {
       y: {
         display: false,
+        type: "logarithmic",
       },
       x: {
         display: false,

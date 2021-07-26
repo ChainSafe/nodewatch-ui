@@ -24,7 +24,9 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
 
 const NetworkTypes = () => {
   const classes = useStyles()
-  const { networks } = useEth2CrawlerApi()
+  let { networks } = useEth2CrawlerApi()
+
+  networks = networks.sort((first, second) => (first.count < second.count ? 1 : -1))
 
   const theme: ECTheme = useTheme()
 

@@ -26,7 +26,9 @@ const ClientTypes = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  const { clients } = useEth2CrawlerApi()
+  let { clients } = useEth2CrawlerApi()
+
+  clients = clients.sort((first, second) => (first.count < second.count ? 1 : -1))
 
   const barLabels = clients.map((client) => client.name)
   const barData = clients.map((client) => client.count)
@@ -50,6 +52,7 @@ const ClientTypes = () => {
     scales: {
       y: {
         display: false,
+        type: "logarithmic",
       },
       x: {
         display: false,

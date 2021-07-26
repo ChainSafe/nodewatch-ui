@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 /* eslint-disable no-undef */
 const path = require("path")
 const fs = require("fs")

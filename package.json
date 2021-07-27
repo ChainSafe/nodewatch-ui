@@ -43,7 +43,7 @@
     "license-add": "license-check-and-add add -f license-check-and-add-config.json",
     "license-check": "license-check-and-add check -f license-check-and-add-config.json",
     "license-remove": "license-check-and-add remove -f license-check-and-add-config.json",
-    "get-graph-schema": "yarn apollo schema:download --endpoint=http://localhost:6969/graphql graphql-schema.json",
+    "get-graph-schema": "yarn apollo schema:download --endpoint=https://crawler.imploy.site/query graphql-schema.json",
     "generate-graph-types": "yarn apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
     "download-and-generate-graph-types": "yarn get-graph-schema && yarn generate-graph-types"
   },

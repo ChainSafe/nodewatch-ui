@@ -4,9 +4,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
-import { clients } from "../../../../dummyData/demographicsData"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
+import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
 import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
@@ -24,13 +24,16 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
 
 const NetworkTypes = () => {
   const classes = useStyles()
+  let { networks } = useEth2CrawlerApi()
+
+  networks = networks.sort((first, second) => (first.count < second.count ? 1 : -1))
 
   const theme: ECTheme = useTheme()
 
-  const barLabels = clients.map((client) => client.client)
-  const barData = clients.map((client) => client.total)
-  const barColors = clients.map(() => theme.palette.primary.main)
-  const barHoverColors = clients.map(() => theme.palette.primary.hover)
+  const barLabels = networks.map((network) => network.name)
+  const barData = networks.map((network) => network.count)
+  const barColors = networks.map(() => theme.palette.primary.main)
+  const barHoverColors = networks.map(() => theme.palette.primary.hover)
 
   const data = {
     labels: barLabels,

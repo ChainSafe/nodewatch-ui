@@ -8,17 +8,15 @@ SPDX-License-Identifier: LGPL-3.0-only
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetAllUsers
+// GraphQL query operation: GetNetworks
 // ====================================================
 
-export interface GetAllUsers_getAllUsers {
-  __typename: "User";
-  id: number | null;
-  firstName: string | null;
-  email: string | null;
-  password: string | null;
+export interface GetNetworks_aggregateByNetwork {
+  __typename: "AggregateData";
+  name: string;
+  count: number;
 }
 
-export interface GetAllUsers {
-  getAllUsers: (GetAllUsers_getAllUsers | null)[] | null;
+export interface GetNetworks {
+  aggregateByNetwork: GetNetworks_aggregateByNetwork[];
 }

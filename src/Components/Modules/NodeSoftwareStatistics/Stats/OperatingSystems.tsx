@@ -4,9 +4,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
-import { clients } from "../../../../dummyData/demographicsData"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
+import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
 import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
@@ -24,13 +24,17 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
 
 const OperatingSystems = () => {
   const classes = useStyles()
+  let { operatingSystems } = useEth2CrawlerApi()
+
+  operatingSystems = operatingSystems.sort((first, second) => (first.count < second.count ? 1 : -1))
+  operatingSystems = operatingSystems.filter((operatingSystem) => operatingSystem.count > 10)
 
   const theme: ECTheme = useTheme()
 
-  const barLabels = clients.map((client) => client.client)
-  const barData = clients.map((client) => client.total)
-  const barColors = clients.map(() => theme.palette.primary.main)
-  const barHoverColors = clients.map(() => theme.palette.primary.hover)
+  const barLabels = operatingSystems.map((operatingSystem) => operatingSystem.name)
+  const barData = operatingSystems.map((operatingSystem) => operatingSystem.count)
+  const barColors = operatingSystems.map(() => theme.palette.primary.main)
+  const barHoverColors = operatingSystems.map(() => theme.palette.primary.hover)
 
   const data = {
     labels: barLabels,
@@ -49,6 +53,7 @@ const OperatingSystems = () => {
     scales: {
       y: {
         display: false,
+        type: "logarithmic",
       },
       x: {
         display: false,

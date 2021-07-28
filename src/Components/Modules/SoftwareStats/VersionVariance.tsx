@@ -4,10 +4,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
+import { ECTheme } from "../../Themes/types"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
-import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
-import { ECTheme } from "../../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -22,29 +21,30 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const OperatingSystems = () => {
+const VersionVariance = () => {
   const classes = useStyles()
-  let { operatingSystems } = useEth2CrawlerApi()
-
-  operatingSystems = operatingSystems.sort((first, second) => (first.count < second.count ? 1 : -1))
-  operatingSystems = operatingSystems.filter((operatingSystem) => operatingSystem.count > 10)
-
   const theme: ECTheme = useTheme()
 
-  const barLabels = operatingSystems.map((operatingSystem) => operatingSystem.name)
-  const barData = operatingSystems.map((operatingSystem) => operatingSystem.count)
-  const barColors = operatingSystems.map(() => theme.palette.primary.main)
-  const barHoverColors = operatingSystems.map(() => theme.palette.primary.hover)
+  const chartColors = theme.constants.chartColors
+  const backgroundColors = Object.values(chartColors)
 
   const data = {
-    labels: barLabels,
+    labels: ["1", "2", "3", "4", "5"],
     datasets: [
       {
-        data: barData,
-        backgroundColor: barColors,
-        hoverBackgroundColor: barHoverColors,
-        borderWidth: 1,
-        maxBarThickness: 25,
+        label: "Client 1",
+        data: ["10", "20", "30"],
+        backgroundColor: backgroundColors[0],
+      },
+      {
+        label: "Client 2",
+        data: ["10", "20", "30"],
+        backgroundColor: backgroundColors[1],
+      },
+      {
+        label: "Client 3",
+        data: ["10", "20", "30"],
+        backgroundColor: backgroundColors[2],
       },
     ],
   }
@@ -53,13 +53,14 @@ const OperatingSystems = () => {
     scales: {
       y: {
         display: false,
-        type: "logarithmic",
+        stacked: true,
       },
       x: {
         display: false,
         grid: {
           display: false,
         },
+        stacked: true,
       },
     },
     plugins: {
@@ -72,7 +73,7 @@ const OperatingSystems = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Operating systems used
+        Version variance across clients
       </Typography>
       <div>
         <Bar data={data} options={options} />
@@ -81,4 +82,4 @@ const OperatingSystems = () => {
   )
 }
 
-export default OperatingSystems
+export default VersionVariance

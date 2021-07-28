@@ -30,3 +30,15 @@ export const LOAD_NETWORKS = gql`
     }
   }
 `
+
+export const LOAD_HEATMAP = gql`
+  query GetHeatmap {
+    getHeatmapData {
+      networkType
+      clientType
+      syncStatus
+      latitude
+      longitude
+    }
+  }
+`

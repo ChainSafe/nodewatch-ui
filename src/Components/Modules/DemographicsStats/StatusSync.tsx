@@ -4,9 +4,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
-import { ECTheme } from "../../../Themes/types"
 import { Typography } from "@chainsafe/common-components"
-import { Bar } from "react-chartjs-2"
+import { Scatter } from "react-chartjs-2"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -21,30 +21,27 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const VersionVariance = () => {
+const getRandomArr = (length: number) => {
+  const arrXY: { x: number; y: number }[] = []
+  for (let i = 0; i < length; i++) {
+    arrXY.push({
+      x: Math.floor(Math.random() * 100),
+      y: Math.floor(Math.random() * 100),
+    })
+  }
+  return arrXY
+}
+
+const StatusSync = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  const chartColors = theme.constants.chartColors
-  const backgroundColors = Object.values(chartColors)
-
   const data = {
-    labels: ["1", "2", "3", "4", "5"],
     datasets: [
       {
-        label: "Client 1",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[0],
-      },
-      {
-        label: "Client 2",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[1],
-      },
-      {
-        label: "Client 3",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[2],
+        label: "Node sync",
+        data: getRandomArr(50),
+        backgroundColor: theme.palette.primary.main,
       },
     ],
   }
@@ -53,14 +50,12 @@ const VersionVariance = () => {
     scales: {
       y: {
         display: false,
-        stacked: true,
       },
       x: {
         display: false,
         grid: {
           display: false,
         },
-        stacked: true,
       },
     },
     plugins: {
@@ -73,13 +68,13 @@ const VersionVariance = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Version variance across clients
+        Status sync over time
       </Typography>
       <div>
-        <Bar data={data} options={options} />
+        <Scatter data={data} options={options} />
       </div>
     </div>
   )
 }
 
-export default VersionVariance
+export default StatusSync

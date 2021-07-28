@@ -69,6 +69,10 @@
     "@types/graphql": "^14.5.0",
     "@types/leaflet": "^1.7.4",
     "apollo": "^2.33.4",
-    "license-check-and-add": "^4.0.2"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "license-check-and-add": "^4.0.2",
+    "prettier": "^2.3.2"
   }
 }

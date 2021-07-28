@@ -5,8 +5,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
-import { Scatter } from "react-chartjs-2"
-import { ECTheme } from "../../../Themes/types"
+import { Bar } from "react-chartjs-2"
+import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -21,27 +22,28 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const getRandomArr = (length: number) => {
-  const arrXY: { x: number; y: number }[] = []
-  for (let i = 0; i < length; i++) {
-    arrXY.push({
-      x: Math.floor(Math.random() * 100),
-      y: Math.floor(Math.random() * 100),
-    })
-  }
-  return arrXY
-}
-
-const StatusSync = () => {
+const ClientTypes = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
+  let { clients } = useEth2CrawlerApi()
+
+  clients = clients.sort((first, second) => (first.count < second.count ? 1 : -1))
+
+  const barLabels = clients.map((client) => client.name)
+  const barData = clients.map((client) => client.count)
+  const barColors = clients.map(() => theme.palette.primary.main)
+  const barHoverColors = clients.map(() => theme.palette.primary.hover)
+
   const data = {
+    labels: barLabels,
     datasets: [
       {
-        label: "Node sync",
-        data: getRandomArr(50),
-        backgroundColor: theme.palette.primary.main,
+        data: barData,
+        backgroundColor: barColors,
+        hoverBackgroundColor: barHoverColors,
+        borderWidth: 1,
+        maxBarThickness: 25,
       },
     ],
   }
@@ -50,6 +52,7 @@ const StatusSync = () => {
     scales: {
       y: {
         display: false,
+        type: "logarithmic",
       },
       x: {
         display: false,
@@ -68,13 +71,13 @@ const StatusSync = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Status sync over time
+        Client type distribution
       </Typography>
       <div>
-        <Scatter data={data} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )
 }
 
-export default StatusSync
+export default ClientTypes

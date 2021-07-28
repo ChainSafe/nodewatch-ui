@@ -30,6 +30,10 @@ interface IEth2CrawlerContext {
   operatingSystems: GetOperatingSystems_aggregateByOperatingSystem[]
   networks: GetNetworks_aggregateByNetwork[]
   heatmap: GetHeatmap_getHeatmapData[]
+  isLoadingClients: boolean
+  isLoadingOperatingSystems: boolean
+  isLoadingNetworks: boolean
+  isLoadingHeatmap: boolean
 }
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
@@ -45,19 +49,36 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [networks, setNetworks] = useState<GetNetworks_aggregateByNetwork[]>([])
   const [heatmap, setHeatmap] = useState<GetHeatmap_getHeatmapData[]>([])
 
+  const [isLoadingClients, setIsLoadingClients] = useState(true)
+  const [isLoadingOperatingSystems, setIsLoadingOperatingSystems] = useState(true)
+  const [isLoadingNetworks, setIsLoadingNetworks] = useState(true)
+  const [isLoadingHeatmap, setIsLoadingHeatmap] = useState(true)
+
   const getInitialData = async () => {
-    graphClient.request<GetClientCounts>(LOAD_CLIENTS).then((result) => {
-      setClients(result.aggregateByAgentName)
-    })
-    graphClient.request<GetOperatingSystems>(LOAD_OPERATING_SYSTEMS).then((result) => {
-      setOperatingSystems(result.aggregateByOperatingSystem)
-    })
-    graphClient.request<GetNetworks>(LOAD_NETWORKS).then((result) => {
-      setNetworks(result.aggregateByNetwork)
-    })
-    graphClient.request<GetHeatmap>(LOAD_HEATMAP).then((result) => {
-      setHeatmap(result.getHeatmapData)
-    })
+    graphClient
+      .request<GetClientCounts>(LOAD_CLIENTS)
+      .then((result) => {
+        setClients(result.aggregateByAgentName)
+      })
+      .finally(() => setIsLoadingClients(false))
+    graphClient
+      .request<GetOperatingSystems>(LOAD_OPERATING_SYSTEMS)
+      .then((result) => {
+        setOperatingSystems(result.aggregateByOperatingSystem)
+      })
+      .finally(() => setIsLoadingOperatingSystems(false))
+    graphClient
+      .request<GetNetworks>(LOAD_NETWORKS)
+      .then((result) => {
+        setNetworks(result.aggregateByNetwork)
+      })
+      .finally(() => setIsLoadingNetworks(false))
+    graphClient
+      .request<GetHeatmap>(LOAD_HEATMAP)
+      .then((result) => {
+        setHeatmap(result.getHeatmapData)
+      })
+      .finally(() => setIsLoadingHeatmap(false))
   }
 
   useEffect(() => {
@@ -71,6 +92,10 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         operatingSystems,
         networks,
         heatmap,
+        isLoadingClients,
+        isLoadingOperatingSystems,
+        isLoadingNetworks,
+        isLoadingHeatmap,
       }}
     >
       {children}

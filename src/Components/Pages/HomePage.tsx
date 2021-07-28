@@ -5,11 +5,12 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../Themes/types"
-import { Typography } from "@chainsafe/common-components"
+import { Grid, Loading, Typography } from "@chainsafe/common-components"
 import ClientTypes from "../Modules/DemographicsStats/ClientTypes"
 import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
+import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -25,7 +26,10 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       },
     },
     title: {
-      marginBottom: constants.generalUnit * 2,
+      marginRight: constants.generalUnit,
+    },
+    titleBox: {
+      marginBottom: constants.generalUnit * 3,
     },
     nodeDemographics: {
       display: "grid",
@@ -67,21 +71,31 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
 
 function HomePage() {
   const classes = useStyles()
+  const { isLoadingClients, isLoadingOperatingSystems, isLoadingNetworks, isLoadingHeatmap } =
+    useEth2CrawlerApi()
 
   return (
     <div className={classes.root}>
       <div className={classes.container}>
-        <Typography component="h2" variant="h2" className={classes.title}>
-          Eth2 Node Demographics
-        </Typography>
+        <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
+          <Typography component="h2" variant="h2" className={classes.title}>
+            Eth2 Node Demographics
+          </Typography>
+          {isLoadingHeatmap && <Loading size={24} />}
+        </Grid>
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </div>
       <div className={classes.container}>
-        <Typography component="h2" variant="h2" className={classes.title}>
-          Node Statistics
-        </Typography>
+        <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
+          <Typography component="h2" variant="h2" className={classes.title}>
+            Node Statistics
+          </Typography>
+          {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
+            <Loading size={24} />
+          )}
+        </Grid>
         <div className={classes.nodeStats}>
           <ClientTypes />
           <OperatingSystems />

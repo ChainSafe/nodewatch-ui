@@ -6,8 +6,8 @@ import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { Bar } from "react-chartjs-2"
-import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
-import { ECTheme } from "../../../Themes/types"
+import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -22,18 +22,18 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const ClientTypes = () => {
+const NetworkTypes = () => {
   const classes = useStyles()
+  let { networks } = useEth2CrawlerApi()
+
+  networks = networks.sort((first, second) => (first.count < second.count ? 1 : -1))
+
   const theme: ECTheme = useTheme()
 
-  let { clients } = useEth2CrawlerApi()
-
-  clients = clients.sort((first, second) => (first.count < second.count ? 1 : -1))
-
-  const barLabels = clients.map((client) => client.name)
-  const barData = clients.map((client) => client.count)
-  const barColors = clients.map(() => theme.palette.primary.main)
-  const barHoverColors = clients.map(() => theme.palette.primary.hover)
+  const barLabels = networks.map((network) => network.name)
+  const barData = networks.map((network) => network.count)
+  const barColors = networks.map(() => theme.palette.primary.main)
+  const barHoverColors = networks.map(() => theme.palette.primary.hover)
 
   const data = {
     labels: barLabels,
@@ -71,7 +71,7 @@ const ClientTypes = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Client type distribution
+        Network types used for node operations
       </Typography>
       <div>
         <Bar data={data} options={options} />
@@ -80,4 +80,4 @@ const ClientTypes = () => {
   )
 }
 
-export default ClientTypes
+export default NetworkTypes

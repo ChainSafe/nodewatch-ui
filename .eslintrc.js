@@ -11,6 +11,8 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
+    "prettier",
+    "plugin:react-hooks/recommended",
   ],
   globals: {
     Atomics: "readonly",
@@ -29,12 +31,9 @@ module.exports = {
       version: "detect",
     },
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "prettier"],
   rules: {
-    indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
-    quotes: ["error", "double"],
-    semi: ["error", "never"],
     "react/prop-types": 0,
     "no-unused-vars": "warn",
   },

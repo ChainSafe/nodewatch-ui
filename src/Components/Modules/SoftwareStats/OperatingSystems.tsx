@@ -4,9 +4,10 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
-import { Line } from "react-chartjs-2"
 import { Typography } from "@chainsafe/common-components"
-import { ECTheme } from "../../../Themes/types"
+import { Bar } from "react-chartjs-2"
+import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -21,29 +22,29 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const NodeCount12 = () => {
+const OperatingSystems = () => {
   const classes = useStyles()
+  let { operatingSystems } = useEth2CrawlerApi()
+
+  operatingSystems = operatingSystems.sort((first, second) => (first.count < second.count ? 1 : -1))
+  operatingSystems = operatingSystems.filter((operatingSystem) => operatingSystem.count > 10)
 
   const theme: ECTheme = useTheme()
 
+  const barLabels = operatingSystems.map((operatingSystem) => operatingSystem.name)
+  const barData = operatingSystems.map((operatingSystem) => operatingSystem.count)
+  const barColors = operatingSystems.map(() => theme.palette.primary.main)
+  const barHoverColors = operatingSystems.map(() => theme.palette.primary.hover)
+
   const data = {
-    labels: ["1", "2", "3", "4", "5", "6", "7"],
+    labels: barLabels,
     datasets: [
       {
-        label: "Node count: eth1",
-        data: [65, 59, 80, 81, 56, 55, 40],
-        fill: true,
-        borderColor: theme.palette.primary.main,
-        backgroundColor: theme.palette.primary.background,
-        tension: 0.1,
-      },
-      {
-        label: "Node count: eth2",
-        data: [99, 56, 55, 40, 65, 59, 100],
-        fill: true,
-        borderColor: theme.palette.primary.main,
-        backgroundColor: theme.palette.primary.background,
-        tension: 0.1,
+        data: barData,
+        backgroundColor: barColors,
+        hoverBackgroundColor: barHoverColors,
+        borderWidth: 1,
+        maxBarThickness: 25,
       },
     ],
   }
@@ -52,8 +53,10 @@ const NodeCount12 = () => {
     scales: {
       y: {
         display: false,
+        type: "logarithmic",
       },
       x: {
+        display: false,
         grid: {
           display: false,
         },
@@ -69,13 +72,13 @@ const NodeCount12 = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        node count eth1 and eth2
+        Operating systems used
       </Typography>
       <div>
-        <Line data={data} options={options} />
+        <Bar data={data} options={options} />
       </div>
     </div>
   )
 }
 
-export default NodeCount12
+export default OperatingSystems

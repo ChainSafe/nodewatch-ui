@@ -4,10 +4,9 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
+import { Line } from "react-chartjs-2"
 import { Typography } from "@chainsafe/common-components"
-import { Bar } from "react-chartjs-2"
-import { useEth2CrawlerApi } from "../../../../Contexts/Eth2CrawlerContext"
-import { ECTheme } from "../../../Themes/types"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -22,28 +21,29 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const NetworkTypes = () => {
+const NodeCount12 = () => {
   const classes = useStyles()
-  let { networks } = useEth2CrawlerApi()
-
-  networks = networks.sort((first, second) => (first.count < second.count ? 1 : -1))
 
   const theme: ECTheme = useTheme()
 
-  const barLabels = networks.map((network) => network.name)
-  const barData = networks.map((network) => network.count)
-  const barColors = networks.map(() => theme.palette.primary.main)
-  const barHoverColors = networks.map(() => theme.palette.primary.hover)
-
   const data = {
-    labels: barLabels,
+    labels: ["1", "2", "3", "4", "5", "6", "7"],
     datasets: [
       {
-        data: barData,
-        backgroundColor: barColors,
-        hoverBackgroundColor: barHoverColors,
-        borderWidth: 1,
-        maxBarThickness: 25,
+        label: "Node count: eth1",
+        data: [65, 59, 80, 81, 56, 55, 40],
+        fill: true,
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.background,
+        tension: 0.1,
+      },
+      {
+        label: "Node count: eth2",
+        data: [99, 56, 55, 40, 65, 59, 100],
+        fill: true,
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.background,
+        tension: 0.1,
       },
     ],
   }
@@ -54,7 +54,6 @@ const NetworkTypes = () => {
         display: false,
       },
       x: {
-        display: false,
         grid: {
           display: false,
         },
@@ -70,13 +69,13 @@ const NetworkTypes = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Network types used for node operations
+        node count eth1 and eth2
       </Typography>
       <div>
-        <Bar data={data} options={options} />
+        <Line data={data} options={options} />
       </div>
     </div>
   )
 }
 
-export default NetworkTypes
+export default NodeCount12

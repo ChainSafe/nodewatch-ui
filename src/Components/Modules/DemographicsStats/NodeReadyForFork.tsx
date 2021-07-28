@@ -6,7 +6,7 @@ import React from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Line } from "react-chartjs-2"
 import { Typography } from "@chainsafe/common-components"
-import { ECTheme } from "../../../Themes/types"
+import { ECTheme } from "../../Themes/types"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({

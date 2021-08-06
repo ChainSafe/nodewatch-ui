@@ -3,9 +3,9 @@ Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
 import { createTheme } from "@chainsafe/common-theme"
-import { EcColors } from "./colors"
+import { EcConstants } from "./constants"
 
-export const theme = createTheme<EcColors>({
+export const theme = createTheme<EcConstants>({
   themeConfig: {
     palette: {
       primary: {
@@ -28,7 +28,11 @@ export const theme = createTheme<EcColors>({
           color4: "#B7C1FC",
           color5: "#EBEEFF",
         },
-      } as EcColors),
+        chartSizes: {
+          chartBoxHeight: 200,
+          chartHeight: 160,
+        },
+      } as EcConstants),
     },
   },
 })

@@ -4,7 +4,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import { IConstants } from "@chainsafe/common-theme"
 
-export interface EcColors extends IConstants {
+export interface EcConstants extends IConstants {
   chartPrimaryColors: {
     main: string
     light: string
@@ -16,5 +16,9 @@ export interface EcColors extends IConstants {
     color3: string
     color4: string
     color5: string
+  }
+  chartSizes: {
+    chartBoxHeight: number
+    chartHeight: number
   }
 }

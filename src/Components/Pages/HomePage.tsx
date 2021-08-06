@@ -11,6 +11,7 @@ import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
 import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
+import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -58,7 +59,8 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      height: `${constants.chartSizes.chartBoxHeight}px`,
       [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr",
       },
@@ -76,7 +78,7 @@ function HomePage() {
 
   return (
     <div className={classes.root}>
-      <div className={classes.container}>
+      {/* <div className={classes.container}>
         <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
           <Typography component="h2" variant="h2" className={classes.title}>
             Eth2 Node Demographics
@@ -86,7 +88,7 @@ function HomePage() {
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
-      </div>
+      </div> */}
       <div className={classes.container}>
         <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
           <Typography component="h2" variant="h2" className={classes.title}>
@@ -100,6 +102,7 @@ function HomePage() {
           <ClientTypes />
           <OperatingSystems />
           <NetworkTypes />
+          <VersionVariance />
         </div>
       </div>
     </div>

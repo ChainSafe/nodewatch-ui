@@ -42,3 +42,16 @@ export const LOAD_HEATMAP = gql`
     }
   }
 `
+
+export const LOAD_CLIENT_VERSIONS = gql`
+  query GetClientVersions {
+    aggregateByClientVersion {
+      client
+      count
+      versions {
+        name
+        count
+      }
+    }
+  }
+`

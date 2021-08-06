@@ -26,7 +26,7 @@ export const theme = createTheme<EcConstants>({
           color2: "#3349C5",
           color3: "#566BDF",
           color4: "#B7C1FC",
-          color5: "#EBEEFF",
+          color5: "#CFD6FC",
         },
         chartSizes: {
           chartBoxHeight: 200,

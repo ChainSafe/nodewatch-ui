@@ -78,7 +78,7 @@ function HomePage() {
 
   return (
     <div className={classes.root}>
-      {/* <div className={classes.container}>
+      <div className={classes.container}>
         <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
           <Typography component="h2" variant="h2" className={classes.title}>
             Eth2 Node Demographics
@@ -88,7 +88,7 @@ function HomePage() {
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
-      </div> */}
+      </div>
       <div className={classes.container}>
         <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
           <Typography component="h2" variant="h2" className={classes.title}>

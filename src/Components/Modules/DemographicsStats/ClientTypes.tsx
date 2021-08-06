@@ -38,7 +38,7 @@ const ClientTypes = () => {
   const chartData = useMemo(
     () =>
       clients
-        .sort((first, second) => (first.count < second.count ? 1 : -1))
+        .sort((first, second) => (first.count > second.count ? 1 : -1))
         .filter((client) => client.count > MIN_CLIENT_COUNT)
         .map((client) => ({
           name: client.name,

@@ -2,13 +2,12 @@
 Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
-import React from "react"
+import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
 import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
 import { ECTheme } from "../../Themes/types"
 import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
-import { scaleLog } from "d3-scale"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -34,15 +33,19 @@ const ClientTypes = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  let { clients } = useEth2CrawlerApi()
+  const { clients } = useEth2CrawlerApi()
 
-  clients = clients
-    .sort((first, second) => (first.count < second.count ? 1 : -1))
-    .filter((client) => client.count > MIN_CLIENT_COUNT)
-  const chartData = clients.map((client) => ({
-    name: client.name,
-    count: client.count,
-  }))
+  const chartData = useMemo(
+    () =>
+      clients
+        .sort((first, second) => (first.count < second.count ? 1 : -1))
+        .filter((client) => client.count > MIN_CLIENT_COUNT)
+        .map((client) => ({
+          name: client.name,
+          count: client.count,
+        })),
+    [clients]
+  )
 
   return (
     <div className={classes.root}>

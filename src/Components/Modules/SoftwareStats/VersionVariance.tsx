@@ -98,7 +98,7 @@ const VersionVariance = () => {
       })
     })
     return bars
-  }, [clientVersions, backgroundColors])
+  }, [sortedClientVersions, backgroundColors])
 
   const bars = getUniqueBars()
 

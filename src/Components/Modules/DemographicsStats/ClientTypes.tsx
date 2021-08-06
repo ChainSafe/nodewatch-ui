@@ -41,7 +41,7 @@ const ClientTypes = () => {
         .sort((first, second) => (first.count > second.count ? 1 : -1))
         .filter((client) => client.count > MIN_CLIENT_COUNT)
         .map((client) => ({
-          name: client.name,
+          name: client.name || "unknown",
           count: client.count,
         })),
     [clients]

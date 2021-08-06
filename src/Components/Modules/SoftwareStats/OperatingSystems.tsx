@@ -41,7 +41,7 @@ const OperatingSystems = () => {
         .sort((first, second) => (first.count > second.count ? 1 : -1))
         .filter((operatingSystem) => operatingSystem.count > MIN_OPERATING_SYSTEM_COUNT)
         .map((operatingSystem) => ({
-          name: operatingSystem.name,
+          name: operatingSystem.name || "unknown",
           count: operatingSystem.count,
         })),
     [operatingSystems]

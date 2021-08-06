@@ -2,12 +2,12 @@
 Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
-import React from "react"
+import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
-import { Bar } from "react-chartjs-2"
 import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
 import { ECTheme } from "../../Themes/types"
+import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -15,6 +15,11 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       border: `1px solid ${palette.additional["gray"][4]}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
+      width: "inherit",
+      height: "inherit",
+    },
+    chartContainer: {
+      height: `${constants.chartSizes.chartHeight}px`,
     },
     title: {
       marginBottom: constants.generalUnit * 2,
@@ -22,60 +27,40 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
+const MIN_OPERATING_SYSTEM_COUNT = 50
+
 const OperatingSystems = () => {
   const classes = useStyles()
-  let { operatingSystems } = useEth2CrawlerApi()
-
-  operatingSystems = operatingSystems.sort((first, second) => (first.count < second.count ? 1 : -1))
-  operatingSystems = operatingSystems.filter((operatingSystem) => operatingSystem.count > 10)
-
   const theme: ECTheme = useTheme()
 
-  const barLabels = operatingSystems.map((operatingSystem) => operatingSystem.name)
-  const barData = operatingSystems.map((operatingSystem) => operatingSystem.count)
-  const barColors = operatingSystems.map(() => theme.palette.primary.main)
-  const barHoverColors = operatingSystems.map(() => theme.palette.primary.hover)
+  const { operatingSystems } = useEth2CrawlerApi()
 
-  const data = {
-    labels: barLabels,
-    datasets: [
-      {
-        data: barData,
-        backgroundColor: barColors,
-        hoverBackgroundColor: barHoverColors,
-        borderWidth: 1,
-        maxBarThickness: 25,
-      },
-    ],
-  }
-
-  const options = {
-    scales: {
-      y: {
-        display: false,
-        type: "logarithmic",
-      },
-      x: {
-        display: false,
-        grid: {
-          display: false,
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  }
+  const chartData = useMemo(
+    () =>
+      operatingSystems
+        .sort((first, second) => (first.count > second.count ? 1 : -1))
+        .filter((operatingSystem) => operatingSystem.count > MIN_OPERATING_SYSTEM_COUNT)
+        .map((operatingSystem) => ({
+          name: operatingSystem.name,
+          count: operatingSystem.count,
+        })),
+    [operatingSystems]
+  )
 
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        Operating systems used
+        Operating systems distribution
       </Typography>
-      <div>
-        <Bar data={data} options={options} />
+      <div className={classes.chartContainer}>
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart width={150} height={40} data={chartData}>
+            <XAxis hide={true} dataKey="name" />
+            <YAxis scale="sqrt" hide={true} />
+            <Tooltip />
+            <Bar dataKey="count" fill={theme.palette.primary.main} scale={10} />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   )

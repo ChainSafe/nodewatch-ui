@@ -12,18 +12,19 @@ import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
 import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
 import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
+import NavBar from "../Modules/NavBar"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
-      margin: `${constants.generalUnit * 4}px 0 ${constants.generalUnit * 8}px`,
+      margin: `${constants.generalUnit * 8}px 0 ${constants.generalUnit * 8}px`,
       display: "grid",
       gridRowGap: constants.generalUnit * 2,
       [breakpoints.down("lg")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 4}px`,
+        margin: `${constants.generalUnit * 8}px ${constants.generalUnit * 4}px`,
       },
       [breakpoints.down("md")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 2}px`,
+        margin: `${constants.generalUnit * 8}px ${constants.generalUnit * 2}px`,
       },
     },
     title: {
@@ -77,35 +78,38 @@ function HomePage() {
     useEth2CrawlerApi()
 
   return (
-    <div className={classes.root}>
-      <div className={classes.container}>
-        <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
-          <Typography component="h2" variant="h2" className={classes.title}>
-            Eth2 Node Demographics
-          </Typography>
-          {isLoadingHeatmap && <Loading size={24} />}
-        </Grid>
-        <div className={classes.nodeDemographics}>
-          <HeatMap rootClassName={classes.nodeMapRoot} />
+    <>
+      <NavBar/>
+      <div className={classes.root}>
+        <div className={classes.container}>
+          <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
+            <Typography component="h2" variant="h2" className={classes.title}>
+              Eth2 Node Demographics
+            </Typography>
+            {isLoadingHeatmap && <Loading size={24} />}
+          </Grid>
+          <div className={classes.nodeDemographics}>
+            <HeatMap rootClassName={classes.nodeMapRoot} />
+          </div>
+        </div>
+        <div className={classes.container}>
+          <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
+            <Typography component="h2" variant="h2" className={classes.title}>
+              Node Statistics
+            </Typography>
+            {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
+              <Loading size={24} />
+            )}
+          </Grid>
+          <div className={classes.nodeStats}>
+            <ClientTypes />
+            <OperatingSystems />
+            <NetworkTypes />
+            <VersionVariance />
+          </div>
         </div>
       </div>
-      <div className={classes.container}>
-        <Grid flexDirection="row" alignItems="center" className={classes.titleBox}>
-          <Typography component="h2" variant="h2" className={classes.title}>
-            Node Statistics
-          </Typography>
-          {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
-            <Loading size={24} />
-          )}
-        </Grid>
-        <div className={classes.nodeStats}>
-          <ClientTypes />
-          <OperatingSystems />
-          <NetworkTypes />
-          <VersionVariance />
-        </div>
-      </div>
-    </div>
+    </>
   )
 }
 

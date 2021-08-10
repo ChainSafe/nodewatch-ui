@@ -3,6 +3,6 @@ Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
 import { ITheme } from "@chainsafe/common-theme"
-import { EcColors } from "./colors"
+import { EcConstants } from "./constants"
 
-export type ECTheme = ITheme<EcColors>
+export type ECTheme = ITheme<EcConstants>

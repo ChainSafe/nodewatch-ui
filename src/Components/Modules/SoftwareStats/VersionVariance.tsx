@@ -2,11 +2,13 @@
 Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
-import React from "react"
+import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
 import { Typography } from "@chainsafe/common-components"
-import { Bar } from "react-chartjs-2"
+import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
+import { useCallback } from "react"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -14,71 +16,115 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       border: `1px solid ${palette.additional["gray"][4]}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
+      width: "inherit",
+      // height: "160px",
+    },
+    chartContainer: {
+      height: "160px",
     },
     title: {
       marginBottom: constants.generalUnit * 2,
     },
+    charts: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+    },
+    eachChart: {
+      width: "25%",
+      height: "100%",
+    },
   })
 })
+
+const MIN_NODE_COUNT = 50
 
 const VersionVariance = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
+  const backgroundColors = Object.values(theme.constants.chartColors)
 
-  const chartColors = theme.constants.chartColors
-  const backgroundColors = Object.values(chartColors)
+  const { clientVersions } = useEth2CrawlerApi()
 
-  const data = {
-    labels: ["1", "2", "3", "4", "5"],
-    datasets: [
-      {
-        label: "Client 1",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[0],
-      },
-      {
-        label: "Client 2",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[1],
-      },
-      {
-        label: "Client 3",
-        data: ["10", "20", "30"],
-        backgroundColor: backgroundColors[2],
-      },
-    ],
-  }
+  const sortedClientVersions = useMemo(
+    () =>
+      clientVersions
+        .sort((a, b) => (a.count < b.count ? -1 : 1))
+        .filter((clientVersion) => clientVersion.count >= MIN_NODE_COUNT)
+        .filter(
+          (clientVersion) => clientVersion.client !== "others" && clientVersion.client !== "unknown"
+        )
+        .map((clientVersion) => {
+          const versions = clientVersion.versions.sort((a, b) => (a.count > b.count ? -1 : 1))
+          if (versions.length > 5) {
+            versions.length = 5
+          }
+          return {
+            ...clientVersion,
+            versions,
+          }
+        }),
+    [clientVersions]
+  )
 
-  const options = {
-    scales: {
-      y: {
-        display: false,
-        stacked: true,
-      },
-      x: {
-        display: false,
-        grid: {
-          display: false,
-        },
-        stacked: true,
-      },
-    },
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  }
+  const chartData = useMemo(
+    () =>
+      sortedClientVersions
+        .map((clientVersion) => {
+          const stack: Record<string, number | string> = {
+            name: clientVersion.client,
+          }
+          clientVersion.versions.forEach((version) => {
+            stack[`${clientVersion.client} ${version.name}`] = version.count
+          })
+          return stack
+        })
+        .flat(),
+    [sortedClientVersions]
+  )
+
+  const getUniqueBars = useCallback(() => {
+    const bars: any[] = []
+    sortedClientVersions.forEach((clientVersion) => {
+      clientVersion.versions.forEach((version, j) => {
+        if (!bars.find((bar) => bar.key === `${clientVersion.client} ${version.name}`)) {
+          bars.push({
+            key: `${clientVersion.client} ${version.name}`,
+            dataKey: `${clientVersion.client} ${version.name}`,
+            stackId: clientVersion.client,
+            fill: backgroundColors[j],
+            count: version.count,
+          })
+        }
+      })
+    })
+    return bars
+  }, [sortedClientVersions, backgroundColors])
+
+  const bars = getUniqueBars()
 
   return (
     <div className={classes.root}>
-      <Typography component="p" variant="body1" className={classes.title}>
-        Version variance across clients
-      </Typography>
       <div>
-        <Bar data={data} options={options} />
+        <Typography component="p" variant="body1" className={classes.title}>
+          Version variance across clients
+        </Typography>
       </div>
+      <div className={classes.chartContainer}>
+        <ResponsiveContainer>
+          <BarChart width={500} height={300} data={chartData}>
+            <XAxis hide={true} dataKey="name" />
+            <YAxis scale="sqrt" hide={true} />
+            <Tooltip />
+            {bars.map((bar) => (
+              <Bar key={bar.key} dataKey={bar.dataKey} stackId="a" fill={bar.fill} />
+            ))}
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+      {/* </div> */}
     </div>
+    // </div>
+    // </div>
   )
 }
 

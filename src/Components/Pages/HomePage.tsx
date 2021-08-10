@@ -11,6 +11,7 @@ import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
 import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
+import ClientTypes1 from "../Modules/DemographicsStats/ClientTypes1"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -58,7 +59,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr",
       [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr",
       },
@@ -84,7 +85,7 @@ function HomePage() {
           {isLoadingHeatmap && <Loading size={24} />}
         </Grid>
         <div className={classes.nodeDemographics}>
-          <HeatMap rootClassName={classes.nodeMapRoot} />
+          {/* <HeatMap rootClassName={classes.nodeMapRoot} /> */}
         </div>
       </div>
       <div className={classes.container}>
@@ -97,9 +98,10 @@ function HomePage() {
           )}
         </Grid>
         <div className={classes.nodeStats}>
-          <ClientTypes />
+          {/* <ClientTypes />
           <OperatingSystems />
-          <NetworkTypes />
+          <NetworkTypes /> */}
+          <ClientTypes1 />
         </div>
       </div>
     </div>

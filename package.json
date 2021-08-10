@@ -31,7 +31,11 @@
     "react-leaflet": "^3.2.0",
     "react-scripts": "4.0.3",
     "react-toast-notifications": "^2.5.1",
+<<<<<<< HEAD
     "recharts": "^2.1.0",
+=======
+    "recharts": "^2.0.10",
+>>>>>>> f893786a431da71e2940f5ccaaeabceef4e7fb87
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },

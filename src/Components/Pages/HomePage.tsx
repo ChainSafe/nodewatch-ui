@@ -11,7 +11,7 @@ import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
 import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
-import ClientTypes1 from "../Modules/DemographicsStats/ClientTypes1"
+import  VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -59,7 +59,8 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr",
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      height: `${constants.chartSizes.chartBoxHeight}px`,
       [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr",
       },
@@ -98,10 +99,10 @@ function HomePage() {
           )}
         </Grid>
         <div className={classes.nodeStats}>
-          {/* <ClientTypes />
+          <ClientTypes />
           <OperatingSystems />
-          <NetworkTypes /> */}
-          <ClientTypes1 />
+          <NetworkTypes />
+          <VersionVariance />
         </div>
       </div>
     </div>

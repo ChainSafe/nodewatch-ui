@@ -58,10 +58,13 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     nodeStats: {
       display: "grid",
       gridColumnGap: constants.generalUnit,
-      gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      gridRowGap: constants.generalUnit * 3,
+      gridTemplateColumns: "1fr 1fr",
       height: `${constants.chartSizes.chartBoxHeight}px`,
-      [breakpoints.down("md")]: {
+      [breakpoints.down(1299)]: {
+        maxWidth: "1000px",
+      },
+      [breakpoints.down(1099)]: {
         gridTemplateColumns: "1fr",
       },
     },
@@ -86,7 +89,7 @@ function HomePage() {
           {isLoadingHeatmap && <Loading size={24} />}
         </Grid>
         <div className={classes.nodeDemographics}>
-          <HeatMap rootClassName={classes.nodeMapRoot} />
+          {/* <HeatMap rootClassName={classes.nodeMapRoot} /> */}
         </div>
       </div>
       <div className={classes.container}>

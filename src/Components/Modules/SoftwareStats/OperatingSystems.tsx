@@ -49,14 +49,14 @@ const OperatingSystems = () => {
 
   return (
     <div className={classes.root}>
-      <Typography component="p" variant="body1" className={classes.title}>
+      <Typography component="p" variant="h4" className={classes.title}>
         Operating systems distribution
       </Typography>
       <div className={classes.chartContainer}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart width={150} height={40} data={chartData}>
-            <XAxis hide={true} dataKey="name" />
-            <YAxis scale="sqrt" hide={true} />
+            <XAxis dataKey="name" />
+            <YAxis scale="auto" />
             <Tooltip />
             <Bar dataKey="count" fill={theme.palette.primary.main} scale={10} />
           </BarChart>

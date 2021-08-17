@@ -19,8 +19,6 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
       margin: `${constants.generalUnit * 4}px 0 ${constants.generalUnit * 8}px`,
-      display: "grid",
-      gridRowGap: constants.generalUnit * 2,
       [breakpoints.down("lg")]: {
         margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 4}px`,
       },
@@ -32,14 +30,6 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       marginRight: constants.generalUnit,
     },
     nodeDemographics: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gridColumnGap: constants.generalUnit * 2,
-      [breakpoints.down("md")]: {
-        gridTemplateColumns: "1fr",
-        gridColumnGap: constants.generalUnit * 2,
-        gridRowGap: constants.generalUnit * 2,
-      },
     },
     nodeMapRoot: {
       height: "75vh",

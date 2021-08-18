@@ -10,7 +10,7 @@ export const theme = createTheme<EcConstants>({
     palette: {
       primary: {
         main: "#3552BF",
-        hover: "2E00B0",
+        hover: "#2E00B0",
         background: "rgb(53, 82, 191, 0.1)",
       },
     },
@@ -34,5 +34,33 @@ export const theme = createTheme<EcConstants>({
         },
       } as EcConstants),
     },
+    overrides: {
+      Typography: {
+        h1: {
+          fontSize: 48,
+          lineHeight: "58px",
+          fontStyle: "normal",
+          fontWeight: "normal"
+        },
+        h2: {
+          fontSize: "38.0413px",
+          lineHeight: "45px",
+          fontStyle: "normal",
+          fontWeight: "normal"
+        },
+        h3: {
+          fontSize: "22.3773px",
+          lineHeight: "31px",
+          fontStyle: "normal",
+          fontWeight: "normal"
+        },
+        h4: {
+          fontSize: 20,
+          lineHeight: "28px",
+          fontStyle: "normal",
+          fontWeight: "normal"
+        }
+      }
+    }
   },
 })

@@ -29,8 +29,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     title: {
       marginRight: constants.generalUnit,
     },
-    nodeDemographics: {
-    },
+    nodeDemographics: {},
     nodeMapRoot: {
       height: "75vh",
       width: "100%",
@@ -62,25 +61,46 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
 
 function HomePage() {
   const classes = useStyles()
-  const { isLoadingClients, isLoadingOperatingSystems, isLoadingNetworks, isLoadingHeatmap } =
-    useEth2CrawlerApi()
+  const {
+    isLoadingClients,
+    isLoadingOperatingSystems,
+    isLoadingNetworks,
+    isLoadingHeatmap,
+    nodeStats,
+  } = useEth2CrawlerApi()
+
+  // eslint-disable-next-line no-console
+  console.log(nodeStats)
 
   return (
     <div className={classes.root}>
       <SectionTile
-        heading="General information" 
-        cardContent={<>
-          <CardStat heading="Node count" stat="10,0000" />
-          <CardStat heading="Percentage of network synced" stat="81%" />
-        </>}>
-        
+        heading="General information"
+        cardContent={
+          <>
+            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
+            <CardStat
+              heading="Percentage of network synced"
+              stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of network > 15% unsynced"
+              stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+            />
+          </>
+        }
+      >
+        <div>hello</div>
       </SectionTile>
       <SectionTile
-        heading="Regional information" 
-        cardContent={<>
-          <CardStat heading="Network participants from" stat="212 countries" />
-          <CardStat heading="Percentage of residential nodes" stat="60%" />
-        </>}>
+        heading="Regional information"
+        cardContent={
+          <>
+            <CardStat heading="Network participants from" stat="212 countries" />
+            <CardStat heading="Percentage of residential nodes" stat="60%" />
+          </>
+        }
+      >
         {isLoadingHeatmap && <Loading size={24} />}
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />

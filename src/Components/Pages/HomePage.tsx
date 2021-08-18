@@ -89,7 +89,7 @@ function HomePage() {
           {isLoadingHeatmap && <Loading size={24} />}
         </Grid>
         <div className={classes.nodeDemographics}>
-          {/* <HeatMap rootClassName={classes.nodeMapRoot} /> */}
+          <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </div>
       <div className={classes.container}>

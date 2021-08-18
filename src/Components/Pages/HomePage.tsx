@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../Themes/types"
-import { Loading, Typography } from "@chainsafe/common-components"
+import { Loading } from "@chainsafe/common-components"
 import ClientTypes from "../Modules/DemographicsStats/ClientTypes"
 import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
@@ -15,6 +15,7 @@ import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
 import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
+import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -42,7 +43,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
         height: "40vh",
       },
       [breakpoints.down("sm")]: {
-        height: "30vh",
+        height: "25vh",
       },
     },
     nodeStats: {
@@ -117,10 +118,7 @@ function HomePage() {
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
-      <div className={classes.container}>
-        <Typography component="h2" variant="h2" className={classes.title}>
-          Node Statistics
-        </Typography>
+      <GridLayoutWrapper heading="Node statistics">
         {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
           <Loading size={24} />
         )}
@@ -130,7 +128,7 @@ function HomePage() {
           <NetworkTypes />
           <VersionVariance />
         </div>
-      </div>
+      </GridLayoutWrapper>
     </div>
   )
 }

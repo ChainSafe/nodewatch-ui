@@ -17,7 +17,6 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",
-      // height: "160px",
     },
     chartContainer: {
       height: "250px",
@@ -113,7 +112,7 @@ const VersionVariance = () => {
         <ResponsiveContainer>
           <BarChart width={150} height={250} data={chartData}>
             <XAxis dataKey="name" />
-            <YAxis scale="auto" />
+            <YAxis hide scale="auto" />
             <Tooltip />
             {bars.map((bar) => (
               <Bar key={bar.key} dataKey={bar.dataKey} stackId="a" fill={bar.fill} />
@@ -122,8 +121,6 @@ const VersionVariance = () => {
         </ResponsiveContainer>
       </div>
     </div>
-    // </div>
-    // </div>
   )
 }
 

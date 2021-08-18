@@ -17,10 +17,9 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",
-      // height: "160px",
     },
     chartContainer: {
-      height: "160px",
+      height: "250px",
     },
     title: {
       marginBottom: constants.generalUnit * 2,
@@ -105,15 +104,15 @@ const VersionVariance = () => {
   return (
     <div className={classes.root}>
       <div>
-        <Typography component="p" variant="body1" className={classes.title}>
+        <Typography component="p" variant="h4" className={classes.title}>
           Version variance across clients
         </Typography>
       </div>
       <div className={classes.chartContainer}>
         <ResponsiveContainer>
-          <BarChart width={500} height={300} data={chartData}>
-            <XAxis hide={true} dataKey="name" />
-            <YAxis scale="sqrt" hide={true} />
+          <BarChart width={150} height={250} data={chartData}>
+            <XAxis dataKey="name" />
+            <YAxis hide scale="auto" />
             <Tooltip />
             {bars.map((bar) => (
               <Bar key={bar.key} dataKey={bar.dataKey} stackId="a" fill={bar.fill} />
@@ -121,10 +120,7 @@ const VersionVariance = () => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      {/* </div> */}
     </div>
-    // </div>
-    // </div>
   )
 }
 

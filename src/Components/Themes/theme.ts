@@ -29,8 +29,8 @@ export const theme = createTheme<EcConstants>({
           color5: "#CFD6FC",
         },
         chartSizes: {
-          chartBoxHeight: 200,
-          chartHeight: 160,
+          chartBoxHeight: 300,
+          chartHeight: 280,
         },
       } as EcConstants),
     },

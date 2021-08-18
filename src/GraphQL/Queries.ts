@@ -14,6 +14,27 @@ export const LOAD_NODE_COUNTS = gql`
   }
 `
 
+export const LOAD_NODE_COUNT_OVER_TIME = gql`
+  query GetNodeStatsOverTime($start: Float!, $end: Float!) {
+    getNodeStatsOverTime(start: $start, end: $end) {
+      time
+      totalNodes
+      syncedNodes
+      unsyncedNodes
+    }
+  }
+`
+
+export const LOAD_REGIONAL_STATS = gql`
+  query GetRegionalStats {
+    getRegionalStats {
+      totalParticipatingCountries
+      residentialNodePercentage
+      nonresidentialNodePercentage
+    }
+  }
+`
+
 export const LOAD_CLIENTS = gql`
   query GetClientCounts {
     aggregateByAgentName {

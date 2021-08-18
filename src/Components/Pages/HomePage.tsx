@@ -14,6 +14,7 @@ import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
 import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
+import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
@@ -28,16 +29,17 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     },
     title: {
       marginRight: constants.generalUnit,
+      marginBottom: constants.generalUnit * 3,
     },
     nodeDemographics: {},
     nodeMapRoot: {
-      height: "75vh",
+      height: "50vh",
       width: "100%",
       [breakpoints.down("lg")]: {
-        height: "75vh",
+        height: "50vh",
       },
       [breakpoints.down("md")]: {
-        height: "50vh",
+        height: "40vh",
       },
       [breakpoints.down("sm")]: {
         height: "30vh",
@@ -48,13 +50,16 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
       gridTemplateColumns: "1fr 1fr 1fr 1fr",
-      height: `${constants.chartSizes.chartBoxHeight}px`,
       [breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr 1fr",
+      },
+      [breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
       },
+      marginBottom: constants.generalUnit * 4,
     },
     container: {
-      marginBottom: constants.generalUnit * 3,
+      marginBottom: constants.generalUnit * 4,
     },
   })
 })
@@ -65,12 +70,9 @@ function HomePage() {
     isLoadingClients,
     isLoadingOperatingSystems,
     isLoadingNetworks,
-    isLoadingHeatmap,
     nodeStats,
+    nodeRegionalStats,
   } = useEth2CrawlerApi()
-
-  // eslint-disable-next-line no-console
-  console.log(nodeStats)
 
   return (
     <div className={classes.root}>
@@ -90,18 +92,27 @@ function HomePage() {
           </>
         }
       >
-        <div>hello</div>
+        <NodeStatusOverTime />
       </SectionTile>
       <SectionTile
         heading="Regional information"
         cardContent={
           <>
-            <CardStat heading="Network participants from" stat="212 countries" />
-            <CardStat heading="Percentage of residential nodes" stat="60%" />
+            <CardStat
+              heading="Network participants from"
+              stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
+            />
+            <CardStat
+              heading="Percentage of residential nodes"
+              stat={nodeRegionalStats?.residentialNodePercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of non-residential nodes"
+              stat={nodeRegionalStats?.nonresidentialNodePercentage.toFixed(1).toString() || "-"}
+            />
           </>
         }
       >
-        {isLoadingHeatmap && <Loading size={24} />}
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>

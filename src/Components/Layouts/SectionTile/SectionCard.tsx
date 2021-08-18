@@ -1,3 +1,7 @@
+/*
+Copyright 2021 ChainSafe Systems
+SPDX-License-Identifier: LGPL-3.0-only
+*/
 import React, { ReactNode } from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import clsx from "clsx"

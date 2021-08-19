@@ -9,6 +9,7 @@ import { ECTheme } from "../Themes/types"
 const useStyles = makeStyles(({ breakpoints }: ECTheme) => {
   return createStyles({
     layout: {
+      fontFamily: "Neue Montreal",
       margin: "0 auto",
       display: "flex",
       flexDirection: "column",

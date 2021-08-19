@@ -24,7 +24,20 @@ import {
   LOAD_OPERATING_SYSTEMS,
   LOAD_HEATMAP,
   LOAD_CLIENT_VERSIONS,
+  LOAD_NODE_COUNTS,
+  LOAD_NODE_COUNT_OVER_TIME,
+  LOAD_REGIONAL_STATS,
 } from "../GraphQL/Queries"
+import { GetNodeStats, GetNodeStats_getNodeStats } from "../GraphQL/types/GetNodeStats"
+import {
+  GetNodeStatsOverTime,
+  GetNodeStatsOverTime_getNodeStatsOverTime,
+} from "../GraphQL/types/GetNodeStatsOverTime"
+import { getTimeStampFromDaysBefore } from "../utils/dateUtils"
+import {
+  GetRegionalStats,
+  GetRegionalStats_getRegionalStats,
+} from "../GraphQL/types/getRegionalStats"
 
 type Eth2CrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
@@ -36,11 +49,17 @@ interface IEth2CrawlerContext {
   networks: GetNetworks_aggregateByNetwork[]
   clientVersions: GetClientVersions_aggregateByClientVersion[]
   heatmap: GetHeatmap_getHeatmapData[]
+  nodeStats: GetNodeStats_getNodeStats | undefined
+  nodeStatsOverTime: GetNodeStatsOverTime_getNodeStatsOverTime[]
+  nodeRegionalStats: GetRegionalStats_getRegionalStats | undefined
   isLoadingClients: boolean
   isLoadingOperatingSystems: boolean
   isLoadingNetworks: boolean
   isLoadingHeatmap: boolean
   isLoadingClientVersions: boolean
+  isLoadingNodeStats: boolean
+  isLoadingNodeStatsOverTime: boolean
+  isLoadingNodeRegionalStats: boolean
 }
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
@@ -49,6 +68,13 @@ const subgraphUrl = process.env.REACT_APP_GRAPHQL_URL || ""
 const graphClient = new GraphQLClient(subgraphUrl)
 
 const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
+  const [nodeStats, setNodeStats] = useState<GetNodeStats_getNodeStats | undefined>(undefined)
+  const [nodeRegionalStats, setNodeRegionalStats] = useState<
+    GetRegionalStats_getRegionalStats | undefined
+  >(undefined)
+  const [nodeStatsOverTime, setNodeStatsOverTime] = useState<
+    GetNodeStatsOverTime_getNodeStatsOverTime[]
+  >([])
   const [clients, setClients] = useState<GetClientCounts_aggregateByAgentName[]>([])
   const [operatingSystems, setOperatingSystems] = useState<
     GetOperatingSystems_aggregateByOperatingSystem[]
@@ -64,8 +90,37 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [isLoadingNetworks, setIsLoadingNetworks] = useState(true)
   const [isLoadingHeatmap, setIsLoadingHeatmap] = useState(true)
   const [isLoadingClientVersions, setIsLoadingClientVersions] = useState(true)
+  const [isLoadingNodeStats, setIsLoadingNodeStats] = useState(true)
+  const [isLoadingNodeStatsOverTime, setIsLoadingNodeStatsOverTime] = useState(true)
+  const [isLoadingNodeRegionalStats, setIsLoadingNodeRegionalStats] = useState(true)
 
   const getInitialData = async () => {
+    graphClient
+      .request<GetNodeStats>(LOAD_NODE_COUNTS, {
+        percentage: 15,
+      })
+      .then((result) => {
+        setNodeStats(result.getNodeStats)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingNodeStats(false))
+    graphClient
+      .request<GetNodeStatsOverTime>(LOAD_NODE_COUNT_OVER_TIME, {
+        start: getTimeStampFromDaysBefore(30),
+        end: new Date().getTime(),
+      })
+      .then((result) => {
+        setNodeStatsOverTime(result.getNodeStatsOverTime)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingNodeStatsOverTime(false))
+    graphClient
+      .request<GetRegionalStats>(LOAD_REGIONAL_STATS)
+      .then((result) => {
+        setNodeRegionalStats(result.getRegionalStats)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingNodeRegionalStats(false))
     graphClient
       .request<GetClientCounts>(LOAD_CLIENTS)
       .then((result) => {
@@ -110,16 +165,22 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   return (
     <Eth2CrawlerContext.Provider
       value={{
+        nodeStats,
+        nodeStatsOverTime,
+        nodeRegionalStats,
         clients,
         operatingSystems,
         networks,
         heatmap,
         clientVersions,
+        isLoadingNodeStats,
         isLoadingClients,
         isLoadingOperatingSystems,
         isLoadingNetworks,
         isLoadingHeatmap,
         isLoadingClientVersions,
+        isLoadingNodeStatsOverTime,
+        isLoadingNodeRegionalStats,
       }}
     >
       {children}

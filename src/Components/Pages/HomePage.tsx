@@ -14,6 +14,7 @@ import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
 import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
+import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
@@ -29,14 +30,14 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     },
     title: {
       marginRight: constants.generalUnit,
+      marginBottom: constants.generalUnit * 3,
     },
-    nodeDemographics: {
-    },
+    nodeDemographics: {},
     nodeMapRoot: {
-      height: "45vh",
+      height: "50vh",
       width: "100%",
       [breakpoints.down("lg")]: {
-        height: "45vh",
+        height: "50vh",
       },
       [breakpoints.down("md")]: {
         height: "40vh",
@@ -48,13 +49,15 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     nodeStats: {
       display: "grid",
       gridColumnGap: constants.generalUnit,
-      gridRowGap: constants.generalUnit * 3,
-      gridTemplateColumns: "repeat(2, minmax(0,1fr))",
-      height: `${constants.chartSizes.chartBoxHeight}px`,
-      maxWidth: "100%",
-      [breakpoints.down(1099)]: {
-        gridTemplateColumns: "repeat(1, minmax(0,1fr))",
+      gridRowGap: constants.generalUnit,
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      [breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr 1fr",
       },
+      [breakpoints.down("sm")]: {
+        gridTemplateColumns: "1fr",
+      },
+      marginBottom: constants.generalUnit * 4,
     },
     container: {
       marginBottom: constants.generalUnit * 4,
@@ -64,33 +67,58 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
 
 function HomePage() {
   const classes = useStyles()
-  const { isLoadingClients, isLoadingOperatingSystems, isLoadingNetworks, isLoadingHeatmap } =
-    useEth2CrawlerApi()
+  const {
+    isLoadingClients,
+    isLoadingOperatingSystems,
+    isLoadingNetworks,
+    nodeStats,
+    nodeRegionalStats,
+  } = useEth2CrawlerApi()
 
   return (
     <div className={classes.root}>
       <SectionTile
-        heading="General information" 
-        cardContent={<>
-          <CardStat heading="Node count" stat="10,0000" />
-          <CardStat heading="Percentage of network synced" stat="81%" />
-        </>}>
-        
+        heading="General information"
+        cardContent={
+          <>
+            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
+            <CardStat
+              heading="Percentage of network synced"
+              stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of network > 15% unsynced"
+              stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+            />
+          </>
+        }
+      >
+        <NodeStatusOverTime />
       </SectionTile>
       <SectionTile
-        heading="Regional information" 
-        cardContent={<>
-          <CardStat heading="Network participants from" stat="212 countries" />
-          <CardStat heading="Percentage of residential nodes" stat="60%" />
-        </>}>
-        {isLoadingHeatmap && <Loading size={24} />}
+        heading="Regional information"
+        cardContent={
+          <>
+            <CardStat
+              heading="Network participants from"
+              stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
+            />
+            <CardStat
+              heading="Percentage of residential nodes"
+              stat={nodeRegionalStats?.residentialNodePercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of non-residential nodes"
+              stat={nodeRegionalStats?.nonresidentialNodePercentage.toFixed(1).toString() || "-"}
+            />
+          </>
+        }
+      >
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
-      <GridLayoutWrapper
-        heading="Node statistics"
-      >
+      <GridLayoutWrapper heading="Node statistics">
         {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
           <Loading size={24} />
         )}

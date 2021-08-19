@@ -14,8 +14,8 @@ SPDX-License-Identifier: LGPL-3.0-only
 export interface GetRegionalStats_getRegionalStats {
   __typename: "RegionalStats";
   totalParticipatingCountries: number;
-  residentialNodePercentage: number;
-  nonresidentialNodePercentage: number;
+  hostedNodePercentage: number;
+  nonhostedNodePercentage: number;
 }
 
 export interface GetRegionalStats {

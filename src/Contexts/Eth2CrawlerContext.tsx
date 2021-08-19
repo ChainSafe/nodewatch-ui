@@ -106,7 +106,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       .finally(() => setIsLoadingNodeStats(false))
     graphClient
       .request<GetNodeStatsOverTime>(LOAD_NODE_COUNT_OVER_TIME, {
-        start: getTimeStampFromDaysBefore(30),
+        start: getTimeStampFromDaysBefore(7),
         end: new Date().getTime(),
       })
       .then((result) => {

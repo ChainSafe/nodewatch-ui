@@ -22,7 +22,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: `${constants.chartSizes.chartHeight}px`,
     },
     title: {
-      marginBottom: constants.generalUnit * 2,
+      marginBottom: constants.generalUnit * 4,
     },
   })
 })

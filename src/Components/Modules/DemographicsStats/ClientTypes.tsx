@@ -22,7 +22,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: `${constants.chartSizes.chartHeight}px`,
     },
     title: {
-      marginBottom: constants.generalUnit * 2,
+      marginBottom: constants.generalUnit * 4,
     },
   })
 })
@@ -56,7 +56,7 @@ const ClientTypes = () => {
         <ResponsiveContainer width="100%" height="100%">
           <BarChart width={120} height={80} data={chartData}>
             <XAxis dataKey="name" />
-            <YAxis scale="auto"/>
+            <YAxis scale="auto" />
             <Tooltip />
             <Bar dataKey="count" fill={theme.palette.primary.main} scale={10} />
           </BarChart>

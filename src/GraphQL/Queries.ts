@@ -29,8 +29,8 @@ export const LOAD_REGIONAL_STATS = gql`
   query GetRegionalStats {
     getRegionalStats {
       totalParticipatingCountries
-      residentialNodePercentage
-      nonresidentialNodePercentage
+      hostedNodePercentage
+      nonhostedNodePercentage
     }
   }
 `

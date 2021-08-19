@@ -5,7 +5,6 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../Themes/types"
-import { Loading } from "@chainsafe/common-components"
 import ClientTypes from "../Modules/DemographicsStats/ClientTypes"
 import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
@@ -43,14 +42,14 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
         height: "40vh",
       },
       [breakpoints.down("sm")]: {
-        height: "25vh",
+        height: "30vh",
       },
     },
     nodeStats: {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr",
       [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr 1fr",
       },
@@ -67,13 +66,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
 
 function HomePage() {
   const classes = useStyles()
-  const {
-    isLoadingClients,
-    isLoadingOperatingSystems,
-    isLoadingNetworks,
-    nodeStats,
-    nodeRegionalStats,
-  } = useEth2CrawlerApi()
+  const { nodeStats, nodeRegionalStats } = useEth2CrawlerApi()
 
   return (
     <div className={classes.root}>
@@ -104,12 +97,12 @@ function HomePage() {
               stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
             />
             <CardStat
-              heading="Percentage of residential nodes"
-              stat={nodeRegionalStats?.residentialNodePercentage.toFixed(1).toString() || "-"}
+              heading="Percentage of hosted nodes"
+              stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
             />
             <CardStat
-              heading="Percentage of non-residential nodes"
-              stat={nodeRegionalStats?.nonresidentialNodePercentage.toFixed(1).toString() || "-"}
+              heading="Percentage of non-hosted nodes"
+              stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
             />
           </>
         }
@@ -119,9 +112,6 @@ function HomePage() {
         </div>
       </SectionTile>
       <GridLayoutWrapper heading="Node statistics">
-        {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
-          <Loading size={24} />
-        )}
         <div className={classes.nodeStats}>
           <ClientTypes />
           <OperatingSystems />

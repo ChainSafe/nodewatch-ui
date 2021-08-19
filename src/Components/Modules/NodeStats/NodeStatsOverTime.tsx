@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       },
     },
     title: {
-      marginBottom: constants.generalUnit * 2,
+      marginBottom: constants.generalUnit * 4,
     },
   })
 })
@@ -56,7 +56,7 @@ const NodeStatusOverTime = () => {
 
   return (
     <div className={classes.root}>
-      <Typography component="p" variant="body1" className={classes.title}>
+      <Typography component="p" variant="h4" className={classes.title}>
         Node count over time
       </Typography>
       <div className={classes.chartContainer}>

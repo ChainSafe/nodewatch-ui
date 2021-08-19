@@ -50,7 +50,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       display: "grid",
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+      gridTemplateColumns: "1fr 1fr",
       [breakpoints.down("md")]: {
         gridTemplateColumns: "1fr 1fr",
       },
@@ -104,12 +104,12 @@ function HomePage() {
               stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
             />
             <CardStat
-              heading="Percentage of residential nodes"
-              stat={nodeRegionalStats?.residentialNodePercentage.toFixed(1).toString() || "-"}
+              heading="Percentage of hosted nodes"
+              stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
             />
             <CardStat
-              heading="Percentage of non-residential nodes"
-              stat={nodeRegionalStats?.nonresidentialNodePercentage.toFixed(1).toString() || "-"}
+              heading="Percentage of non-hosted nodes"
+              stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
             />
           </>
         }

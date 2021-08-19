@@ -46,7 +46,7 @@ const NodeStatusOverTime = () => {
   const chartData = useMemo(
     () =>
       nodeStatsOverTime.map((nodeStat) => ({
-        time: new Date(nodeStat.time).toISOString().split("T")[0],
+        time: new Date(nodeStat.time * 1000).toISOString().split("T")[0],
         totalNodes: nodeStat.totalNodes,
         syncedNodes: nodeStat.syncedNodes,
         unsyncedNodes: nodeStat.unsyncedNodes,

@@ -2,8 +2,12 @@
 Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
-export const getTimeStampFromDaysBefore = (noOfDays: number) => {
+export const getUnixTimeStampFromDaysBefore = (noOfDays: number) => {
   const date = new Date()
   date.setDate(date.getDate() - noOfDays)
-  return date.getTime()
+  return Math.round(date.getTime() / 1000)
+}
+
+export const getUnixTimeStampCurrent = () => {
+  return Math.round(new Date().getTime() / 1000)
 }

@@ -33,7 +33,7 @@ import {
   GetNodeStatsOverTime,
   GetNodeStatsOverTime_getNodeStatsOverTime,
 } from "../GraphQL/types/GetNodeStatsOverTime"
-import { getTimeStampFromDaysBefore } from "../utils/dateUtils"
+import { getUnixTimeStampCurrent, getUnixTimeStampFromDaysBefore } from "../utils/dateUtils"
 import {
   GetRegionalStats,
   GetRegionalStats_getRegionalStats,
@@ -106,8 +106,8 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       .finally(() => setIsLoadingNodeStats(false))
     graphClient
       .request<GetNodeStatsOverTime>(LOAD_NODE_COUNT_OVER_TIME, {
-        start: getTimeStampFromDaysBefore(7),
-        end: new Date().getTime(),
+        start: getUnixTimeStampFromDaysBefore(7),
+        end: getUnixTimeStampCurrent(),
       })
       .then((result) => {
         setNodeStatsOverTime(result.getNodeStatsOverTime)

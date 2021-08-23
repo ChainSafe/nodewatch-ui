@@ -21,4 +21,5 @@ export interface EcConstants extends IConstants {
     chartBoxHeight: number
     chartHeight: number
   }
+  headerHeight: number
 }

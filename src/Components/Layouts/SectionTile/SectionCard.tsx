@@ -10,7 +10,7 @@ import { ECTheme } from "../../Themes/types"
 const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][5]}`,
+      border: "1px solid #424F60",
       padding: constants.generalUnit * 2,
       borderRadius: constants.generalUnit / 2,
       display: "flex",

@@ -11,8 +11,13 @@ export const theme = createTheme<EcConstants>({
       primary: {
         main: "#3552BF",
         hover: "#2E00B0",
-        background: "rgb(53, 82, 191, 0.1)",
+        background: "#242e3c",
       },
+      background: { default: "#131825" },
+      text: {
+        primary: "#f6f6f6" 
+      }
+
     },
     constants: {
       ...({
@@ -32,6 +37,7 @@ export const theme = createTheme<EcConstants>({
           chartBoxHeight: 300,
           chartHeight: 280,
         },
+        headerHeight: 50,
       } as EcConstants),
     },
     overrides: {

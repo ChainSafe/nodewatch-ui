@@ -11,7 +11,7 @@ import { ECTheme } from "../../Themes/types"
 const useStyles = makeStyles(({ constants }: ECTheme) => {
   return createStyles({
     root: {
-      marginBottom: constants.generalUnit * 4
+      marginBottom: constants.generalUnit * 4,
     },
     heading: {
       marginBottom: constants.generalUnit * 3

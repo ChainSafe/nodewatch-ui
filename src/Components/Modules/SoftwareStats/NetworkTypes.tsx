@@ -12,7 +12,7 @@ import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recha
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][4]}`,
+      border: "1px solid #424F60",
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",

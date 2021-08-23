@@ -12,7 +12,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
     title: {
       fontSize: "32px",
       lineHeight: "40px",
-      color: palette.additional["gray"][6],
+      color: palette.additional["gray"][2],
     },
     line: {
       width: 24,
@@ -23,7 +23,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
     subtitle: {
       fontSize: "16px",
       lineHeight: "20px",
-      color: palette.additional["gray"][6],
+      color: palette.additional["gray"][2],
       marginBottom: constants.generalUnit * 2,
     },
   })

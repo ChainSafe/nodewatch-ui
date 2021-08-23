@@ -19,12 +19,12 @@ import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
-      margin: `${constants.generalUnit * 4}px 0 ${constants.generalUnit * 8}px`,
+      margin: `${constants.generalUnit * 11}px 0 ${constants.generalUnit * 8}px`,
       [breakpoints.down("lg")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 4}px`,
+        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 4}px`,
       },
       [breakpoints.down("md")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 2}px`,
+        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 2}px`,
       },
     },
     title: {
@@ -50,14 +50,10 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       gridColumnGap: constants.generalUnit,
       gridRowGap: constants.generalUnit * 3,
       gridTemplateColumns: "repeat(2, minmax(0,1fr))",
-      height: `${constants.chartSizes.chartBoxHeight}px`,
       maxWidth: "100%",
       [breakpoints.down(1099)]: {
         gridTemplateColumns: "repeat(1, minmax(0,1fr))",
       },
-    },
-    container: {
-      marginBottom: constants.generalUnit * 4,
     },
   })
 })
@@ -91,15 +87,15 @@ function HomePage() {
       <GridLayoutWrapper
         heading="Node statistics"
       >
-        {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
-          <Loading size={24} />
-        )}
-        <div className={classes.nodeStats}>
-          <ClientTypes />
-          <OperatingSystems />
-          <NetworkTypes />
-          <VersionVariance />
-        </div>
+      {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
+        <Loading size={24} />
+      )}
+      <div className={classes.nodeStats}>
+        <ClientTypes />
+        <OperatingSystems />
+        <NetworkTypes />
+        <VersionVariance />
+      </div>
       </GridLayoutWrapper>
     </div>
   )

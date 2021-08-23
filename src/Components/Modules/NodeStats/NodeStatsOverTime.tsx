@@ -17,7 +17,7 @@ import {
   Tooltip,
 } from "recharts"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
+const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
       padding: constants.generalUnit * 2,
@@ -33,6 +33,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
     },
     title: {
       marginBottom: constants.generalUnit * 4,
+      color: palette.additional["gray"][2],
     },
   })
 })
@@ -45,7 +46,7 @@ const NodeStatusOverTime = () => {
 
   const chartData = useMemo(
     () =>
-      nodeStatsOverTime.map((nodeStat) => ({
+      nodeStatsOverTime.map((nodeStat: { time: number; totalNodes: any; syncedNodes: any; unsyncedNodes: any }) => ({
         time: new Date(nodeStat.time * 1000).toISOString().split("T")[0],
         totalNodes: nodeStat.totalNodes,
         syncedNodes: nodeStat.syncedNodes,
@@ -57,7 +58,7 @@ const NodeStatusOverTime = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="h4" className={classes.title}>
-        Node count over time
+        Node count for the past 5 days
       </Typography>
       <div className={classes.chartContainer}>
         <ResponsiveContainer width="100%" height="100%">
@@ -65,21 +66,24 @@ const NodeStatusOverTime = () => {
             <XAxis dataKey="time" hide />
             <YAxis />
             <Tooltip />
-            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+            <CartesianGrid stroke="#424F60" strokeDasharray="5 5" />
             <Line
               type="monotone"
               dataKey="totalNodes"
-              stroke={theme.constants.chartColors.color3}
+              stroke={theme.constants.chartColors.color1}
+              strokeWidth="3"
             />
             <Line
               type="monotone"
               dataKey="syncedNodes"
-              stroke={theme.constants.chartColors.color2}
+              stroke={theme.constants.chartColors.color3}
+              strokeWidth="3"
             />
             <Line
               type="monotone"
               dataKey="unsyncedNodes"
-              stroke={theme.constants.chartColors.color1}
+              stroke={theme.constants.chartColors.color4}
+              strokeWidth="3"
             />
           </LineChart>
         </ResponsiveContainer>

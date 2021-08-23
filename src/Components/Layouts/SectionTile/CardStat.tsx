@@ -11,10 +11,10 @@ import { Typography } from "@chainsafe/common-components"
 const useStyles = makeStyles(({ constants }: ECTheme) => {
   return createStyles({
     root: {
-      marginBottom: constants.generalUnit * 6
+      marginBottom: constants.generalUnit * 6,
     },
     heading: {
-      marginBottom: constants.generalUnit * 1.5
+      marginBottom: constants.generalUnit * 1.5,
     },
   })
 })
@@ -25,18 +25,19 @@ export interface ISectionCard {
   className?: string
 }
 
-
 const CardStat = ({ className, heading, stat }: ISectionCard) => {
   const classes = useStyles()
-  
-  return (<div className={clsx(classes.root, className)}>
-    <Typography className={classes.heading} component="h2" variant="h3">
-      { heading }
-    </Typography>
-    <Typography component="p" variant="h2">
-      { stat }
-    </Typography>
-  </div>)
+
+  return (
+    <div className={clsx(classes.root, className)}>
+      <Typography className={classes.heading} component="h4" variant="h4">
+        {heading}
+      </Typography>
+      <Typography component="p" variant="h2">
+        {stat}
+      </Typography>
+    </div>
+  )
 }
 
 export default CardStat

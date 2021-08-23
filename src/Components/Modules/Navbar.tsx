@@ -30,6 +30,7 @@ const useStyles = makeStyles(
       navlink: {
         color: palette.common.white.main,
         textDecoration: "none",
+        fontFamily: "Neue Montreal",
         fontWeight: "bold",
         "&:hover": {
           color: palette.primary.main,

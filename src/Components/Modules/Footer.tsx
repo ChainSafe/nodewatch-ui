@@ -22,6 +22,7 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
     copyright: {
       display: "flex",
       alignItems: "center",
+      fontFamily: "Neue Montreal",
       color: palette.additional["gray"][4],
       [breakpoints.down("xl")]: {
         marginLeft: constants.generalUnit * 2,

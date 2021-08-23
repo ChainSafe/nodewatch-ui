@@ -56,12 +56,6 @@ const NetworkTypes = () => {
       <div className={classes.chartContainer}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart width={150} height={40} data={chartData}>
-            <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#E4665C" stopOpacity={0.1} />
-                <stop offset="95%" stopColor="#F9B189" stopOpacity={0.1} />
-              </linearGradient>
-            </defs>
             <XAxis dataKey="name" />
             <YAxis scale="auto" />
             <Tooltip />

@@ -8,6 +8,7 @@ import { Typography } from "@chainsafe/common-components"
 import clsx from "clsx"
 import { ECTheme } from "../../Themes/types"
 
+
 const useStyles = makeStyles(({ constants, palette, }: ECTheme) => {
   return createStyles({
     root: {

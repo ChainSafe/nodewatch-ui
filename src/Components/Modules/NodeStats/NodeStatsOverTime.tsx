@@ -58,7 +58,7 @@ const NodeStatusOverTime = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="h4" className={classes.title}>
-        Node count for the past 5 days
+        Node count for the past 7 days
       </Typography>
       <div className={classes.chartContainer}>
         <ResponsiveContainer width="100%" height="100%">

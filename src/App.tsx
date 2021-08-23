@@ -4,7 +4,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 */
 import React from "react"
 import HomePage from "./Components/Pages/HomePage"
-import { ThemeSwitcher, createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
+import { ThemeSwitcher, createStyles, makeStyles } from "@chainsafe/common-theme"
 import { theme } from "./Components/Themes/theme"
 import { Eth2CrawlerProvider } from "./Contexts/Eth2CrawlerContext"
 import BodyLayout from "./Components/Layouts/BodyLayout"

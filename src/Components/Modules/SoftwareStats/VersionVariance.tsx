@@ -13,7 +13,7 @@ import { useCallback } from "react"
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: "1px solid #424F60",
+      border: `1px solid ${palette.background.paper}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",

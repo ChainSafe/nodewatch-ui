@@ -39,7 +39,6 @@ const useStyles = makeStyles(
           marginRight: `${constants.generalUnit * 2}px`
         }
       },
-
     })
   },
 )

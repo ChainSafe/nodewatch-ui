@@ -10,7 +10,7 @@ import { Typography } from "@chainsafe/common-components"
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: "1px solid #424F60",
+      border: `1px solid ${palette.background.paper}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
     },

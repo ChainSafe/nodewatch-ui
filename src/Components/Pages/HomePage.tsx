@@ -16,7 +16,7 @@ import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
+const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
       margin: `${constants.generalUnit * 11}px 0 ${constants.generalUnit * 8}px`,
@@ -26,6 +26,7 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
       [breakpoints.down("md")]: {
         margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 2}px`,
       },
+      background: palette.background.default,
     },
     title: {
       marginRight: constants.generalUnit,

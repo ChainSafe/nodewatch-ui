@@ -15,11 +15,13 @@ function App() {
   return (
     <ThemeSwitcher storageKey="eth2.themeKey" themes={{light: theme}}>
       <Eth2CrawlerProvider>
-        <NavBar/>
-        <BodyLayout>
-          <HomePage />
-        </BodyLayout>
-        <Footer/>
+        <div style={{ background: "#131825"}}>
+          <NavBar/>
+          <BodyLayout>
+            <HomePage />
+          </BodyLayout>
+          <Footer/>
+      </div>
       </Eth2CrawlerProvider>
     </ThemeSwitcher>
   )

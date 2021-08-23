@@ -9,11 +9,14 @@ export const theme = createTheme<EcConstants>({
   themeConfig: {
     palette: {
       primary: {
-        main: "#3552BF",
-        hover: "#2E00B0",
-        background: "#242e3c",
+        main: "#E4665C",
+        hover: "#F9B189",
+        background: "#131825",
       },
-      background: { default: "#131825" },
+      background: {
+        default: "#131825",
+        paper: "#424F60"
+      },
       text: {
         primary: "#f6f6f6" 
       }
@@ -27,11 +30,11 @@ export const theme = createTheme<EcConstants>({
           dark: "#000000",
         },
         chartColors: {
-          color1: "#0C1D7C",
-          color2: "#3349C5",
-          color3: "#566BDF",
-          color4: "#B7C1FC",
-          color5: "#CFD6FC",
+          color1: "#CC444B",
+          color2: "#E4665C",
+          color3: "#DF7373",
+          color4: "#F9B189",
+          color5: "#FFDE8A",
         },
         chartSizes: {
           chartBoxHeight: 300,

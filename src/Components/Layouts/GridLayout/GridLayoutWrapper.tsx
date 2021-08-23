@@ -8,13 +8,14 @@ import { Typography } from "@chainsafe/common-components"
 import clsx from "clsx"
 import { ECTheme } from "../../Themes/types"
 
-const useStyles = makeStyles(({ constants }: ECTheme) => {
+const useStyles = makeStyles(({ constants, palette, }: ECTheme) => {
   return createStyles({
     root: {
       marginBottom: constants.generalUnit * 4,
     },
     heading: {
-      marginBottom: constants.generalUnit * 3
+      marginBottom: constants.generalUnit * 3,
+      color: palette.text.primary,
     },
   })
 })

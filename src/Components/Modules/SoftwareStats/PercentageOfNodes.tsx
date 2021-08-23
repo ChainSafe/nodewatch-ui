@@ -18,7 +18,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       marginBottom: constants.generalUnit * 2,
     },
     statTitle: {
-      color: palette.primary.main,
+      color: palette.text.primary,
     },
   })
 })

@@ -10,7 +10,7 @@ import { ECTheme } from "../../Themes/types"
 const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
   return createStyles({
     root: {
-      border: "1px solid #424F60",
+      border: `1px solid ${palette.background.paper}`,
       padding: constants.generalUnit * 2,
       borderRadius: constants.generalUnit / 2,
       display: "flex",
@@ -18,7 +18,8 @@ const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
       justifyContent: "space-between",
       "& > *:last-child": {
         marginBottom: 0
-      }
+      },
+      color: palette.additional["gray"][2],
     }
   })
 })

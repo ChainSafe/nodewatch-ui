@@ -23,7 +23,7 @@ const useStyles = makeStyles(
         },
       },
       navlink: {
-        color: palette.common.black.main,
+        color: palette.common.white.main,
         textDecoration: "none",
         fontWeight: "bold",
         "&:hover": {

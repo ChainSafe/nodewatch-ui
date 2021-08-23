@@ -10,13 +10,14 @@ import SectionBody from "./SectionBody"
 import clsx from "clsx"
 import { ECTheme } from "../../Themes/types"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
+const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
       marginBottom: constants.generalUnit * 4
     },
     heading: {
-      marginBottom: constants.generalUnit * 3
+      marginBottom: constants.generalUnit * 3,
+      color: palette.text.primary,
     },
     content: {
       display: "flex",

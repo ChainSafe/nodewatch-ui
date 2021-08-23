@@ -12,7 +12,7 @@ import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recha
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: "1px solid #424F60",
+      border: `1px solid ${palette.background.paper}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",
@@ -23,6 +23,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
     },
     title: {
       marginBottom: constants.generalUnit * 2,
+      color: palette.text.primary,
     },
   })
 })
@@ -55,6 +56,12 @@ const NetworkTypes = () => {
       <div className={classes.chartContainer}>
         <ResponsiveContainer width="100%" height="100%">
           <BarChart width={150} height={40} data={chartData}>
+            <defs>
+              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#E4665C" stopOpacity={0.1} />
+                <stop offset="95%" stopColor="#F9B189" stopOpacity={0.1} />
+              </linearGradient>
+            </defs>
             <XAxis dataKey="name" />
             <YAxis scale="auto" />
             <Tooltip />

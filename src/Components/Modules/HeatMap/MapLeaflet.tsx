@@ -42,7 +42,7 @@ const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
     [-70.095513, -140.0225067],
     [86.120628, 170.31769],
   ]
-  const maxZoom = 6
+  const maxZoom = 4
   const defaultZoom = width < 480 ? 1 : width < 720 ? 1 : width < 1280 ? 1.4 : 1.4
   const minZoom = width < 480 ? 0.3 : width < 720 ? 1 : width < 1280 ? 1.4 : 1.4
   const circleRadius = width < 480 ? 1 : width < 720 ? 2 : width < 1280 ? 4 : 4

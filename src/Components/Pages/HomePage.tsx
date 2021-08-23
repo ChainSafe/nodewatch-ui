@@ -81,7 +81,7 @@ function HomePage() {
               stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
             />
             <PercentCardStat
-              heading="Percentage of network > 15% unsynced"
+              heading="Percentage of network unsynced"
               stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
               isRed
             />

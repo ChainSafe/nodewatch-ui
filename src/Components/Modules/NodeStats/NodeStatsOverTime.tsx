@@ -48,9 +48,9 @@ const NodeStatusOverTime = () => {
     () =>
       nodeStatsOverTime.map((nodeStat: { time: number; totalNodes: any; syncedNodes: any; unsyncedNodes: any }) => ({
         time: new Date(nodeStat.time * 1000).toISOString().split("T")[0],
-        totalNodes: nodeStat.totalNodes,
-        syncedNodes: nodeStat.syncedNodes,
-        unsyncedNodes: nodeStat.unsyncedNodes,
+        total: nodeStat.totalNodes,
+        synced: nodeStat.syncedNodes,
+        unsynced: nodeStat.unsyncedNodes,
       })),
     [nodeStatsOverTime]
   )
@@ -69,19 +69,19 @@ const NodeStatusOverTime = () => {
             <CartesianGrid stroke="#424F60" strokeDasharray="5 5" />
             <Line
               type="monotone"
-              dataKey="totalNodes"
+              dataKey="total"
               stroke={theme.constants.chartColors.color1}
               strokeWidth="3"
             />
             <Line
               type="monotone"
-              dataKey="syncedNodes"
+              dataKey="synced"
               stroke={theme.constants.chartColors.color2}
               strokeWidth="3"
             />
             <Line
               type="monotone"
-              dataKey="unsyncedNodes"
+              dataKey="unsynced"
               stroke={theme.constants.chartColors.color3}
               strokeWidth="3"
             />

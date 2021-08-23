@@ -5,7 +5,6 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React from "react"
 import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../Themes/types"
-import { Loading } from "@chainsafe/common-components"
 import ClientTypes from "../Modules/DemographicsStats/ClientTypes"
 import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
@@ -14,6 +13,7 @@ import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
 import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
+import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
@@ -30,14 +30,14 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
     },
     title: {
       marginRight: constants.generalUnit,
+      marginBottom: constants.generalUnit * 3,
     },
-    nodeDemographics: {
-    },
+    nodeDemographics: {},
     nodeMapRoot: {
-      height: "45vh",
+      height: "50vh",
       width: "100%",
       [breakpoints.down("lg")]: {
-        height: "45vh",
+        height: "50vh",
       },
       [breakpoints.down("md")]: {
         height: "40vh",
@@ -55,48 +55,68 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
       [breakpoints.down(1099)]: {
         gridTemplateColumns: "repeat(1, minmax(0,1fr))",
       },
+      marginBottom: constants.generalUnit * 4,
+    },
+    container: {
+      marginBottom: constants.generalUnit * 4,
     },
   })
 })
 
 function HomePage() {
   const classes = useStyles()
-  const { isLoadingClients, isLoadingOperatingSystems, isLoadingNetworks, isLoadingHeatmap } =
-    useEth2CrawlerApi()
+  const { nodeStats, nodeRegionalStats } = useEth2CrawlerApi()
 
   return (
     <div className={classes.root}>
       <SectionTile
-        heading="General information" 
-        cardContent={<>
-          <CardStat heading="Node count" stat="10,0000" />
-          <CardStat heading="Percentage of network synced" stat="81%" />
-        </>}>
-        
+        heading="General information"
+        cardContent={
+          <>
+            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
+            <CardStat
+              heading="Percentage of network synced"
+              stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of network > 15% unsynced"
+              stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+            />
+          </>
+        }
+      >
+        <NodeStatusOverTime />
       </SectionTile>
       <SectionTile
-        heading="Regional information" 
-        cardContent={<>
-          <CardStat heading="Network participants from" stat="212 countries" />
-          <CardStat heading="Percentage of residential nodes" stat="60%" />
-        </>}>
-        {isLoadingHeatmap && <Loading size={24} />}
+        heading="Regional information"
+        cardContent={
+          <>
+            <CardStat
+              heading="Network participants from"
+              stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
+            />
+            <CardStat
+              heading="Percentage of hosted nodes"
+              stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
+            />
+            <CardStat
+              heading="Percentage of non-hosted nodes"
+              stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
+            />
+          </>
+        }
+      >
         <div className={classes.nodeDemographics}>
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
-      <GridLayoutWrapper
-        heading="Node statistics"
-      >
-      {(isLoadingClients || isLoadingOperatingSystems || isLoadingNetworks) && (
-        <Loading size={24} />
-      )}
-      <div className={classes.nodeStats}>
-        <ClientTypes />
-        <OperatingSystems />
-        <NetworkTypes />
-        <VersionVariance />
-      </div>
+      <GridLayoutWrapper heading="Node statistics">
+        <div className={classes.nodeStats}>
+          <ClientTypes />
+          <OperatingSystems />
+          <NetworkTypes />
+          <VersionVariance />
+        </div>
       </GridLayoutWrapper>
     </div>
   )

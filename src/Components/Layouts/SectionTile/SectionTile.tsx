@@ -13,7 +13,7 @@ import { ECTheme } from "../../Themes/types"
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
-      marginBottom: constants.generalUnit * 4
+      marginBottom: constants.generalUnit * 6,
     },
     heading: {
       marginBottom: constants.generalUnit * 3,
@@ -23,12 +23,10 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
       display: "flex",
       flexDirection: "row",
       justifyContent: "flex-start",
+      [breakpoints.down("md")]: {
+        flexDirection: "column",
+      },
     },
-    card: {
-      [breakpoints.up("sm")]: {
-        marginRight: constants.generalUnit * 3
-      }
-    }
   })
 })
 
@@ -41,20 +39,18 @@ interface ISectionTile {
 
 const SectionTile = ({ className, heading, cardContent, children }: ISectionTile) => {
   const classes = useStyles()
-  
-  return (<section className={clsx(classes.root, className)}>
-    <Typography className={classes.heading} component="h2" variant="h2">
-      { heading }
-    </Typography>
-    <div className={classes.content}>
-      <SectionCard className={classes.card}>
-        { cardContent }
-      </SectionCard>
-      <SectionBody>
-        { children }
-      </SectionBody>
-    </div>
-  </section>)
+
+  return (
+    <section className={clsx(classes.root, className)}>
+      <Typography className={classes.heading} component="h2" variant="h2">
+        {heading}
+      </Typography>
+      <div className={classes.content}>
+        <SectionCard>{cardContent}</SectionCard>
+        <SectionBody>{children}</SectionBody>
+      </div>
+    </section>
+  )
 }
 
 export default SectionTile

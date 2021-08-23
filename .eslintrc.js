@@ -36,6 +36,6 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     "react/prop-types": 0,
     "no-unused-vars": "warn",
-    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-console": ["warn", { allow: ["warn", "error"] }],
   },
 }

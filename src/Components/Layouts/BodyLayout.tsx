@@ -9,6 +9,7 @@ const useStyles = makeStyles(({ breakpoints, palette }: ECTheme) => {
   return createStyles({
     layout: {
       background: palette.background.default,
+      fontFamily: "Neue Montreal",
       margin: "0 auto",
       display: "flex",
       flexDirection: "column",

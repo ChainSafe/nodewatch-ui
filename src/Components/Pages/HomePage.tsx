@@ -70,7 +70,7 @@ function HomePage() {
   return (
     <div className={classes.root}>
       <SectionTile
-        heading="General information"
+        heading="General Information"
         cardContent={
           <>
             <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
@@ -88,7 +88,7 @@ function HomePage() {
         <NodeStatusOverTime />
       </SectionTile>
       <SectionTile
-        heading="Regional information"
+        heading="Regional Information"
         cardContent={
           <>
             <CardStat
@@ -110,7 +110,7 @@ function HomePage() {
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
-      <GridLayoutWrapper heading="Node statistics">
+      <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
           <ClientTypes />
           <OperatingSystems />

@@ -32,6 +32,14 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
         fontSize: constants.generalUnit *2,
       },
     },
+    link: {
+      color: palette.additional["gray"][4],
+      transition: "all .25s ease-out",
+      marginLeft: "2px",
+      "&:hover": {
+        color: palette.primary.main,
+      }
+    }
   })
 })
 
@@ -43,7 +51,7 @@ const Footer: React.FC = () => {
       <Grid container>
         <Grid item>
           <Typography component="p" variant="body1" className={classes.copyright}>
-            &copy; {currentYear} ChainSafe Systems, All Rights Reserved.
+            &copy; {currentYear}<a className={classes.link} href="https://chainsafe.io/" target="__blank" rel="noreferrer noopener"> ChainSafe Systems </a>, All Rights Reserved.
           </Typography>
         </Grid>
       </Grid>

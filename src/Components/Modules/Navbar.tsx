@@ -15,6 +15,7 @@ const useStyles = makeStyles(
         display: "flex",
         justifyContent: "flex-start",
         height: `${constants.headerHeight}px`,
+        background: palette.background.default,
         position: "fixed",
         top: 0,
         padding: `${constants.generalUnit * 2}px`,

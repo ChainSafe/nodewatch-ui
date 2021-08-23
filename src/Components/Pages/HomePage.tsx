@@ -15,6 +15,7 @@ import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
 import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
+import PercentCardStat from "../Layouts/SectionTile/PercentCardStat"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
@@ -74,11 +75,11 @@ function HomePage() {
         cardContent={
           <>
             <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of network synced"
               stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
             />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of network > 15% unsynced"
               stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
             />
@@ -95,11 +96,11 @@ function HomePage() {
               heading="Network participants from"
               stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
             />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of hosted nodes"
               stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
             />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of non-hosted nodes"
               stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
             />

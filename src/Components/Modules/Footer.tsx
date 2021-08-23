@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
       <Grid container>
         <Grid item>
           <Typography component="p" variant="body1" className={classes.copyright}>
-            &copy; {currentYear}<a className={classes.link} href="https://chainsafe.io/" target="__blank" rel="noreferrer noopener"> ChainSafe Systems </a>, All Rights Reserved.
+            &copy; {currentYear}  Made with ❤️ by <a className={classes.link} href="https://chainsafe.io/" target="__blank" rel="noreferrer noopener"> ChainSafe Systems </a>
           </Typography>
         </Grid>
       </Grid>

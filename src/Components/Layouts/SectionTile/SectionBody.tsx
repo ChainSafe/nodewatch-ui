@@ -10,7 +10,7 @@ import clsx from "clsx"
 const useStyles = makeStyles(({ breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
-      border: "1px solid #424F60",
+      border: `1px solid ${palette.background.paper}`,
       flex: "1 1 0",
       [breakpoints.down("sm")]: {
         display: "none"

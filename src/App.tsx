@@ -15,7 +15,7 @@ const useStyles = makeStyles(
   ({palette}: ITheme) => {
     return createStyles({
       root: {
-        background: palette.background.default,
+        backgroundColor: "#131825",
       },
     })
   },

@@ -19,7 +19,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       width: "inherit",
     },
     chartContainer: {
-      height: "250px",
+      height: "280px",
     },
     title: {
       marginBottom: constants.generalUnit * 2,

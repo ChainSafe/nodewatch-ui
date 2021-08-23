@@ -11,7 +11,6 @@ const useStyles = makeStyles(({ constants, palette, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
       border: `1px solid ${palette.background.paper}`,
-      // background: palette.background.paper,
       padding: constants.generalUnit * 2,
       borderRadius: constants.generalUnit / 2,
       display: "flex",

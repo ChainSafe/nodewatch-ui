@@ -76,13 +76,13 @@ const NodeStatusOverTime = () => {
             <Line
               type="monotone"
               dataKey="syncedNodes"
-              stroke={theme.constants.chartColors.color3}
+              stroke={theme.constants.chartColors.color2}
               strokeWidth="3"
             />
             <Line
               type="monotone"
               dataKey="unsyncedNodes"
-              stroke={theme.constants.chartColors.color4}
+              stroke={theme.constants.chartColors.color3}
               strokeWidth="3"
             />
           </LineChart>

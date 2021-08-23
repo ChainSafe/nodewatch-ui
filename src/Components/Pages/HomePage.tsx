@@ -74,14 +74,16 @@ function HomePage() {
         heading="General Information"
         cardContent={
           <>
-            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
+            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} isBlue />
             <PercentCardStat
               heading="Percentage of network synced"
+              isGreen
               stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
             />
             <PercentCardStat
               heading="Percentage of network > 15% unsynced"
               stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+              isRed
             />
           </>
         }

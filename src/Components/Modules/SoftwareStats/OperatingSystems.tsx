@@ -59,7 +59,7 @@ const OperatingSystems = () => {
             <XAxis dataKey="name" />
             <YAxis scale="auto" />
             <Tooltip />
-            <Bar dataKey="count" fill={theme.palette.primary.main} scale={10} />
+            <Bar dataKey="count" fill={theme.constants.chartPrimaryColors.main} scale={10} />
           </BarChart>
         </ResponsiveContainer>
       </div>

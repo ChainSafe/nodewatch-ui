@@ -12,7 +12,7 @@ import NavBar from "./Components/Modules/Navbar"
 import Footer from "./Components/Modules/Footer"
 
 const useStyles = makeStyles(
-  ({palette}: ITheme) => {
+  () => {
     return createStyles({
       root: {
         backgroundColor: "#131825",

@@ -15,7 +15,7 @@ import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
 import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
-import PercentCardStat from "../Layouts/SectionTile/PercentCardStat"
+import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
@@ -75,15 +75,22 @@ function HomePage() {
         cardContent={
           <>
             <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} isBlue />
-            <PercentCardStat
+            <CardStat
               heading="Percentage of network synced"
               isGreen
-              stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
+              stat={nodeStats ? `${nodeStats.nodeSyncedPercentage.toFixed(1).toString()}%` : "-"}
             />
-            <PercentCardStat
+            <CardStat
               heading="Percentage of network unsynced"
-              stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+              stat={nodeStats ? `${nodeStats.nodeUnsyncedPercentage.toFixed(1).toString()}%` : "-"}
               isRed
+              tooltip={
+                <Typography component="p" variant="body1">
+                  The percentage of unsynced nodes shows <br /> percentage of nodes whose latest
+                  block number <br /> is behind the latest block number on the network{" "}
+                </Typography>
+              }
+              tooltipId="unsyncedPercentage"
             />
           </>
         }
@@ -98,13 +105,21 @@ function HomePage() {
               heading="Network participants from"
               stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
             />
-            <PercentCardStat
+            <CardStat
               heading="Percentage of hosted nodes"
-              stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
+              stat={
+                nodeRegionalStats
+                  ? `${nodeRegionalStats.hostedNodePercentage.toFixed(1).toString()}%`
+                  : "-"
+              }
             />
-            <PercentCardStat
+            <CardStat
               heading="Percentage of non-hosted nodes"
-              stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
+              stat={
+                nodeRegionalStats
+                  ? `${nodeRegionalStats.nonhostedNodePercentage.toFixed(1).toString()}%`
+                  : "-"
+              }
             />
           </>
         }

@@ -11,27 +11,26 @@ import BodyLayout from "./Components/Layouts/BodyLayout"
 import NavBar from "./Components/Modules/Navbar"
 import Footer from "./Components/Modules/Footer"
 
-const useStyles = makeStyles(
-  () => {
-    return createStyles({
-      root: {
-        backgroundColor: "#131825",
-      },
-    })
-  },
-)
+const useStyles = makeStyles(() => {
+  return createStyles({
+    root: {
+      backgroundColor: "#131825",
+    },
+  })
+})
+
 function App() {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
-    <ThemeSwitcher storageKey="eth2.themeKey" themes={{light: theme}}>
+    <ThemeSwitcher storageKey="eth2.themeKey" themes={{ light: theme }}>
       <Eth2CrawlerProvider>
         <div className={classes.root}>
-          <NavBar/>
+          <NavBar />
           <BodyLayout>
             <HomePage />
           </BodyLayout>
-          <Footer/>
-      </div>
+          <Footer />
+        </div>
       </Eth2CrawlerProvider>
     </ThemeSwitcher>
   )

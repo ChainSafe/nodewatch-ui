@@ -17,6 +17,11 @@ export interface EcConstants extends IConstants {
     color4: string
     color5: string
   }
+  statColors: {
+    red: string
+    blue: string
+    green: string
+  }
   chartSizes: {
     chartBoxHeight: number
     chartHeight: number

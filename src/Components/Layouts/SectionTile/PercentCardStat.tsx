@@ -17,26 +17,26 @@ const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
       marginBottom: constants.generalUnit * 1.5,
       color: palette.additional["gray"][2],
       "&.red": {
-        color: palette.secondary.main,
+        color: constants.statColors.red,
       },
       "&.blue": {
-        color: palette.primary.main,
+        color: constants.statColors.blue,
       },
       "&.green": {
-        color: "#10B981"
-      }
+        color: constants.statColors.green,
+      },
     },
     statColor: {
       "&.red": {
-        color: palette.secondary.main,
+        color: constants.statColors.red,
       },
       "&.blue": {
-        color: palette.primary.main,
+        color: constants.statColors.blue,
       },
       "&.green": {
-        color: "#10B981"
-      }
-    }
+        color: constants.statColors.green,
+      },
+    },
   })
 })
 
@@ -54,11 +54,19 @@ const PercentCardStat = ({ className, heading, stat, isGreen, isBlue, isRed }: I
 
   return (
     <div className={clsx(classes.root, className)}>
-      <Typography className={clsx(classes.heading, isRed && "red", isGreen && "green", isBlue && "blue")} component="h4" variant="h4">
+      <Typography
+        className={clsx(classes.heading, isRed && "red", isGreen && "green", isBlue && "blue")}
+        component="h4"
+        variant="h4"
+      >
         {heading}
       </Typography>
-      <Typography component="p" variant="h2" className={clsx(classes.heading, isRed && "red", isGreen && "green", isBlue && "blue")} >
-        {stat}% 
+      <Typography
+        component="p"
+        variant="h2"
+        className={clsx(classes.heading, isRed && "red", isGreen && "green", isBlue && "blue")}
+      >
+        {stat}%
       </Typography>
     </div>
   )

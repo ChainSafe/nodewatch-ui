@@ -7,10 +7,11 @@ import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
 import clsx from "clsx"
 
-const useStyles = makeStyles(({ palette }: ECTheme) => {
+const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][5]}`,
+      border: `1px solid ${palette.background.paper}`,
+      borderRadius: constants.generalUnit / 2,
       flex: "1 1 0",
     },
   })

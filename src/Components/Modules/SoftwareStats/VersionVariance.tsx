@@ -13,16 +13,17 @@ import { useCallback } from "react"
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][4]}`,
+      border: `1px solid ${palette.background.paper}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",
     },
     chartContainer: {
-      height: "250px",
+      height: "280px",
     },
     title: {
-      marginBottom: constants.generalUnit * 4,
+      marginBottom: constants.generalUnit * 2,
+      color: palette.text.primary,
     },
     charts: {
       display: "grid",

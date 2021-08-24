@@ -15,17 +15,19 @@ import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
 import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
+import PercentCardStat from "../Layouts/SectionTile/PercentCardStat"
 
-const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
+const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
     root: {
-      margin: `${constants.generalUnit * 4}px 0 ${constants.generalUnit * 8}px`,
+      margin: `${constants.generalUnit * 11}px 0 ${constants.generalUnit * 8}px`,
       [breakpoints.down("lg")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 4}px`,
+        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 4}px`,
       },
       [breakpoints.down("md")]: {
-        margin: `${constants.generalUnit * 4}px ${constants.generalUnit * 2}px`,
+        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 2}px`,
       },
+      background: palette.background.default,
     },
     title: {
       marginRight: constants.generalUnit,
@@ -42,19 +44,17 @@ const useStyles = makeStyles(({ constants, breakpoints }: ECTheme) => {
         height: "40vh",
       },
       [breakpoints.down("sm")]: {
-        height: "30vh",
+        height: "25vh",
       },
     },
     nodeStats: {
       display: "grid",
       gridColumnGap: constants.generalUnit,
-      gridRowGap: constants.generalUnit,
-      gridTemplateColumns: "1fr 1fr",
-      [breakpoints.down("md")]: {
-        gridTemplateColumns: "1fr 1fr",
-      },
-      [breakpoints.down("sm")]: {
-        gridTemplateColumns: "1fr",
+      gridRowGap: constants.generalUnit * 3,
+      gridTemplateColumns: "repeat(2, minmax(0,1fr))",
+      maxWidth: "100%",
+      [breakpoints.down(1099)]: {
+        gridTemplateColumns: "repeat(1, minmax(0,1fr))",
       },
       marginBottom: constants.generalUnit * 4,
     },
@@ -71,17 +71,19 @@ function HomePage() {
   return (
     <div className={classes.root}>
       <SectionTile
-        heading="General information"
+        heading="General Information"
         cardContent={
           <>
-            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} />
-            <CardStat
+            <CardStat heading="Node count" stat={nodeStats?.totalNodes.toString() || "-"} isBlue />
+            <PercentCardStat
               heading="Percentage of network synced"
+              isGreen
               stat={nodeStats?.nodeSyncedPercentage.toFixed(1).toString() || "-"}
             />
-            <CardStat
-              heading="Percentage of network > 15% unsynced"
+            <PercentCardStat
+              heading="Percentage of network unsynced"
               stat={nodeStats?.nodeUnsyncedPercentage.toFixed(1).toString() || "-"}
+              isRed
             />
           </>
         }
@@ -89,18 +91,18 @@ function HomePage() {
         <NodeStatusOverTime />
       </SectionTile>
       <SectionTile
-        heading="Regional information"
+        heading="Regional Information"
         cardContent={
           <>
             <CardStat
               heading="Network participants from"
               stat={`${nodeRegionalStats?.totalParticipatingCountries.toString() || "-"} countries`}
             />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of hosted nodes"
               stat={nodeRegionalStats?.hostedNodePercentage.toFixed(1).toString() || "-"}
             />
-            <CardStat
+            <PercentCardStat
               heading="Percentage of non-hosted nodes"
               stat={nodeRegionalStats?.nonhostedNodePercentage.toFixed(1).toString() || "-"}
             />
@@ -111,7 +113,7 @@ function HomePage() {
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
-      <GridLayoutWrapper heading="Node statistics">
+      <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
           <ClientTypes />
           <OperatingSystems />

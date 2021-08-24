@@ -49,7 +49,7 @@ export interface ISectionCard {
   isBlue?: boolean
 }
 
-const CardStat = ({ className, heading, stat, isGreen, isBlue, isRed }: ISectionCard) => {
+const PercentCardStat = ({ className, heading, stat, isGreen, isBlue, isRed }: ISectionCard) => {
   const classes = useStyles()
 
   return (
@@ -66,10 +66,10 @@ const CardStat = ({ className, heading, stat, isGreen, isBlue, isRed }: ISection
         variant="h2"
         className={clsx(classes.heading, isRed && "red", isGreen && "green", isBlue && "blue")}
       >
-        {stat}
+        {stat}%
       </Typography>
     </div>
   )
 }
 
-export default CardStat
+export default PercentCardStat

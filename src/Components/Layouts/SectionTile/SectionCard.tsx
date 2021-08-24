@@ -10,12 +10,13 @@ import { ECTheme } from "../../Themes/types"
 const useStyles = makeStyles(({ constants, palette, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][5]}`,
+      border: `1px solid ${palette.background.paper}`,
       padding: constants.generalUnit * 2,
       borderRadius: constants.generalUnit / 2,
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
+      color: palette.additional["gray"][2],
       "& > *:last-child": {
         marginBottom: 0,
       },

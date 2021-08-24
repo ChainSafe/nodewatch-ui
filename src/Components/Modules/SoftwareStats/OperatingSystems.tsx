@@ -12,7 +12,7 @@ import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recha
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
     root: {
-      border: `1px solid ${palette.additional["gray"][4]}`,
+      border: `1px solid ${palette.background.paper}`,
       borderRadius: "3px",
       padding: constants.generalUnit * 2,
       width: "inherit",
@@ -22,7 +22,8 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: `${constants.chartSizes.chartHeight}px`,
     },
     title: {
-      marginBottom: constants.generalUnit * 4,
+      marginBottom: constants.generalUnit * 2,
+      color: palette.text.primary,
     },
   })
 })
@@ -58,7 +59,7 @@ const OperatingSystems = () => {
             <XAxis dataKey="name" />
             <YAxis scale="auto" />
             <Tooltip />
-            <Bar dataKey="count" fill={theme.palette.primary.main} scale={10} />
+            <Bar dataKey="count" fill={theme.constants.chartPrimaryColors.main} scale={10} />
           </BarChart>
         </ResponsiveContainer>
       </div>

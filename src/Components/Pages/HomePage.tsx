@@ -41,10 +41,10 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
         height: "50vh",
       },
       [breakpoints.down("md")]: {
-        height: "40vh",
+        height: "45vh",
       },
       [breakpoints.down("sm")]: {
-        height: "25vh",
+        height: "40vh",
       },
     },
     nodeStats: {

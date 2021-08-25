@@ -86,8 +86,7 @@ const NodeStatusOverTime = () => {
           <ToolTipIcon data-tip data-for="nodeStatsOverTime" className={classes.tooltipIcon} />
           <ReactTooltip place="bottom" id="nodeStatsOverTime">
             <Typography component="p" variant="body1">
-              Node count over time chart - <br />
-              shows node count over the past 7 days. <br />
+              Shows node count over the past 7 days. <br />
               The chart also shows number of nodes <br /> synced and unsynced over the time period.
             </Typography>
           </ReactTooltip>

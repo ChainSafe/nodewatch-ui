@@ -79,6 +79,13 @@ function HomePage() {
               heading="Percentage of network synced"
               isGreen
               stat={nodeStats ? `${nodeStats.nodeSyncedPercentage.toFixed(1).toString()}%` : "-"}
+              tooltip={
+                <Typography component="p" variant="body1">
+                  If a node is synced with the latest block <br /> on the network, we consider it
+                  synced.
+                </Typography>
+              }
+              tooltipId="syncedPercentage"
             />
             <CardStat
               heading="Percentage of network unsynced"
@@ -86,8 +93,8 @@ function HomePage() {
               isRed
               tooltip={
                 <Typography component="p" variant="body1">
-                  The percentage of unsynced nodes shows <br /> percentage of nodes whose latest
-                  block number <br /> is behind the latest block number on the network{" "}
+                  If a node is behind the latest block <br /> on the network by 15% or more, <br />
+                  we consider it unsynced.
                 </Typography>
               }
               tooltipId="unsyncedPercentage"
@@ -112,6 +119,13 @@ function HomePage() {
                   ? `${nodeRegionalStats.hostedNodePercentage.toFixed(1).toString()}%`
                   : "-"
               }
+              tooltip={
+                <Typography component="p" variant="body1">
+                  If a node is running on a cloud service,
+                  <br /> we consider it hosted.
+                </Typography>
+              }
+              tooltipId="hostedPercentage"
             />
             <CardStat
               heading="Percentage of non-hosted nodes"
@@ -120,6 +134,13 @@ function HomePage() {
                   ? `${nodeRegionalStats.nonhostedNodePercentage.toFixed(1).toString()}%`
                   : "-"
               }
+              tooltip={
+                <Typography component="p" variant="body1">
+                  If a node is running on a network other than a cloud service, <br /> such as
+                  residential or business, we consider it non-hosted.
+                </Typography>
+              }
+              tooltipId="nonHostedPercentage"
             />
           </>
         }

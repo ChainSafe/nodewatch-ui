@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const MIN_OPERATING_SYSTEM_COUNT = 50
+const MIN_OPERATING_SYSTEM_COUNT = 5
 
 const OperatingSystems = () => {
   const classes = useStyles()

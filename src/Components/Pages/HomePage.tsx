@@ -81,8 +81,8 @@ function HomePage() {
               stat={nodeStats ? `${nodeStats.nodeSyncedPercentage.toFixed(1).toString()}%` : "-"}
               tooltip={
                 <Typography component="p" variant="body1">
-                  If a node is synced with the latest block <br /> on the network, we consider it
-                  synced.
+                  If the head of a node is within 256 epochs <br />
+                  of the head node on the network, we consider it synced.
                 </Typography>
               }
               tooltipId="syncedPercentage"
@@ -93,8 +93,8 @@ function HomePage() {
               isRed
               tooltip={
                 <Typography component="p" variant="body1">
-                  If a node is behind the latest block <br /> on the network by 15% or more, <br />
-                  we consider it unsynced.
+                  If the head of a node is behind the head node <br />
+                  by 256 epochs or more, we consider it unsynced.
                 </Typography>
               }
               tooltipId="unsyncedPercentage"

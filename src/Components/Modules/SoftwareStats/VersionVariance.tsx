@@ -9,6 +9,8 @@ import { Typography } from "@chainsafe/common-components"
 import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
 import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
 import { useCallback } from "react"
+import ToolTipIcon from "../../Elements/Icons/ToolTipIcon"
+import ReactTooltip from "react-tooltip"
 
 const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   return createStyles({
@@ -22,7 +24,6 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: "280px",
     },
     title: {
-      marginBottom: constants.generalUnit * 2,
       color: palette.text.primary,
     },
     charts: {
@@ -33,10 +34,19 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       width: "25%",
       height: "100%",
     },
+    tooltipIcon: {
+      width: 16,
+      height: 16,
+      marginLeft: constants.generalUnit,
+    },
+    headingContainer: {
+      display: "flex",
+      alignItems: "center",
+      color: palette.additional["gray"][2],
+      marginBottom: constants.generalUnit * 2,
+    },
   })
 })
-
-const MIN_NODE_COUNT = 50
 
 const VersionVariance = () => {
   const classes = useStyles()
@@ -49,7 +59,6 @@ const VersionVariance = () => {
     () =>
       clientVersions
         .sort((a, b) => (a.count < b.count ? -1 : 1))
-        .filter((clientVersion) => clientVersion.count >= MIN_NODE_COUNT)
         .filter(
           (clientVersion) => clientVersion.client !== "others" && clientVersion.client !== "unknown"
         )
@@ -104,10 +113,17 @@ const VersionVariance = () => {
 
   return (
     <div className={classes.root}>
-      <div>
+      <div className={classes.headingContainer}>
         <Typography component="p" variant="h4" className={classes.title}>
           Version variance across clients
         </Typography>
+        <ToolTipIcon data-tip data-for="nodeStatsOverTime" className={classes.tooltipIcon} />
+          <ReactTooltip place="bottom" id="nodeStatsOverTime">
+            <Typography component="p" variant="body1">
+              Shows variations in version of node clients <br />
+              Shows top 5 versions of known clients
+            </Typography>
+          </ReactTooltip>
       </div>
       <div className={classes.chartContainer}>
         <ResponsiveContainer>

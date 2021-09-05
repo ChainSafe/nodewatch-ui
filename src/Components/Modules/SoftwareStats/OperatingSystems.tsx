@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const MIN_OPERATING_SYSTEM_COUNT = 5
+// const MIN_OPERATING_SYSTEM_COUNT = 5
 
 const OperatingSystems = () => {
   const classes = useStyles()
@@ -40,7 +40,7 @@ const OperatingSystems = () => {
     () =>
       operatingSystems
         .sort((first, second) => (first.count > second.count ? 1 : -1))
-        .filter((operatingSystem) => operatingSystem.count > MIN_OPERATING_SYSTEM_COUNT)
+        // .filter((operatingSystem) => operatingSystem.count > MIN_OPERATING_SYSTEM_COUNT)
         .map((operatingSystem) => ({
           name: operatingSystem.name || "unknown",
           count: operatingSystem.count,

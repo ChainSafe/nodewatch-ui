@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const MIN_CLIENT_COUNT = 20
+// const MIN_CLIENT_COUNT = 20
 
 const ClientTypes = () => {
   const classes = useStyles()
@@ -40,7 +40,7 @@ const ClientTypes = () => {
     () =>
       clients
         .sort((first, second) => (first.count > second.count ? 1 : -1))
-        .filter((client) => client.count > MIN_CLIENT_COUNT)
+        // .filter((client) => client.count > MIN_CLIENT_COUNT)
         .map((client) => ({
           name: client.name || "unknown",
           count: client.count,

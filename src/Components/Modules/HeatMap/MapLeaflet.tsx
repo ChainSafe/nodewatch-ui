@@ -7,7 +7,7 @@ import React, { useEffect } from "react"
 import L, { LatLngTuple } from "leaflet"
 // import { createStyles, makeStyles } from "@chainsafe/common-theme"
 import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
-import useWindowDimensions from "../../../utilHooks/useWindowDimensions"
+// import useWindowDimensions from "../../../utilHooks/useWindowDimensions"
 import "leaflet/dist/leaflet.css"
 import "leaflet.heat"
 import { useState } from "react"
@@ -40,19 +40,20 @@ const latLngCenter: LatLngTuple = [30, 0]
 //   [-70.095513, -140.0225067],
 //   [86.120628, 170.31769],
 // ]
+const maxZoom = 5
+const defaultZoom = 1.4
+const minZoom = 1.4
 
 const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
   // const classes = useStyles()
   const { heatmap } = useEth2CrawlerApi()
-  const { width } = useWindowDimensions()
+  // const { width } = useWindowDimensions()
 
-  const maxZoom = 5
-  const defaultZoom = width < 480 ? 1 : width < 720 ? 1 : width < 1280 ? 1.4 : 1.4
-  const minZoom = width < 480 ? 0.3 : width < 720 ? 1 : width < 1280 ? 1.4 : 1.4
   // const circleRadius = width < 480 ? 1 : width < 720 ? 2 : width < 1280 ? 4 : 4
   // const circleOpacity = 0.3
 
   const [map, setMap] = useState<any>(undefined)
+  const [radius, setRadius] = useState(3)
 
   useEffect(() => {
     if (!map) {
@@ -67,9 +68,18 @@ const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
       L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png").addTo(
         newMap
       )
+      newMap.on("zoomend", function(results: any) {
+        if (results.target._zoom > 4) {
+          setRadius(5)
+        } else if (results.target._zoom > 3) {
+          setRadius(4)
+        } else {
+          setRadius(3)
+        }
+      });
       setMap(newMap)
     }
-  }, [minZoom, maxZoom, map, defaultZoom])
+  }, [map])
 
   useEffect(() => {
     if (map) {
@@ -79,16 +89,27 @@ const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
           })
         : []
 
-      ;(L as any)
+        // removing previous layer
+        let heatlayer: any = undefined;
+        map.eachLayer((layer: any) => {
+          if(layer?.options?.radius) {
+            heatlayer = layer
+          }
+        })
+        if (heatlayer) {
+          map.removeLayer(heatlayer)
+        }
+
+        ;(L as any)
         .heatLayer(points, {
           minOpacity: 1,
-          radius: 3,
+          radius: radius,
           max: 1,
           blur: 5,
         })
         .addTo(map)
     }
-  }, [heatmap, map])
+  }, [heatmap, map, radius])
 
   return <div id="map" className={rootClassName}></div>
 

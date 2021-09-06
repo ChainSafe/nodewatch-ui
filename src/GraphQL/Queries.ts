@@ -5,8 +5,8 @@ SPDX-License-Identifier: LGPL-3.0-only
 import { gql } from "apollo-boost"
 
 export const LOAD_NODE_COUNTS = gql`
-  query GetNodeStats($percentage: Int!) {
-    getNodeStats(unsyncedPercentage: $percentage) {
+  query GetNodeStats {
+    getNodeStats {
       totalNodes
       nodeSyncedPercentage
       nodeUnsyncedPercentage

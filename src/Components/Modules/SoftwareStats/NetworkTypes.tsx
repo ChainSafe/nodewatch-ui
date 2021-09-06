@@ -28,7 +28,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
   })
 })
 
-const MIN_OPERATING_SYSTEM_COUNT = 50
+// const MIN_NETWORK_TYPE_COUNT = 50
 
 const NetworkTypes = () => {
   const classes = useStyles()
@@ -40,7 +40,7 @@ const NetworkTypes = () => {
     () =>
       networks
         .sort((first, second) => (first.count > second.count ? 1 : -1))
-        .filter((network) => network.count > MIN_OPERATING_SYSTEM_COUNT)
+        // .filter((network) => network.count > MIN_NETWORK_TYPE_COUNT)
         .map((network) => ({
           name: network.name || "unknown",
           count: network.count,

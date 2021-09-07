@@ -81,7 +81,7 @@ function HomePage() {
               stat={nodeStats ? `${nodeStats.nodeSyncedPercentage.toFixed(1).toString()}%` : "-"}
               tooltip={
                 <Typography component="p" variant="body1">
-                  If the head of a node is within 256 epochs <br />
+                  If the head of a node is within 256 epochs or 1 day <br />
                   of the head node on the network, we consider it synced.
                 </Typography>
               }
@@ -94,7 +94,7 @@ function HomePage() {
               tooltip={
                 <Typography component="p" variant="body1">
                   If the head of a node is behind the head node <br />
-                  by 256 epochs or more, we consider it unsynced.
+                  by 256 epochs or 1 day, we consider it unsynced.
                 </Typography>
               }
               tooltipId="unsyncedPercentage"

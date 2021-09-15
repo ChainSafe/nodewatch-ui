@@ -4,15 +4,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetOperatingSystems
+// GraphQL query operation: GetNodesByCountries
 // ====================================================
 
-export interface GetOperatingSystems_aggregateByOperatingSystem {
+export interface GetNodesByCountries_aggregateByCountry {
   __typename: "AggregateData";
   name: string;
   count: number;
 }
 
-export interface GetOperatingSystems {
-  aggregateByOperatingSystem: GetOperatingSystems_aggregateByOperatingSystem[];
+export interface GetNodesByCountries {
+  aggregateByCountry: GetNodesByCountries_aggregateByCountry[];
 }

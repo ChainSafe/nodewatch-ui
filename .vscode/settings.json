@@ -1,9 +1,10 @@
 {
   "cSpell.words": [
-    "HEATMAP",
     "chartjs",
+    "clsx",
     "craco",
     "getc",
+    "HEATMAP",
     "multigeth",
     "nethermind",
     "nonhosted",

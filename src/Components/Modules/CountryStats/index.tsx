@@ -12,13 +12,19 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ECTheme) => {
       marginBottom: constants.generalUnit * 6,
     },
     container: {
-      display: "flex",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
+      gridColumnGap: constants.generalUnit * 4,
+      [breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr",
+        gridRowGap: constants.generalUnit * 4,
+      },
     },
     countryBox1: {
-      marginRight: constants.generalUnit * 2,
+      flex: 1,
     },
     countryBox2: {
-      marginRight: constants.generalUnit * 2,
+      flex: 1,
       [breakpoints.down("sm")]: {
         display: "none",
       },
@@ -41,17 +47,15 @@ const CountryStats: React.FC = () => {
   }, 0)
 
   const sortedNodeCountByCountries = nodeCountByCountries
-    .sort((a, b) => (a.count > b.count ? 1 : 0))
+    .sort((a, b) => (a.count < b.count ? 1 : -1))
     .map((nodeByCountry, i) => ({
       ...nodeByCountry,
       rank: i + 1,
       percentage: ((nodeByCountry.count / totalNodeCount) * 100).toFixed(2),
     }))
 
-  console.log(sortedNodeCountByCountries)
-
-  const first10Countries = sortedNodeCountByCountries.slice(0, 9)
-  const second10Countries = sortedNodeCountByCountries.slice(10, 19)
+  const first10Countries = sortedNodeCountByCountries.slice(0, 10)
+  const second10Countries = sortedNodeCountByCountries.slice(10, 20)
 
   return (
     <div className={classes.root}>
@@ -59,9 +63,9 @@ const CountryStats: React.FC = () => {
         Node count of countries
       </Typography>
       <div className={classes.container}>
-        <CountryBox countries={first10Countries} />
-        <CountryBox countries={second10Countries} />
-        <StatsChartBox />
+        <CountryBox countries={first10Countries} className={classes.countryBox1} />
+        <CountryBox countries={second10Countries} className={classes.countryBox2} />
+        <StatsChartBox countries={first10Countries} />
       </div>
     </div>
   )

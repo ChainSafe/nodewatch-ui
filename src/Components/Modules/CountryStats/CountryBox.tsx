@@ -14,13 +14,13 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: "inherit",
     },
     countryTitle: {
-      marginRight: constants.generalUnit * 2,
+      marginRight: constants.generalUnit * 8,
     },
     countRow: {
       display: "flex",
       justifyContent: "space-between",
       color: palette.text.primary,
-      margin: `${constants.generalUnit * 0.5}px 0`,
+      margin: `${constants.generalUnit * 2}px 0`,
     },
   })
 })
@@ -45,7 +45,7 @@ const CountryBox: React.FC<ICountryBoxProps> = ({ countries, className }) => {
             {country.rank}. {country.name}
           </Typography>
           <Typography>
-            {country.count}({country.percentage})
+            {country.count} ({country.percentage}%)
           </Typography>
         </div>
       ))}

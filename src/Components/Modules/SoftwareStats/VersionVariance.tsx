@@ -118,12 +118,12 @@ const VersionVariance = () => {
           Version variance across clients
         </Typography>
         <ToolTipIcon data-tip data-for="nodeStatsOverTime" className={classes.tooltipIcon} />
-          <ReactTooltip place="bottom" id="nodeStatsOverTime">
-            <Typography component="p" variant="body1">
-              Shows variations in version of node clients <br />
-              Shows top 5 versions of known clients
-            </Typography>
-          </ReactTooltip>
+        <ReactTooltip place="bottom" id="nodeStatsOverTime">
+          <Typography component="p" variant="body1">
+            Shows variations in version of node clients <br />
+            Shows top 5 versions of known clients
+          </Typography>
+        </ReactTooltip>
       </div>
       <div className={classes.chartContainer}>
         <ResponsiveContainer>

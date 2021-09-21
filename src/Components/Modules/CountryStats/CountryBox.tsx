@@ -18,7 +18,7 @@ const useStyles = makeStyles(({ palette, constants }: ECTheme) => {
       height: "inherit",
     },
     countryTitle: {
-      marginRight: constants.generalUnit * 8,
+      marginRight: constants.generalUnit * 6,
     },
     countRow: {
       display: "flex",

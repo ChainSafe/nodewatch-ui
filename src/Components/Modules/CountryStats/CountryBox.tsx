@@ -45,10 +45,10 @@ const CountryBox: React.FC<ICountryBoxProps> = ({ countries, className }) => {
     <div className={clsx(classes.root, className)}>
       {countries.map((country, i) => (
         <div key={i} className={classes.countRow}>
-          <Typography className={classes.countryTitle}>
+          <Typography className={classes.countryTitle} variant="body1" component="p">
             {country.rank}. {country.name}
           </Typography>
-          <Typography>
+          <Typography variant="body1" component="p">
             {country.count} ({country.percentage}%)
           </Typography>
         </div>

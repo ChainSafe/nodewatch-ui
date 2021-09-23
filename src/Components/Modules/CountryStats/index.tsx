@@ -15,14 +15,31 @@ import useWindowDimensions from "../../../utilHooks/useWindowDimensions"
 const useStyles = makeStyles(({ palette, constants, breakpoints }: ECTheme) => {
   return createStyles({
     root: {
-      marginBottom: constants.generalUnit * 6,
+      marginBottom: constants.generalUnit * 8,
     },
     container: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr",
+      gridTemplateColumns: "2fr 1fr",
       gridColumnGap: constants.generalUnit * 4,
       minHeight: 430,
       [breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr",
+        gridRowGap: constants.generalUnit * 2,
+      },
+      [breakpoints.down("sm")]: {
+        gridTemplateColumns: "1fr",
+      },
+    },
+    countriesContainer: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gridColumnGap: constants.generalUnit * 4,
+      minHeight: 430,
+      [breakpoints.down("md")]: {
+        gridTemplateColumns: "1fr 1fr",
+        gridRowGap: constants.generalUnit * 4,
+      },
+      [breakpoints.down("sm")]: {
         gridTemplateColumns: "1fr",
       },
     },
@@ -39,6 +56,10 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ECTheme) => {
     pagination: {
       marginTop: constants.generalUnit * 2,
       [breakpoints.down("md")]: {
+        marginTop: 0,
+        marginBottom: constants.generalUnit * 4,
+      },
+      [breakpoints.down("sm")]: {
         marginBottom: constants.generalUnit * 4,
       },
     },
@@ -56,6 +77,9 @@ const CountryStats: React.FC = () => {
   const { width } = useWindowDimensions()
   const theme: ECTheme = useTheme()
   const isDesktop = width > theme.breakpoints.values["md"]
+  const isTab = width > theme.breakpoints.values["sm"] && width < theme.breakpoints.values["md"]
+
+  const showTwoCountryBoxes = isDesktop || isTab
 
   useEffect(() => {
     if (nodeCountByCountries.length) {
@@ -102,8 +126,8 @@ const CountryStats: React.FC = () => {
   )
 
   const first10Countries = sortedNodeCountByCountries.slice(
-    (pageNo - 1) * (isDesktop ? PAGE_SIZE : HALF_PAGE_SIZE),
-    isDesktop ? pageNo * PAGE_SIZE - HALF_PAGE_SIZE : pageNo * HALF_PAGE_SIZE
+    (pageNo - 1) * (showTwoCountryBoxes ? PAGE_SIZE : HALF_PAGE_SIZE),
+    showTwoCountryBoxes ? pageNo * PAGE_SIZE - HALF_PAGE_SIZE : pageNo * HALF_PAGE_SIZE
   )
   const second10Countries = sortedNodeCountByCountries.slice(
     pageNo * PAGE_SIZE - HALF_PAGE_SIZE,
@@ -113,12 +137,16 @@ const CountryStats: React.FC = () => {
   return (
     <div className={classes.root}>
       <Typography component="h2" variant="h2" className={classes.title}>
-        Node count of countries
+        Node count by countries
       </Typography>
       <div className={classes.container}>
-        <CountryBox countries={first10Countries} className={classes.countryBox1} />
-        {isDesktop && <CountryBox countries={second10Countries} className={classes.countryBox2} />}
-        {!isDesktop && (
+        <div className={classes.countriesContainer}>
+          <CountryBox countries={first10Countries} className={classes.countryBox1} />
+          {showTwoCountryBoxes && (
+            <CountryBox countries={second10Countries} className={classes.countryBox2} />
+          )}
+        </div>
+        {(!showTwoCountryBoxes || isTab) && (
           <div className={classes.pagination}>
             <Pagination
               pageNo={pageNo}
@@ -130,7 +158,7 @@ const CountryStats: React.FC = () => {
         )}
         <StatsChartBox countries={first10Countries} />
       </div>
-      {pageNo > 0 && isDesktop && (
+      {pageNo > 0 && showTwoCountryBoxes && !isTab && (
         <div className={classes.pagination}>
           <Pagination
             pageNo={pageNo}

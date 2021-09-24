@@ -83,7 +83,7 @@ function HomePage() {
               tooltip={
                 <Typography component="p" variant="body1">
                   If the head of a node is within 256 epochs or 1 day <br />
-                  of the head node on the network, we consider it synced.
+                  of the head of the chain, we consider it synced.
                 </Typography>
               }
               tooltipId="syncedPercentage"
@@ -94,7 +94,7 @@ function HomePage() {
               isRed
               tooltip={
                 <Typography component="p" variant="body1">
-                  If the head of a node is behind the head node <br />
+                  If the head of a node is behind the head of the chain <br />
                   by 256 epochs or 1 day, we consider it unsynced.
                 </Typography>
               }

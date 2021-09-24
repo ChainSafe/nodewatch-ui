@@ -117,8 +117,8 @@ const VersionVariance = () => {
         <Typography component="p" variant="h4" className={classes.title}>
           Version variance across clients
         </Typography>
-        <ToolTipIcon data-tip data-for="nodeStatsOverTime" className={classes.tooltipIcon} />
-        <ReactTooltip place="bottom" id="nodeStatsOverTime">
+        <ToolTipIcon data-tip data-for="nodeVersionVariance" className={classes.tooltipIcon} />
+        <ReactTooltip place="bottom" id="nodeVersionVariance">
           <Typography component="p" variant="body1">
             Shows variations in version of node clients <br />
             Shows top 5 versions of known clients

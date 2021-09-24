@@ -16,6 +16,7 @@ import CardStat from "../Layouts/SectionTile/CardStat"
 import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 import { Typography } from "@chainsafe/common-components"
+import CountryStats from "../Modules/CountryStats"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
@@ -149,6 +150,7 @@ function HomePage() {
           <HeatMap rootClassName={classes.nodeMapRoot} />
         </div>
       </SectionTile>
+      <CountryStats />
       <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
           <ClientTypes />

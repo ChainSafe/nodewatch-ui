@@ -86,3 +86,12 @@ export const LOAD_CLIENT_VERSIONS = gql`
     }
   }
 `
+
+export const LOAD_NODES_BY_COUNTRIES = gql`
+  query GetNodesByCountries {
+    aggregateByCountry {
+      name
+      count
+    }
+  }
+`

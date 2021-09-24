@@ -27,6 +27,7 @@ import {
   LOAD_NODE_COUNTS,
   LOAD_NODE_COUNT_OVER_TIME,
   LOAD_REGIONAL_STATS,
+  LOAD_NODES_BY_COUNTRIES,
 } from "../GraphQL/Queries"
 import { GetNodeStats, GetNodeStats_getNodeStats } from "../GraphQL/types/GetNodeStats"
 import {
@@ -38,6 +39,10 @@ import {
   GetRegionalStats,
   GetRegionalStats_getRegionalStats,
 } from "../GraphQL/types/getRegionalStats"
+import {
+  GetNodesByCountries,
+  GetNodesByCountries_aggregateByCountry,
+} from "../GraphQL/types/GetNodesByCountries"
 
 type Eth2CrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
@@ -52,6 +57,7 @@ interface IEth2CrawlerContext {
   nodeStats: GetNodeStats_getNodeStats | undefined
   nodeStatsOverTime: GetNodeStatsOverTime_getNodeStatsOverTime[]
   nodeRegionalStats: GetRegionalStats_getRegionalStats | undefined
+  nodeCountByCountries: GetNodesByCountries_aggregateByCountry[]
   isLoadingClients: boolean
   isLoadingOperatingSystems: boolean
   isLoadingNetworks: boolean
@@ -60,6 +66,7 @@ interface IEth2CrawlerContext {
   isLoadingNodeStats: boolean
   isLoadingNodeStatsOverTime: boolean
   isLoadingNodeRegionalStats: boolean
+  isLoadingNodeCountByCountries: boolean
 }
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
@@ -84,6 +91,9 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
     GetClientVersions_aggregateByClientVersion[]
   >([])
   const [heatmap, setHeatmap] = useState<GetHeatmap_getHeatmapData[]>([])
+  const [nodeCountByCountries, setNodeCountByCountries] = useState<
+    GetNodesByCountries_aggregateByCountry[]
+  >([])
 
   const [isLoadingClients, setIsLoadingClients] = useState(true)
   const [isLoadingOperatingSystems, setIsLoadingOperatingSystems] = useState(true)
@@ -93,6 +103,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [isLoadingNodeStats, setIsLoadingNodeStats] = useState(true)
   const [isLoadingNodeStatsOverTime, setIsLoadingNodeStatsOverTime] = useState(true)
   const [isLoadingNodeRegionalStats, setIsLoadingNodeRegionalStats] = useState(true)
+  const [isLoadingNodeCountByCountries, setIsLoadingNodeCountByCountries] = useState(true)
 
   const getInitialData = async () => {
     graphClient
@@ -156,6 +167,13 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       })
       .catch(console.error)
       .finally(() => setIsLoadingClientVersions(false))
+    graphClient
+      .request<GetNodesByCountries>(LOAD_NODES_BY_COUNTRIES)
+      .then((result) => {
+        setNodeCountByCountries(result.aggregateByCountry)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingNodeCountByCountries(false))
   }
 
   useEffect(() => {
@@ -172,6 +190,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         operatingSystems,
         networks,
         heatmap,
+        nodeCountByCountries,
         clientVersions,
         isLoadingNodeStats,
         isLoadingClients,
@@ -181,6 +200,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         isLoadingClientVersions,
         isLoadingNodeStatsOverTime,
         isLoadingNodeRegionalStats,
+        isLoadingNodeCountByCountries,
       }}
     >
       {children}

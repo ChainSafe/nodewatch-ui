@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 
 import React from "react"
 import { createStyles, ITheme, makeStyles } from "@chainsafe/common-theme"
-import { Grid, Typography } from "@chainsafe/common-components"
+import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
   return createStyles({

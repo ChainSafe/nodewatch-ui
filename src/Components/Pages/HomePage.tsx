@@ -26,7 +26,7 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
         margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 4}px`,
       },
       [breakpoints.down("md")]: {
-        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 2}px`,
+        margin: `${constants.generalUnit * 11}px ${constants.generalUnit * 1}px`,
       },
       background: palette.background.default,
     },

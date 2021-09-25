@@ -10,11 +10,12 @@ import { Grid, Typography } from "@chainsafe/common-components"
 const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
   return createStyles({
     root: {
-      padding: `${constants.generalUnit * 3}px 0`,
-      position: "relative",
-      bottom: 0,
-      height: "1.5rem",
+      padding: `${constants.generalUnit * 2}px ${constants.generalUnit}px`,
       background: palette.background.paper,
+      display: "flex",
+      [breakpoints.down("sm")]: {
+        flexDirection: "column",
+      },
     },
     bold: {
       fontWeight: 600,
@@ -24,12 +25,13 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
       alignItems: "center",
       fontFamily: "Neue Montreal",
       color: palette.additional["gray"][4],
+      marginRight: constants.generalUnit,
       [breakpoints.up("md")]: {
         marginLeft: constants.generalUnit * 2,
       },
       [breakpoints.up("xl")]: {
         textAlign: "left",
-        fontSize: constants.generalUnit *2,
+        fontSize: constants.generalUnit * 2,
       },
     },
     link: {
@@ -38,8 +40,8 @@ const useStyles = makeStyles(({ palette, constants, breakpoints }: ITheme) => {
       marginLeft: "2px",
       "&:hover": {
         color: palette.primary.main,
-      }
-    }
+      },
+    },
   })
 })
 
@@ -48,13 +50,22 @@ const Footer: React.FC = () => {
   const classes = useStyles()
   return (
     <footer className={classes.root}>
-      <Grid container>
-        <Grid item>
-          <Typography component="p" variant="body1" className={classes.copyright}>
-            Made with ❤️ by <a className={classes.link} href="https://chainsafe.io/" target="__blank" rel="noreferrer noopener"> ChainSafe Systems </a>, &copy; {currentYear} ChainSafe Systems Inc.
-          </Typography>
-        </Grid>
-      </Grid>
+      <Typography component="p" variant="body1" className={classes.copyright}>
+        Made with ❤️ by{" "}
+        <a
+          className={classes.link}
+          href="https://chainsafe.io/"
+          target="__blank"
+          rel="noreferrer noopener"
+        >
+          {" "}
+          ChainSafe Systems
+        </a>
+        ,
+      </Typography>
+      <Typography component="p" variant="body1" className={classes.copyright}>
+        &copy; {currentYear} ChainSafe Systems Inc.
+      </Typography>
     </footer>
   )
 }

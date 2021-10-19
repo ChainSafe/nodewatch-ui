@@ -28,6 +28,7 @@ import {
   LOAD_NODE_COUNT_OVER_TIME,
   LOAD_REGIONAL_STATS,
   LOAD_NODES_BY_COUNTRIES,
+  LOAD_ALTAIR_UPGRADE_PERCENTAGE,
 } from "../GraphQL/Queries"
 import { GetNodeStats, GetNodeStats_getNodeStats } from "../GraphQL/types/GetNodeStats"
 import {
@@ -43,6 +44,7 @@ import {
   GetNodesByCountries,
   GetNodesByCountries_aggregateByCountry,
 } from "../GraphQL/types/GetNodesByCountries"
+import { GetAltAirUpgradePercentage } from "../GraphQL/types/GetAltAirUpgradePercentage"
 
 type Eth2CrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
@@ -58,6 +60,7 @@ interface IEth2CrawlerContext {
   nodeStatsOverTime: GetNodeStatsOverTime_getNodeStatsOverTime[]
   nodeRegionalStats: GetRegionalStats_getRegionalStats | undefined
   nodeCountByCountries: GetNodesByCountries_aggregateByCountry[]
+  altAirPercentage: number | undefined
   isLoadingClients: boolean
   isLoadingOperatingSystems: boolean
   isLoadingNetworks: boolean
@@ -67,6 +70,7 @@ interface IEth2CrawlerContext {
   isLoadingNodeStatsOverTime: boolean
   isLoadingNodeRegionalStats: boolean
   isLoadingNodeCountByCountries: boolean
+  isLoadingAltAirPercentage: boolean
 }
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
@@ -94,6 +98,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [nodeCountByCountries, setNodeCountByCountries] = useState<
     GetNodesByCountries_aggregateByCountry[]
   >([])
+  const [altAirPercentage, setAltAirPercentage] = useState<number | undefined>(undefined)
 
   const [isLoadingClients, setIsLoadingClients] = useState(true)
   const [isLoadingOperatingSystems, setIsLoadingOperatingSystems] = useState(true)
@@ -104,6 +109,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [isLoadingNodeStatsOverTime, setIsLoadingNodeStatsOverTime] = useState(true)
   const [isLoadingNodeRegionalStats, setIsLoadingNodeRegionalStats] = useState(true)
   const [isLoadingNodeCountByCountries, setIsLoadingNodeCountByCountries] = useState(true)
+  const [isLoadingAltAirPercentage, setIsLoadingAltAirPercentage] = useState(true)
 
   const getInitialData = async () => {
     graphClient
@@ -174,6 +180,13 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       })
       .catch(console.error)
       .finally(() => setIsLoadingNodeCountByCountries(false))
+    graphClient
+      .request<GetAltAirUpgradePercentage>(LOAD_ALTAIR_UPGRADE_PERCENTAGE)
+      .then((result) => {
+        setAltAirPercentage(result.getAltairUpgradePercentage)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingAltAirPercentage(false))
   }
 
   useEffect(() => {
@@ -192,6 +205,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         heatmap,
         nodeCountByCountries,
         clientVersions,
+        altAirPercentage,
         isLoadingNodeStats,
         isLoadingClients,
         isLoadingOperatingSystems,
@@ -201,6 +215,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         isLoadingNodeStatsOverTime,
         isLoadingNodeRegionalStats,
         isLoadingNodeCountByCountries,
+        isLoadingAltAirPercentage,
       }}
     >
       {children}

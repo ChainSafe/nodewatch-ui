@@ -154,11 +154,11 @@ function HomePage() {
       <CountryStats />
       <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
+          <AltAirPercentage />
           <ClientTypes />
           <OperatingSystems />
           <NetworkTypes />
           <VersionVariance />
-          <AltAirPercentage />
         </div>
       </GridLayoutWrapper>
     </div>

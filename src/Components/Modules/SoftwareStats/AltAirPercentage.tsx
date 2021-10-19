@@ -100,8 +100,8 @@ const AltAirPercentage: React.FC = () => {
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={110}
-              outerRadius={130}
+              innerRadius={100}
+              outerRadius={120}
               fill={theme.constants.chartPrimaryColors.main}
               dataKey="value"
               onMouseEnter={onPieEnter}

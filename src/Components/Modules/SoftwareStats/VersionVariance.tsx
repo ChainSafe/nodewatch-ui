@@ -59,17 +59,26 @@ const VersionVariance = () => {
     () =>
       clientVersions
         .sort((a, b) => (a.count < b.count ? -1 : 1))
-        .filter(
-          (clientVersion) => clientVersion.client !== "others" && clientVersion.client !== "unknown"
-        )
         .map((clientVersion) => {
           const versions = clientVersion.versions.sort((a, b) => (a.count > b.count ? -1 : 1))
           if (versions.length > 5) {
-            versions.length = 5
-          }
-          return {
-            ...clientVersion,
-            versions,
+            const first4Versions = []
+            for (let i = 0; i < 4; i++) {
+              first4Versions.push(versions[i])
+            }
+            let othersCount = 0
+            for (let i = 4; i < versions.length; i++) {
+              othersCount += versions[i].count
+            }
+            return {
+              ...clientVersion,
+              versions: [...first4Versions, { name: "others", count: othersCount }],
+            }
+          } else {
+            return {
+              ...clientVersion,
+              versions,
+            }
           }
         }),
     [clientVersions]

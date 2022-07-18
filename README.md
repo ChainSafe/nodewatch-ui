@@ -1,6 +1,6 @@
 # NodeWatch Frontend (UI)
 
-A web-based user interface will be developed to display the data collected by a [devp2p crawler][https://github.com/ChainSafe/eth2-crawler] targeted at Eth2 nodes. It will contain the following:
+A web-based user interface will be developed to display the data collected by a [devp2p crawler](https://github.com/ChainSafe/eth2-crawler) targeted at Eth2 nodes. It will contain the following:
 
 - Client breakdown by agent type
 - Toggle connectable vs all seen in last month

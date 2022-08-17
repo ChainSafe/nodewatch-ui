@@ -104,7 +104,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   >([])
   const [altAirPercentage, setAltAirPercentage] = useState<number | undefined>(undefined)
 
-  const [nextHardforkSchedule, setNextHardforkSchedule] = useState<
+  const [nextHardForkSchedule, setNextHardForkSchedule] = useState<
     GetNextHardForkSchedule_aggregateByHardforkSchedule[]
   >([])
 
@@ -118,7 +118,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [isLoadingNodeRegionalStats, setIsLoadingNodeRegionalStats] = useState(true)
   const [isLoadingNodeCountByCountries, setIsLoadingNodeCountByCountries] = useState(true)
   const [isLoadingAltAirPercentage, setIsLoadingAltAirPercentage] = useState(true)
-  const [isLoadingNextHardforkSchedule, setIsLoadingNextHardforkSchedule] = useState(true)
+  const [isLoadingNextHardForkSchedule, setIsLoadingNextHardForkSchedule] = useState(true)
 
   const getInitialData = async () => {
     graphClient
@@ -199,10 +199,10 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
     graphClient
       .request<GetNextHardForkSchedule>(LOAD_NEXT_HARDFORK_SCHEDULE)
       .then((result) => {
-        setNextHardforkSchedule(result.aggregateByHardforkSchedule)
+        setNextHardForkSchedule(result.aggregateByHardforkSchedule)
       })
       .catch(console.error)
-      .finally(() => setIsLoadingNextHardforkSchedule(false))
+      .finally(() => setIsLoadingNextHardForkSchedule(false))
   }
 
   useEffect(() => {
@@ -222,7 +222,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         nodeCountByCountries,
         clientVersions,
         altAirPercentage,
-        nextHardforkSchedule,
+        nextHardForkSchedule,
         isLoadingNodeStats,
         isLoadingClients,
         isLoadingOperatingSystems,
@@ -233,7 +233,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         isLoadingNodeRegionalStats,
         isLoadingNodeCountByCountries,
         isLoadingAltAirPercentage,
-        isLoadingNextHardforkSchedule,
+        isLoadingNextHardForkSchedule,
       }}
     >
       {children}

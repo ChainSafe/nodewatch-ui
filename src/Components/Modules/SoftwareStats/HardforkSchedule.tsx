@@ -2,12 +2,12 @@
 Copyright 2021 ChainSafe Systems
 SPDX-License-Identifier: LGPL-3.0-only
 */
-import React, { useMemo, useState } from "react"
+import React  from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
-import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts"
 import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
 import { Typography } from "@chainsafe/common-components"
+
 
 const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
   return createStyles({
@@ -28,61 +28,21 @@ const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
   })
 })
 
-const renderActiveShape = (props: any, fill: string) => {
-  const { cx, cy, innerRadius, outerRadius, startAngle, endAngle, payload } = props
 
-  return (
-    <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={"white"}>
-        {payload.name}
-      </text>
-      <Sector
-        cx={cx}
-        cy={cy}
-        innerRadius={innerRadius}
-        outerRadius={outerRadius}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        fill={fill}
-      />
-      <Sector
-        cx={cx}
-        cy={cy}
-        startAngle={startAngle}
-        endAngle={endAngle}
-        innerRadius={outerRadius + 6}
-        outerRadius={outerRadius + 10}
-        fill={fill}
-      />
-    </g>
-  )
+const ScheduleData: React.FC<{ data: any }> = ({ data }) => {
+	if (!data) {
+		return (<div>no nodes with scheduled HF</div>)
+	}
+	return(<div>
+		boo
+	</div>)
 }
+
 
 const HardforkSchedule: React.FC = () => {
   const classes = useStyles()
-  const theme: ECTheme = useTheme()
-  const [activeIndex, setActiveIndex] = useState(0)
 
-  const onPieEnter = (_: any, index: number) => {
-    setActiveIndex(index)
-  }
-
-  const { altAirPercentage: hardforkSchedule } = useEth2CrawlerApi()
-
-  const data = useMemo(() => {
-    return hardforkSchedule !== undefined
-      ? [
-          {
-            name: `Nodes ready (${hardforkSchedule.toFixed(1)})%`,
-            value: hardforkSchedule,
-          },
-          {
-            name: `Nodes not ready (${(100 - hardforkSchedule).toFixed(1)})%`,
-            value: 100 - hardforkSchedule,
-          },
-        ]
-      : []
-  }, [hardforkSchedule])
+  const { nextHardForkSchedule, isLoadingNextHardForkSchedule } = useEth2CrawlerApi()
 
   return (
     <div className={classes.root}>
@@ -90,24 +50,9 @@ const HardforkSchedule: React.FC = () => {
 	Hardfork Schedule
       </Typography>
       <div className={classes.chartContainer}>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart width={600} height={600}>
-            <Pie
-              activeIndex={activeIndex}
-              activeShape={(props) =>
-                renderActiveShape(props, theme.constants.chartPrimaryColors.main)
-              }
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={100}
-              outerRadius={120}
-              fill={theme.constants.chartPrimaryColors.main}
-              dataKey="value"
-              onMouseEnter={onPieEnter}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+		{isLoadingNextHardForkSchedule && <div>Loading...</div>}
+		{!isLoadingNextHardForkSchedule && nextHardForkSchedule && <ScheduleData data={nextHardForkSchedule} />}
+		<p>{nextHardForkSchedule}</p>
       </div>
     </div>
   )

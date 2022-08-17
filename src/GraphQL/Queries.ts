@@ -101,3 +101,13 @@ export const LOAD_ALTAIR_UPGRADE_PERCENTAGE = gql`
     getAltairUpgradePercentage
   }
 `
+
+export const LOAD_NEXT_HARDFORK_SCHEDULE = gql`
+  query GetNextHardForkSchedule {
+    aggregateByHardforkSchedule {
+      version
+      epoch
+      count
+    }
+  }
+`

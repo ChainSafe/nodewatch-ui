@@ -46,11 +46,11 @@ import {
 } from "../GraphQL/types/GetNodesByCountries"
 import { GetAltAirUpgradePercentage } from "../GraphQL/types/GetAltAirUpgradePercentage"
 
-type Eth2CrawlerContextProps = {
+type EthereumConsensusCrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
 }
 
-interface IEth2CrawlerContext {
+interface IEthereumConsensusCrawlerContext {
   clients: GetClientCounts_aggregateByAgentName[]
   operatingSystems: GetOperatingSystems_aggregateByOperatingSystem[]
   networks: GetNetworks_aggregateByNetwork[]
@@ -73,12 +73,12 @@ interface IEth2CrawlerContext {
   isLoadingAltAirPercentage: boolean
 }
 
-const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
+const EthereumConsensusCrawlerContext = React.createContext<IEthereumConsensusCrawlerContext | undefined>(undefined)
 
 const subgraphUrl = process.env.REACT_APP_GRAPHQL_URL || ""
 const graphClient = new GraphQLClient(subgraphUrl)
 
-const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
+const EthereumConsensusCrawlerProvider = ({ children }: EthereumConsensusCrawlerContextProps) => {
   const [nodeStats, setNodeStats] = useState<GetNodeStats_getNodeStats | undefined>(undefined)
   const [nodeRegionalStats, setNodeRegionalStats] = useState<
     GetRegionalStats_getRegionalStats | undefined
@@ -194,7 +194,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   }, [])
 
   return (
-    <Eth2CrawlerContext.Provider
+    <EthereumConsensusCrawlerContext.Provider
       value={{
         nodeStats,
         nodeStatsOverTime,
@@ -219,16 +219,16 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       }}
     >
       {children}
-    </Eth2CrawlerContext.Provider>
+    </EthereumConsensusCrawlerContext.Provider>
   )
 }
 
-const useEth2CrawlerApi = () => {
-  const context = React.useContext(Eth2CrawlerContext)
+const useEthereumConsensusCrawlerApi = () => {
+  const context = React.useContext(EthereumConsensusCrawlerContext)
   if (context === undefined) {
-    throw new Error("useEth2CrawlerApi must be used within a Eth2CrawlerProvider")
+    throw new Error("useEthereumConsensusCrawlerApi must be used within a EthereumConsensusCrawlerProvider")
   }
   return context
 }
 
-export { Eth2CrawlerProvider, useEth2CrawlerApi }
+export { useEthereumConsensusCrawlerApi, EthereumConsensusCrawlerProvider }

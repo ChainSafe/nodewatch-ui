@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
-import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { useEthereumConsensusCrawlerApi } from "../../../Contexts/EthereumConsensusCrawlerContext"
 import CountryBox from "./CountryBox"
 import StatsChartBox from "./StatsChartBox"
 import { Typography } from "@chainsafe/common-components"
@@ -71,7 +71,7 @@ const HALF_PAGE_SIZE = PAGE_SIZE / 2
 
 const CountryStats: React.FC = () => {
   const classes = useStyles()
-  const { nodeCountByCountries } = useEth2CrawlerApi()
+  const { nodeCountByCountries } = useEthereumConsensusCrawlerApi()
   const [pageNo, setPageNo] = useState(0)
 
   const { width } = useWindowDimensions()

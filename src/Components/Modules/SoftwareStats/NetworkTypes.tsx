@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
-import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { useEthereumConsensusCrawlerApi } from "../../../Contexts/EthereumConsensusCrawlerContext"
 import { ECTheme } from "../../Themes/types"
 import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
 
@@ -34,7 +34,7 @@ const NetworkTypes = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  const { networks } = useEth2CrawlerApi()
+  const { networks } = useEthereumConsensusCrawlerApi()
 
   const chartData = useMemo(
     () =>

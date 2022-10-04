@@ -6,7 +6,7 @@ import React from "react"
 import HomePage from "./Components/Pages/HomePage"
 import { ThemeSwitcher, createStyles, makeStyles } from "@chainsafe/common-theme"
 import { theme } from "./Components/Themes/theme"
-import { EthereumConsensusCrawlerProvider } from "./Contexts/EthereumConsensusCrawlerContext"
+import { NodewatchCrawlerProvider } from "./Contexts/NodewatchCrawlerContext"
 import BodyLayout from "./Components/Layouts/BodyLayout"
 import NavBar from "./Components/Modules/Navbar"
 import Footer from "./Components/Modules/Footer"
@@ -22,8 +22,8 @@ const useStyles = makeStyles(() => {
 function App() {
   const classes = useStyles()
   return (
-    <ThemeSwitcher storageKey="ethereumConsensus.themeKey" themes={{ light: theme }}>
-      <EthereumConsensusCrawlerProvider>
+    <ThemeSwitcher storageKey="Nodewatch.themeKey" themes={{ light: theme }}>
+      <NodewatchCrawlerProvider>
         <div className={classes.root}>
           <NavBar />
           <BodyLayout>
@@ -31,7 +31,7 @@ function App() {
           </BodyLayout>
           <Footer />
         </div>
-      </EthereumConsensusCrawlerProvider>
+      </NodewatchCrawlerProvider>
     </ThemeSwitcher>
   )
 }

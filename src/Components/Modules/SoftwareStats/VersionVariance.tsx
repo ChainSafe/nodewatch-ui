@@ -6,7 +6,7 @@ import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
 import { Typography } from "@chainsafe/common-components"
-import { useEthereumConsensusCrawlerApi } from "../../../Contexts/EthereumConsensusCrawlerContext"
+import { useNodewatchCrawlerApi } from "../../../Contexts/NodewatchCrawlerContext"
 import { BarChart, Bar, Tooltip, XAxis, YAxis, ResponsiveContainer } from "recharts"
 import { useCallback } from "react"
 import ToolTipIcon from "../../Elements/Icons/ToolTipIcon"
@@ -53,7 +53,7 @@ const VersionVariance = () => {
   const theme: ECTheme = useTheme()
   const backgroundColors = Object.values(theme.constants.chartColors)
 
-  const { clientVersions } = useEthereumConsensusCrawlerApi()
+  const { clientVersions } = useNodewatchCrawlerApi()
 
   const sortedClientVersions = useMemo(
     () =>

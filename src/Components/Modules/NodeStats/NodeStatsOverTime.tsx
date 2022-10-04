@@ -5,7 +5,7 @@ SPDX-License-Identifier: LGPL-3.0-only
 import React, { useMemo } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { Typography } from "@chainsafe/common-components"
-import { useEthereumConsensusCrawlerApi } from "../../../Contexts/EthereumConsensusCrawlerContext"
+import { useNodewatchCrawlerApi } from "../../../Contexts/NodewatchCrawlerContext"
 import { ECTheme } from "../../Themes/types"
 import {
   XAxis,
@@ -61,7 +61,7 @@ const NodeStatusOverTime = () => {
   const classes = useStyles()
   const theme: ECTheme = useTheme()
 
-  const { nodeStatsOverTime } = useEthereumConsensusCrawlerApi()
+  const { nodeStatsOverTime } = useNodewatchCrawlerApi()
 
   const chartData = useMemo(
     () =>

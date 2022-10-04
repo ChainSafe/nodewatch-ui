@@ -46,11 +46,11 @@ import {
 } from "../GraphQL/types/GetNodesByCountries"
 import { GetAltAirUpgradePercentage } from "../GraphQL/types/GetAltAirUpgradePercentage"
 
-type EthereumConsensusCrawlerContextProps = {
+type NodewatchCrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
 }
 
-interface IEthereumConsensusCrawlerContext {
+interface INodewatchCrawlerContext {
   clients: GetClientCounts_aggregateByAgentName[]
   operatingSystems: GetOperatingSystems_aggregateByOperatingSystem[]
   networks: GetNetworks_aggregateByNetwork[]
@@ -73,12 +73,12 @@ interface IEthereumConsensusCrawlerContext {
   isLoadingAltAirPercentage: boolean
 }
 
-const EthereumConsensusCrawlerContext = React.createContext<IEthereumConsensusCrawlerContext | undefined>(undefined)
+const NodewatchCrawlerContext = React.createContext<INodewatchCrawlerContext | undefined>(undefined)
 
 const subgraphUrl = process.env.REACT_APP_GRAPHQL_URL || ""
 const graphClient = new GraphQLClient(subgraphUrl)
 
-const EthereumConsensusCrawlerProvider = ({ children }: EthereumConsensusCrawlerContextProps) => {
+const NodewatchCrawlerProvider = ({ children }: NodewatchCrawlerContextProps) => {
   const [nodeStats, setNodeStats] = useState<GetNodeStats_getNodeStats | undefined>(undefined)
   const [nodeRegionalStats, setNodeRegionalStats] = useState<
     GetRegionalStats_getRegionalStats | undefined
@@ -194,7 +194,7 @@ const EthereumConsensusCrawlerProvider = ({ children }: EthereumConsensusCrawler
   }, [])
 
   return (
-    <EthereumConsensusCrawlerContext.Provider
+    <NodewatchCrawlerContext.Provider
       value={{
         nodeStats,
         nodeStatsOverTime,
@@ -219,16 +219,16 @@ const EthereumConsensusCrawlerProvider = ({ children }: EthereumConsensusCrawler
       }}
     >
       {children}
-    </EthereumConsensusCrawlerContext.Provider>
+    </NodewatchCrawlerContext.Provider>
   )
 }
 
-const useEthereumConsensusCrawlerApi = () => {
-  const context = React.useContext(EthereumConsensusCrawlerContext)
+const useNodewatchCrawlerApi = () => {
+  const context = React.useContext(NodewatchCrawlerContext)
   if (context === undefined) {
-    throw new Error("useEthereumConsensusCrawlerApi must be used within a EthereumConsensusCrawlerProvider")
+    throw new Error("useNodewatchCrawlerApi must be used within a NodewatchCrawlerProvider")
   }
   return context
 }
 
-export { useEthereumConsensusCrawlerApi, EthereumConsensusCrawlerProvider }
+export { useNodewatchCrawlerApi, NodewatchCrawlerProvider }

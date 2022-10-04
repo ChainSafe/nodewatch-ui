@@ -1,4 +1,4 @@
-# NodeWatch Frontend (UI)
+# Nodewatch Frontend (UI)
 
 A web-based user interface will be developed to display the data collected by a [devp2p crawler](https://github.com/ChainSafe/eth2-crawler) targeted at Ethereum Consensus nodes. It will contain the following:
 

@@ -6,7 +6,7 @@ import React, { useMemo, useState } from "react"
 import { createStyles, makeStyles, useTheme } from "@chainsafe/common-theme"
 import { ECTheme } from "../../Themes/types"
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts"
-import { useEthereumConsensusCrawlerApi } from "../../../Contexts/EthereumConsensusCrawlerContext"
+import { useNodewatchCrawlerApi } from "../../../Contexts/NodewatchCrawlerContext"
 import { Typography } from "@chainsafe/common-components"
 
 const useStyles = makeStyles(({ constants, palette }: ECTheme) => {
@@ -67,7 +67,7 @@ const AltAirPercentage: React.FC = () => {
     setActiveIndex(index)
   }
 
-  const { altAirPercentage } = useEthereumConsensusCrawlerApi()
+  const { altAirPercentage } = useNodewatchCrawlerApi()
 
   const data = useMemo(() => {
     return altAirPercentage !== undefined

@@ -15,6 +15,9 @@ jobs:
               node-version: '14.4.0'
           - run: yarn install --frozen-lockfile
           - run: yarn run build
+          - uses: actions/setup-node@v3
+            with:
+              node-version: '16'
           - name: Publish to Cloudflare Pages
             uses: cloudflare/pages-action@1
             with:

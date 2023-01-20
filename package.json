@@ -9,7 +9,7 @@
     "@apollo/client": "^3.7.4",
     "@chainsafe/common-components": "^1.0.29",
     "@chainsafe/common-theme": "^1.0.10",
-    "@craco/craco": "^7.0.0",
+    "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",

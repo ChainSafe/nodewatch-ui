@@ -30,7 +30,7 @@ const NodeCount12 = () => {
     labels: ["1", "2", "3", "4", "5", "6", "7"],
     datasets: [
       {
-        label: "Node count: eth1",
+        label: "Node count: Ethereum Execution",
         data: [65, 59, 80, 81, 56, 55, 40],
         fill: true,
         borderColor: theme.palette.primary.main,
@@ -38,7 +38,7 @@ const NodeCount12 = () => {
         tension: 0.1,
       },
       {
-        label: "Node count: eth2",
+        label: "Node count: Ethereum Consensus",
         data: [99, 56, 55, 40, 65, 59, 100],
         fill: true,
         borderColor: theme.palette.primary.main,
@@ -69,7 +69,7 @@ const NodeCount12 = () => {
   return (
     <div className={classes.root}>
       <Typography component="p" variant="body1" className={classes.title}>
-        node count eth1 and eth2
+        node count ethereum execution and ethereum consensus
       </Typography>
       <div>
         <Line data={data} options={options} />

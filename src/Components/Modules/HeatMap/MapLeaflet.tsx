@@ -6,7 +6,7 @@ import React, { useEffect } from "react"
 // import { CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet"
 import L, { LatLngTuple } from "leaflet"
 // import { createStyles, makeStyles } from "@chainsafe/common-theme"
-import { useEth2CrawlerApi } from "../../../Contexts/Eth2CrawlerContext"
+import { useNodewatchCrawlerApi } from "../../../Contexts/NodewatchCrawlerContext"
 // import useWindowDimensions from "../../../utilHooks/useWindowDimensions"
 import "leaflet/dist/leaflet.css"
 import "leaflet.heat"
@@ -46,7 +46,7 @@ const minZoom = 1.4
 
 const NodeMap = ({ rootClassName }: { rootClassName: string }) => {
   // const classes = useStyles()
-  const { heatmap } = useEth2CrawlerApi()
+  const { heatmap } = useNodewatchCrawlerApi()
   // const { width } = useWindowDimensions()
 
   // const circleRadius = width < 480 ? 1 : width < 720 ? 2 : width < 1280 ? 4 : 4

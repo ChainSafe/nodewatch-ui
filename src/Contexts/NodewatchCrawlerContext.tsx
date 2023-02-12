@@ -46,11 +46,11 @@ import {
 } from "../GraphQL/types/GetNodesByCountries"
 import { GetAltAirUpgradePercentage } from "../GraphQL/types/GetAltAirUpgradePercentage"
 
-type Eth2CrawlerContextProps = {
+type NodewatchCrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
 }
 
-interface IEth2CrawlerContext {
+interface INodewatchCrawlerContext {
   clients: GetClientCounts_aggregateByAgentName[]
   operatingSystems: GetOperatingSystems_aggregateByOperatingSystem[]
   networks: GetNetworks_aggregateByNetwork[]
@@ -73,12 +73,12 @@ interface IEth2CrawlerContext {
   isLoadingAltAirPercentage: boolean
 }
 
-const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
+const NodewatchCrawlerContext = React.createContext<INodewatchCrawlerContext | undefined>(undefined)
 
 const subgraphUrl = process.env.REACT_APP_GRAPHQL_URL || ""
 const graphClient = new GraphQLClient(subgraphUrl)
 
-const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
+const NodewatchCrawlerProvider = ({ children }: NodewatchCrawlerContextProps) => {
   const [nodeStats, setNodeStats] = useState<GetNodeStats_getNodeStats | undefined>(undefined)
   const [nodeRegionalStats, setNodeRegionalStats] = useState<
     GetRegionalStats_getRegionalStats | undefined
@@ -194,7 +194,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   }, [])
 
   return (
-    <Eth2CrawlerContext.Provider
+    <NodewatchCrawlerContext.Provider
       value={{
         nodeStats,
         nodeStatsOverTime,
@@ -219,16 +219,16 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       }}
     >
       {children}
-    </Eth2CrawlerContext.Provider>
+    </NodewatchCrawlerContext.Provider>
   )
 }
 
-const useEth2CrawlerApi = () => {
-  const context = React.useContext(Eth2CrawlerContext)
+const useNodewatchCrawlerApi = () => {
+  const context = React.useContext(NodewatchCrawlerContext)
   if (context === undefined) {
-    throw new Error("useEth2CrawlerApi must be used within a Eth2CrawlerProvider")
+    throw new Error("useNodewatchCrawlerApi must be used within a NodewatchCrawlerProvider")
   }
   return context
 }
 
-export { Eth2CrawlerProvider, useEth2CrawlerApi }
+export { useNodewatchCrawlerApi, NodewatchCrawlerProvider }

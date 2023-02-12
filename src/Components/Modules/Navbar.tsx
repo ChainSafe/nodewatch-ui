@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
       <div className={classes.box}>
         <Typography variant="h5">
           <a href="/" className={classes.navLink}>
-            Eth2 Nodewatch
+            Ethereum Consensus Nodewatch
           </a>
         </Typography>
         <Typography variant="h5">

@@ -9,7 +9,7 @@ import ClientTypes from "../Modules/DemographicsStats/ClientTypes"
 import HeatMap from "../Modules/HeatMap/MapLeaflet"
 import NetworkTypes from "../Modules/SoftwareStats/NetworkTypes"
 import OperatingSystems from "../Modules/SoftwareStats/OperatingSystems"
-import { useEth2CrawlerApi } from "../../Contexts/Eth2CrawlerContext"
+import { useNodewatchCrawlerApi } from "../../Contexts/NodewatchCrawlerContext"
 import VersionVariance from "../Modules/SoftwareStats/VersionVariance"
 import SectionTile from "../Layouts/SectionTile/SectionTile"
 import CardStat from "../Layouts/SectionTile/CardStat"
@@ -68,7 +68,7 @@ const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
 
 function HomePage() {
   const classes = useStyles()
-  const { nodeStats, nodeRegionalStats } = useEth2CrawlerApi()
+  const { nodeStats, nodeRegionalStats } = useNodewatchCrawlerApi()
 
   return (
     <div className={classes.root}>

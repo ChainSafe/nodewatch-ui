@@ -29,6 +29,7 @@ import {
   LOAD_REGIONAL_STATS,
   LOAD_NODES_BY_COUNTRIES,
   LOAD_ALTAIR_UPGRADE_PERCENTAGE,
+  LOAD_NEXT_HARDFORK_SCHEDULE,
 } from "../GraphQL/Queries"
 import { GetNodeStats, GetNodeStats_getNodeStats } from "../GraphQL/types/GetNodeStats"
 import {
@@ -45,6 +46,7 @@ import {
   GetNodesByCountries_aggregateByCountry,
 } from "../GraphQL/types/GetNodesByCountries"
 import { GetAltAirUpgradePercentage } from "../GraphQL/types/GetAltAirUpgradePercentage"
+import { GetNextHardForkSchedule, GetNextHardForkSchedule_aggregateByHardforkSchedule } from "../GraphQL/types/GetNextHardForkSchedule"
 
 type Eth2CrawlerContextProps = {
   children: React.ReactNode | React.ReactNode[]
@@ -60,6 +62,7 @@ interface IEth2CrawlerContext {
   nodeStatsOverTime: GetNodeStatsOverTime_getNodeStatsOverTime[]
   nodeRegionalStats: GetRegionalStats_getRegionalStats | undefined
   nodeCountByCountries: GetNodesByCountries_aggregateByCountry[]
+  nextHardForkSchedule: GetNextHardForkSchedule_aggregateByHardforkSchedule[]
   altAirPercentage: number | undefined
   isLoadingClients: boolean
   isLoadingOperatingSystems: boolean
@@ -71,6 +74,7 @@ interface IEth2CrawlerContext {
   isLoadingNodeRegionalStats: boolean
   isLoadingNodeCountByCountries: boolean
   isLoadingAltAirPercentage: boolean
+  isLoadingNextHardForkSchedule: boolean
 }
 
 const Eth2CrawlerContext = React.createContext<IEth2CrawlerContext | undefined>(undefined)
@@ -100,6 +104,10 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   >([])
   const [altAirPercentage, setAltAirPercentage] = useState<number | undefined>(undefined)
 
+  const [nextHardForkSchedule, setNextHardForkSchedule] = useState<
+    GetNextHardForkSchedule_aggregateByHardforkSchedule[]
+  >([])
+
   const [isLoadingClients, setIsLoadingClients] = useState(true)
   const [isLoadingOperatingSystems, setIsLoadingOperatingSystems] = useState(true)
   const [isLoadingNetworks, setIsLoadingNetworks] = useState(true)
@@ -110,6 +118,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
   const [isLoadingNodeRegionalStats, setIsLoadingNodeRegionalStats] = useState(true)
   const [isLoadingNodeCountByCountries, setIsLoadingNodeCountByCountries] = useState(true)
   const [isLoadingAltAirPercentage, setIsLoadingAltAirPercentage] = useState(true)
+  const [isLoadingNextHardForkSchedule, setIsLoadingNextHardForkSchedule] = useState(true)
 
   const getInitialData = async () => {
     graphClient
@@ -187,6 +196,13 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
       })
       .catch(console.error)
       .finally(() => setIsLoadingAltAirPercentage(false))
+    graphClient
+      .request<GetNextHardForkSchedule>(LOAD_NEXT_HARDFORK_SCHEDULE)
+      .then((result) => {
+        setNextHardForkSchedule(result.aggregateByHardforkSchedule)
+      })
+      .catch(console.error)
+      .finally(() => setIsLoadingNextHardForkSchedule(false))
   }
 
   useEffect(() => {
@@ -206,6 +222,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         nodeCountByCountries,
         clientVersions,
         altAirPercentage,
+        nextHardForkSchedule,
         isLoadingNodeStats,
         isLoadingClients,
         isLoadingOperatingSystems,
@@ -216,6 +233,7 @@ const Eth2CrawlerProvider = ({ children }: Eth2CrawlerContextProps) => {
         isLoadingNodeRegionalStats,
         isLoadingNodeCountByCountries,
         isLoadingAltAirPercentage,
+        isLoadingNextHardForkSchedule,
       }}
     >
       {children}

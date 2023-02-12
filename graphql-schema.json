@@ -10,12 +10,12 @@
       {
         "kind": "OBJECT",
         "name": "AggregateData",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "name",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -31,7 +31,7 @@
           },
           {
             "name": "count",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -65,12 +65,12 @@
       {
         "kind": "OBJECT",
         "name": "ClientVersionAggregation",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "client",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -86,7 +86,7 @@
           },
           {
             "name": "count",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -102,7 +102,7 @@
           },
           {
             "name": "versions",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -144,12 +144,12 @@
       {
         "kind": "OBJECT",
         "name": "HeatmapData",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "networkType",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -165,7 +165,7 @@
           },
           {
             "name": "clientType",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -181,7 +181,7 @@
           },
           {
             "name": "syncStatus",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -197,7 +197,7 @@
           },
           {
             "name": "latitude",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -213,7 +213,7 @@
           },
           {
             "name": "longitude",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -229,7 +229,7 @@
           },
           {
             "name": "city",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -245,7 +245,7 @@
           },
           {
             "name": "country",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -289,13 +289,73 @@
       },
       {
         "kind": "OBJECT",
+        "name": "NextHardforkAggregation",
+        "description": null,
+        "specifiedByUrl": null,
+        "fields": [
+          {
+            "name": "version",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "epoch",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "count",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "NodeStats",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "totalNodes",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -311,7 +371,7 @@
           },
           {
             "name": "nodeSyncedPercentage",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -327,7 +387,7 @@
           },
           {
             "name": "nodeUnsyncedPercentage",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -350,12 +410,12 @@
       {
         "kind": "OBJECT",
         "name": "NodeStatsOverTime",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "time",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -371,7 +431,7 @@
           },
           {
             "name": "totalNodes",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -387,7 +447,7 @@
           },
           {
             "name": "syncedNodes",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -403,7 +463,7 @@
           },
           {
             "name": "unsyncedNodes",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -426,12 +486,12 @@
       {
         "kind": "OBJECT",
         "name": "Query",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "aggregateByAgentName",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -455,7 +515,7 @@
           },
           {
             "name": "aggregateByCountry",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -479,7 +539,7 @@
           },
           {
             "name": "aggregateByOperatingSystem",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -503,7 +563,7 @@
           },
           {
             "name": "aggregateByNetwork",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -526,8 +586,32 @@
             "deprecationReason": null
           },
           {
+            "name": "aggregateByHardforkSchedule",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "NextHardforkAggregation",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "aggregateByClientVersion",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -551,7 +635,7 @@
           },
           {
             "name": "getHeatmapData",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -575,7 +659,7 @@
           },
           {
             "name": "getNodeStats",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -591,11 +675,11 @@
           },
           {
             "name": "getNodeStatsOverTime",
-            "description": "",
+            "description": null,
             "args": [
               {
                 "name": "start",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -611,7 +695,7 @@
               },
               {
                 "name": "end",
-                "description": "",
+                "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
@@ -648,7 +732,7 @@
           },
           {
             "name": "getRegionalStats",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -664,7 +748,7 @@
           },
           {
             "name": "getAltairUpgradePercentage",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -687,12 +771,12 @@
       {
         "kind": "OBJECT",
         "name": "RegionalStats",
-        "description": "",
+        "description": null,
         "specifiedByUrl": null,
         "fields": [
           {
             "name": "totalParticipatingCountries",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -708,7 +792,7 @@
           },
           {
             "name": "hostedNodePercentage",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -724,7 +808,7 @@
           },
           {
             "name": "nonhostedNodePercentage",
-            "description": "",
+            "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -1661,16 +1745,18 @@
     "directives": [
       {
         "name": "deprecated",
-        "description": "The @deprecated directive is used within the type system definition language to indicate deprecated portions of a GraphQL service’s schema, such as deprecated fields on a type or deprecated enum values.",
+        "description": "The @deprecated built-in directive is used within the type system definition language to indicate deprecated portions of a GraphQL service's schema, such as deprecated fields on a type, arguments on a field, input fields on an input type, or values of an enum type.",
         "isRepeatable": false,
         "locations": [
           "FIELD_DEFINITION",
+          "ARGUMENT_DEFINITION",
+          "INPUT_FIELD_DEFINITION",
           "ENUM_VALUE"
         ],
         "args": [
           {
             "name": "reason",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "SCALAR",
               "name": "String",
@@ -1694,7 +1780,7 @@
         "args": [
           {
             "name": "if",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -1722,13 +1808,39 @@
         "args": [
           {
             "name": "if",
-            "description": "",
+            "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ]
+      },
+      {
+        "name": "specifiedBy",
+        "description": "The @specifiedBy built-in directive is used within the type system definition language to provide a scalar specification URL for specifying the behavior of custom scalar types.",
+        "isRepeatable": false,
+        "locations": [
+          "SCALAR"
+        ],
+        "args": [
+          {
+            "name": "url",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },

@@ -18,6 +18,7 @@ import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 import { Typography } from "@chainsafe/common-components"
 import CountryStats from "../Modules/CountryStats"
 import AltAirPercentage from "../Modules/SoftwareStats/AltAirPercentage"
+import HardforkSchedule from "../Modules/SoftwareStats/HardforkSchedule"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
@@ -154,6 +155,7 @@ function HomePage() {
       <CountryStats />
       <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
+          <HardforkSchedule />
           <AltAirPercentage />
           <ClientTypes />
           <OperatingSystems />

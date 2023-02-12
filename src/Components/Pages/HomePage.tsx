@@ -17,7 +17,6 @@ import NodeStatusOverTime from "../Modules/NodeStats/NodeStatsOverTime"
 import GridLayoutWrapper from "../Layouts/GridLayout/GridLayoutWrapper"
 import { Typography } from "@chainsafe/common-components"
 import CountryStats from "../Modules/CountryStats"
-import AltAirPercentage from "../Modules/SoftwareStats/AltAirPercentage"
 
 const useStyles = makeStyles(({ constants, breakpoints, palette }: ECTheme) => {
   return createStyles({
@@ -154,7 +153,6 @@ function HomePage() {
       <CountryStats />
       <GridLayoutWrapper heading="Node Statistics">
         <div className={classes.nodeStats}>
-          <AltAirPercentage />
           <ClientTypes />
           <OperatingSystems />
           <NetworkTypes />

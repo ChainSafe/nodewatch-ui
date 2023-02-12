@@ -95,9 +95,3 @@ export const LOAD_NODES_BY_COUNTRIES = gql`
     }
   }
 `
-
-export const LOAD_ALTAIR_UPGRADE_PERCENTAGE = gql`
-  query GetAltAirUpgradePercentage {
-    getAltairUpgradePercentage
-  }
-`
